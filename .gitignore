@@ -1,0 +1,31 @@
+# Maven
+target/
+*.jar
+*.war
+*.class
+
+# Spring Boot
+application-local.properties
+application-local.yml
+*.env
+.env
+
+# IDE filer
+.idea/
+*.iml
+.vscode/
+*.eclipse
+.project
+.classpath
+.settings/
+
+# OS filer
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Secrets / miljøvariabler
+secrets.properties
