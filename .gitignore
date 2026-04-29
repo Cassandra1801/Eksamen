@@ -1,31 +1,33 @@
-# Maven
+HELP.md
 target/
-*.jar
-*.war
-*.class
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# Spring Boot
-application-local.properties
-application-local.yml
-*.env
-.env
-
-# IDE filer
-.idea/
-*.iml
-.vscode/
-*.eclipse
-.project
+### STS ###
+.apt_generated
 .classpath
-.settings/
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# OS filer
-.DS_Store
-Thumbs.db
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
-# Logs
-*.log
-logs/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Secrets / miljøvariabler
-secrets.properties
+### VS Code ###
+.vscode/
