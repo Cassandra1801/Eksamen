@@ -6,7 +6,7 @@
 - Password: (indsæt)
 
 ## GitHub Repository
-- URL: (indsæt GitHub repo URL)
+- URL: https://github.com/Cassandra1801/Eksamen
 
 ## Forudsætninger
 Følgende skal være installeret for at køre applikationen:
