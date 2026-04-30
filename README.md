@@ -1,7 +1,7 @@
 # Bilabonnement.dk - Internt System
 
 ## Deployment
-- URL: (indsæt Azure URL når deployed)
+- URL: bilabonnement-g7czd3h4gjfecrex.germanywestcentral-01.azurewebsites.net
 - Brugernavn: (indsæt)
 - Password: (indsæt)
 
