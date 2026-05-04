@@ -8,6 +8,12 @@
 ## GitHub Repository
 - URL: https://github.com/Cassandra1801/Eksamen
 
+## Database
+- URL: roundhouse.proxy.rlwy.net:45274
+- Database: railway
+- Brugernavn: root
+- Password: XRLvUrFECrJVWxRMcfitGVIi0yHsmcui
+
 ## Forudsætninger
 Følgende skal være installeret for at køre applikationen:
 - Java 17+
