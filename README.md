@@ -6,7 +6,7 @@
 - Password: (indsæt)
 
 ## GitHub Repository
-- URL: https://github.com/Cassandra1801/Eksamen
+- URL: https://eksamen-production.up.railway.app
 
 ## Forudsætninger
 Følgende skal være installeret for at køre applikationen:
