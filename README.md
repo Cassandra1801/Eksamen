@@ -1,7 +1,7 @@
 # Bilabonnement.dk - Internt System
 
 ## Deployment
-- URL: bilabonnement-g7czd3h4gjfecrex.germanywestcentral-01.azurewebsites.net
+- URL: https://eksamen-production.up.railway.app
 - Brugernavn: (indsæt)
 - Password: (indsæt)
 
