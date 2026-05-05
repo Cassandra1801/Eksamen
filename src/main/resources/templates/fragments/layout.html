@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="da" th:fragment="html(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilabonnement</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Bilabonnement</h1>
+</header>
+
+<main th:replace="${content}"></main>
+
+</body>
+</html>
+
