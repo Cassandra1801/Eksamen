@@ -8,7 +8,7 @@ public class Skadesrapport {
     private int bilId;
     private int lejeaftaleId;
     private int medarbejderId;
-    private LocalDate Dato;
+    private LocalDate dato;
     private String beskrivelse;
     private double pris;
     private int totalPris;

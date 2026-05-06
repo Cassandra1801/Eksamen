@@ -21,39 +21,56 @@ CREATE TABLE IF NOT EXISTS bil (
 
 
 CREATE TABLE IF NOT EXISTS kunde (
-    kunde_id INT PRIMARY KEY AUTO_INCREMENT,
+    kunde_Id INT PRIMARY KEY AUTO_INCREMENT,
     navn VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     mobil VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS lejeaftale (
-    lejeaftale_id INT PRIMARY KEY AUTO_INCREMENT,
+    lejeaftale_Id INT PRIMARY KEY AUTO_INCREMENT,
     medarbejder_Id INT NOT NULL,
-    kunde_id INT NOT NULL,
-    bik_Id INT NOT NULL,
+    kunde_Id INT NOT NULL,
+    bil_Id INT NOT NULL,
     lokation VARCHAR(200),
     startdato DATE NOT NULL,
     slutdato DATE NOT NULL,
-    pris DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (vognnummer)
-        REFERENCES biler(vognnummer),
-    FOREIGN KEY (kunde_id)
-        REFERENCES kunder(kunde_id)
+    pris_pr_maaned DECIMAL(10,2) NOT NULL,
+    km_graense INT NOT NULL,
+    FOREIGN KEY (medarbejder_Id)
+        REFERENCES medarbejder(medarbejder_Id),
+    FOREIGN KEY (kunde_Id)
+        REFERENCES kunde(kunde_Id),
+    FOREIGN KEY (bil_Id)
+        REFERENCES bil(bil_Id)
 );
 
-CREATE TABLE IF NOT EXISTS skader (
-    skade_id INT PRIMARY KEY AUTO_INCREMENT,
-    aftale_id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS medarbejder (
+    medarbejder_Id INT PRIMARY KEY AUTO_INCREMENT,
+    navn VARCHAR(50),
+    kodeord VARCHAR(255),
+    email VARCHAR(255),
+    rolle ENUM (
+        'DATAREGISTRERING',
+        'SKADE OG UDBEDRING',
+        'FORRETNINGSUDVIKLER'
+        )
+);
+
+CREATE TABLE IF NOT EXISTS skadesrapport (
+    skade_Id INT NOT NULL,
+    bil_Id INT NOT NULL,
+    lejeaftale_Id INT NOT NULL,
+    medarbejder_Id INT NOT NULL,
+    dato DATE NOT NULL,
     beskrivelse VARCHAR(255) NOT NULL,
     pris DECIMAL(10,2) NOT NULL,
     total_pris DECIMAL(10,2) NOT NULL,
-    dato DATE NOT NULL,
-    FOREIGN KEY (aftale_id)
-        REFERENCES lejeaftale(aftale_id)
+    FOREIGN KEY (bil_Id)
+        REFERENCES bil(bil_Id),
+    FOREIGN KEY (lejeaftale_Id)
+        REFERENCES lejeaftale(lejeaftale_Id),
+    FOREIGN KEY (medarbejder_Id)
+        REFERENCES medarbejder(medarbejder_Id)
 );
 
-DROP TABLE lejeaftale;
-DROP TABLE skader;
-DROP TABLE kunder;
-DROP TABLE biler;
