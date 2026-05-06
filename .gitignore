@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local environment config (must not be committed)
+application-local.properties
+**/application-local.properties
+
+# Logs
+*.log
+

@@ -1,12 +1,18 @@
 # Bilabonnement.dk - Internt System
 
 ## Deployment
-- URL: bilabonnement-g7czd3h4gjfecrex.germanywestcentral-01.azurewebsites.net
-- Brugernavn: (indsæt)
-- Password: (indsæt)
+- URL: https://eksamen-production.up.railway.app
+- Brugernavn: root
+- Password: XRLvUrFECrJVWxRMcfitGVIi0yHsmcui
 
 ## GitHub Repository
 - URL: https://github.com/Cassandra1801/Eksamen
+
+## Database
+- URL: roundhouse.proxy.rlwy.net:45274
+- Database: railway
+- Brugernavn: root
+- Password: XRLvUrFECrJVWxRMcfitGVIi0yHsmcui
 
 ## Forudsætninger
 Følgende skal være installeret for at køre applikationen:
@@ -18,18 +24,17 @@ Følgende skal være installeret for at køre applikationen:
 
 ### Database
 1. Opret en MySQL database
-2. Kør DDL-scriptet: `src/main/resources/sql/schema.sql`
-3. Kør DML-scriptet: `src/main/resources/sql/data.sql`
+2. Kør DDL-scriptet: `src/main/resources/schema.sql`
+3. Kør DML-scriptet: `src/main/resources/data.sql`
 
 ### Miljøvariabler
-Opret en `application-local.properties` fil i `src/main/resources/` med følgende:
+Opret environment variables med følgende:
 
-spring.datasource.url=jdbc:mysql://localhost:3306/bilabonnement
-spring.datasource.username=DIT_BRUGERNAVN
-spring.datasource.password=DIT_PASSWORD
+SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/bilabonnement
+SPRING_DATASOURCE_USERNAME=DIT_BRUGERNAVN
+SPRING_DATASOURCE_PASSWORD=DIT_PASSWORD
 
 ### Kør applikationen
-
 mvn spring-boot:run
 
 Applikationen kører på http://localhost:8080

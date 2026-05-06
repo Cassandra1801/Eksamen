@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
+<body>
+
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+        <div class="forside-container">
+
+            <a th:href="@{/dataregistrering}" class="rolle-boks">
+                <div class="boks-titel">Dataregistrering</div>
+            </a>
+
+            <a th:href="@{/skade}" class="rolle-boks">
+                <div class="boks-titel">Skade og udbedring</div>
+            </a>
+
+            <a th:href="@{/forretning}" class="rolle-boks">
+                <div class="boks-titel">Forretning</div>
+            </a>
+        </div>
+</div>
+
+</body>
+</html>
