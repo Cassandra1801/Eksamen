@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS skader (
     aftale_id INT NOT NULL,
     beskrivelse VARCHAR(255) NOT NULL,
     pris DECIMAL(10,2) NOT NULL,
+    total_pris DECIMAL(10,2) NOT NULL,
     dato DATE NOT NULL,
     FOREIGN KEY (aftale_id)
         REFERENCES lejeaftale(aftale_id)
