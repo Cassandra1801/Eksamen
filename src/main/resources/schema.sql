@@ -3,7 +3,10 @@ CREATE TABLE IF NOT EXISTS biler (
     stelnummer VARCHAR(50) NOT NULL UNIQUE,
     maerke VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
-    farve VARCHAR(50) NOT NULL,
+    udstyrsniveau VARCHAR(50) NOT NULL,
+    staalpris DECIMAL NOT NULL,
+    reg_afgift INT NOT NULL,
+    CO2_udledning INT NOT NULL,
     status ENUM(
         'INDKØBT',
         'LEDIG',
