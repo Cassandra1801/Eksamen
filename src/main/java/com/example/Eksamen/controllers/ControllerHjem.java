@@ -16,9 +16,9 @@ public class ControllerHjem {
         return "dataregistrering";
     }
 
-    @GetMapping("/skade")
+    @GetMapping("/skadesrapport")
     public String skade() {
-        return "skade";
+        return "registrer-skade";
     }
 
     @GetMapping("/forretning")

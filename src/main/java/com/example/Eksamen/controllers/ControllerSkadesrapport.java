@@ -13,9 +13,17 @@ public class ControllerSkadesrapport {
     @Autowired
     private ServiceSkadesrapport service;
 
+    @GetMapping("/skadesrapport")
+    public String visSkadeformular() {
+        return "skadesrapport"; // viser HTML siden
+    }
+
+    // Modtager skadedata fra formularen i frontend
+    // @ModelAttribute binder automatisk formularens felter til Skadesrapport objektet
     @PostMapping("/skadesrapport/opret")
     public String opretSkade(@ModelAttribute Skadesrapport skade) {
-        service.opretSkade(skade);
-        return "redirect:/skadesrapport";
-}
+        service.opretSkade(skade);           // Sender skaden videre til Service
+        return "redirect:/skadesrapport";    // Sender brugeren tilbage til skadesrapport siden
+    }
+
 }

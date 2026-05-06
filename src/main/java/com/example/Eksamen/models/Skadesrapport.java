@@ -4,21 +4,33 @@ import java.time.LocalDate;
 
 public class Skadesrapport {
 
-    private int skadeid;
-    private int aftaleid;
+    private int skadeId;
+    private int bilId;
+    private int lejeaftaleId;
+    private int medarbejderId;
+    private LocalDate Dato;
     private String beskrivelse;
     private double pris;
     private int totalPris;
-    private LocalDate dato;
+
 
 
     public Skadesrapport(){}
 
-    public int getSkadeid() {return skadeid;}
-    public void setSkadeid(int skadeid) {this.skadeid = skadeid;}
+    public int getSkadeId() {return skadeId;}
+    public void setSkadeId(int skadeid) {this.skadeId = skadeid;}
 
-    public int getAftaleid() {return aftaleid;}
-    public void setAftaleid(int aftaleid) {this.aftaleid = aftaleid;}
+    public int getBilId() {return bilId;}
+    public void setBilId(int bilId) {this.bilId = bilId;}
+
+    public int getAftaleid() {return lejeaftaleId;}
+    public void setAftaleId(int aftaleid) {this.lejeaftaleId = aftaleid;}
+
+    public int getMedarbejderId() {return medarbejderId;}
+    public void setMedarbejderId(int medarbejderId) {this.medarbejderId = medarbejderId;}
+
+    public LocalDate getDato() { return dato; }
+    public void setDato(LocalDate dato) { this.dato = dato; }
 
     public String getBeskrivelse() {return beskrivelse;}
     public void setBeskrivelse(String beskrivelse) {this.beskrivelse = beskrivelse;}
@@ -29,7 +41,5 @@ public class Skadesrapport {
     public int getTotalPris() {return totalPris;}
     public void setTotalPris(int totalPris) {this.totalPris = totalPris;}
 
-    public LocalDate getDato() { return dato; }
-    public void setDato(LocalDate dato) { this.dato = dato; }
 
 }
