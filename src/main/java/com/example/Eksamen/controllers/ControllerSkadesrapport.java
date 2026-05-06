@@ -13,11 +13,6 @@ public class ControllerSkadesrapport {
     @Autowired
     private ServiceSkadesrapport service;
 
-    @GetMapping("/skadesrapport")
-    public String visSkadeformular() {
-        return "skadesrapport"; // viser HTML siden
-    }
-
     // Modtager skadedata fra formularen i frontend
     // @ModelAttribute binder automatisk formularens felter til Skadesrapport objektet
     @PostMapping("/skadesrapport/opret")

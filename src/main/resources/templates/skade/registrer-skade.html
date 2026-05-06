@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registrer Skade</title>
+    <link rel="stylesheet" th:href="@{/css/registrer-skade.css}"/>
+
 </head>
 <body>
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+        <div class="formular-container">
+            <h2 class="formular-titel">Registrer skade</h2>
+
+            <form th:action="@{/skadesrapport/opret}" th:object="${skadesrapport}" method="post">
+
+                <div class="felt-gruppe">
+                    <label>Bil ID</label>
+                    <input type="number" th:field="*{bilId}" placeholder="Indtast bil ID"/>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Lejeaftale ID</label>
+                    <input type="number" th:field="*{lejeaftaleId}" placeholder="Indtast lejeaftale ID"/>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Medarbejder ID</label>
+                    <input type="number" th:field="*{medarbejderId}" placeholder="Indtast medarbejder ID"/>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Dato</label>
+                    <input type="date" th:field="*{dato}"/>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Beskrivelse</label>
+                    <input type="text" th:field="*{beskrivelse}" placeholder="Beskriv skaden"/>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Pris</label>
+                    <input type="number" th:field="*{pris}" placeholder="Indtast pris"/>
+                </div>
+
+                <button type="submit" class="indsend-knap">Registrer skade</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

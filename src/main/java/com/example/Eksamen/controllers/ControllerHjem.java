@@ -1,7 +1,9 @@
 package com.example.Eksamen.controllers;
 
+import com.example.Eksamen.models.Skadesrapport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 
 @Controller
 public class ControllerHjem {
@@ -17,8 +19,9 @@ public class ControllerHjem {
     }
 
     @GetMapping("/skadesrapport")
-    public String skade() {
-        return "registrer-skade";
+    public String skadesrapport(Model model) {
+        model.addAttribute("skadesrapport", new Skadesrapport());
+        return "skade/registrer-skade";
     }
 
     @GetMapping("/forretning")
