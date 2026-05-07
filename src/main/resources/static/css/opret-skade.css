@@ -1,3 +1,9 @@
+body {
+    background-color: #EDE0C8;
+    margin: 0;
+    padding: 0;
+}
+
 .formular-container {
     display: flex;
     flex-direction: column;
@@ -10,12 +16,7 @@
 .formular-titel {
     font-size: 24px;
     color: #1a3a2a;
-    margin-top: 30px;
-}
-
-.skade-titel {
-    color: #1a3a2a;
-    margin: 10px 0 5px 0;
+    margin: 30px;
 }
 
 form {
@@ -29,7 +30,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 8px;
+    width: 100%;
 }
 
 .felt-gruppe label {

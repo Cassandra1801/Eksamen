@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS kunder (
 );
 
 CREATE TABLE IF NOT EXISTS lejeaftale (
-    aftale_id INT PRIMARY KEY AUTO_INCREMENT,
+    aftale_Id INT PRIMARY KEY AUTO_INCREMENT,
     vognnummer INT NOT NULL,
-    kunde_id INT NOT NULL,
+    kunde_Id INT NOT NULL,
     startdato DATE NOT NULL,
     slutdato DATE NOT NULL,
     pris DECIMAL(10,2) NOT NULL,
@@ -39,12 +39,15 @@ CREATE TABLE IF NOT EXISTS lejeaftale (
 );
 
 CREATE TABLE IF NOT EXISTS skader (
-    skade_id INT PRIMARY KEY AUTO_INCREMENT,
-    aftale_id INT NOT NULL,
+    skade_Id INT PRIMARY KEY AUTO_INCREMENT,
+    vognnummer INT NOT NULL,
+    lejeaftale_Id INT NOT NULL,
+    medarbejder_Id INT NOT NULL,
+    dato DATE NOT NULL,
     beskrivelse VARCHAR(255) NOT NULL,
     pris DECIMAL(10,2) NOT NULL,
-    total_pris DECIMAL(10,2) NOT NULL,
-    dato DATE NOT NULL,
-    FOREIGN KEY (aftale_id)
-        REFERENCES lejeaftale(aftale_id)
+    FOREIGN KEY (vognnummer)
+        REFERENCES biler(vognnummer),
+    FOREIGN KEY (lejeaftale_Id)
+        REFERENCES lejeaftale(aftale_Id)
 );

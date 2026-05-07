@@ -4,8 +4,9 @@ public class Kunde {
 
     private int kundeId;
     private String navn;
-    private String mobil;
     private String email;
+    private String mobil;
+
 
     public Kunde() {}
 

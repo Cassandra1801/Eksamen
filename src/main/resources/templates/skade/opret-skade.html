@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret skadesrapport</title>
+    <link rel="stylesheet" th:href="@{/css/opret-skade.css}"/>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+        <div class="forside-container">
+            <h2 class="formular-titel">Opret skadesrapport</h2>
+
+            <form th:action="@{/registrer-skadesrapport}" method="post">
+
+                <div class="felt-gruppe">
+                    <label>Vognnummer</label>
+                    <input type="number" name="vognnummer" placeholder="Indtast vognnummer"/>
+                </div>
+
+            <div class="felt-gruppe">
+                <label>Lejeaftale ID</label>
+                <input type="number" name="lejeaftaleId" placeholder="Indtast lejeaftaleId"/>
+            </div>
+
+            <div class="felt-gruppe">
+                <label>Medarbejder ID</label>
+                <input type="number" name="medarbejderId" placeholder="Indtast medarbejder ID"/>
+            </div>
+
+            <div class="felt-gruppe">
+                <label>Dato</label>
+                <input type="date" name="dato"/>
+            </div>
+
+            <div class="felt-gruppe">
+                <label>Antal skader</label>
+                <input type="number" name="antalSkader" placeholder="Hvor mange skader?"/>
+            </div>
+
+            <button type="submit" class="indsend-knap">Fortsæt</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

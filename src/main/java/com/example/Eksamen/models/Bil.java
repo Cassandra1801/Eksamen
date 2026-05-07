@@ -2,8 +2,7 @@ package com.example.Eksamen.models;
 
 public class Bil {
 
-    private int bilId;
-    private int nummerplade;
+    private int vognnummer;
     private String stelnummer;
     private String maerke;
     private String model;
@@ -15,18 +14,16 @@ public class Bil {
 
     public Bil () {}
 
-    public Bil (String stelnummer, String maerke, String model, String farve, BilStatus status) {
+    public Bil (int vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, BilStatus status) {
+        this.vognnummer= vognnummer;
         this.stelnummer = stelnummer;
         this.maerke = maerke;
         this.model = model;
         this.status = status;
     }
 
-    public int getBilId() {return bilId;}
-    public void setBilId(int bilId) {this.bilId = bilId;}
-
-    public int getNummerplade () {return nummerplade;}
-    public void setNummerplade (int nummerplade) {this.nummerplade = nummerplade;}
+    public int getVognnummer() {return vognnummer;}
+    public void setVognnummer(int vognnummer) {this.vognnummer = vognnummer;}
 
     public String getStelnummer() {return stelnummer;}
     public void setStelnummer(String stelnummer) {this.stelnummer = stelnummer;}
