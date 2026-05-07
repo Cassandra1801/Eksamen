@@ -2,8 +2,8 @@
 
 ## Deployment
 - URL: https://eksamen-production.up.railway.app
-- Brugernavn: root
-- Password: XRLvUrFECrJVWxRMcfitGVIi0yHsmcui
+- Brugernavn: 
+- Password: 
 
 ## GitHub Repository
 - URL: https://github.com/Cassandra1801/Eksamen
