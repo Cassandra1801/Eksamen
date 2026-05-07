@@ -39,9 +39,4 @@ public class Lejeaftale {
 
     public BigDecimal getPris() {return pris;}
     public void setPris(BigDecimal pris) {this.pris = pris;}
-
-
-
-
-    
 }
