@@ -13,6 +13,7 @@ public class Skadesrapport {
     private double pris;
 
 
+
     public Skadesrapport(){}
 
     public int getSkadeId() {return skadeId;}
