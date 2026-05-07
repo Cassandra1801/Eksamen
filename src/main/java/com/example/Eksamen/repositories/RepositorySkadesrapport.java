@@ -22,7 +22,7 @@ public class RepositorySkadesrapport {
             // SQL sætning der indsætter en ny række i databasen
             // ? er pladsholdere som udfyldes nedenfor
 
-            jdbcTemplate.update(sql, skade.getAftaleid(), skade.getBeskrivelse(), skade.getPris(), skade.getDato());
+            jdbcTemplate.update(sql, skade.getLejeaftaleId(), skade.getBeskrivelse(), skade.getPris(), skade.getDato());
             // udfylder de 4 spørgsmålstegn med data fra skade objektet
             // ? 1 = aftaleId
             // ? 2 = beskrivelse

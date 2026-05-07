@@ -23,8 +23,8 @@ public class Skadesrapport {
     public int getBilId() {return bilId;}
     public void setBilId(int bilId) {this.bilId = bilId;}
 
-    public int getAftaleid() {return lejeaftaleId;}
-    public void setAftaleId(int aftaleid) {this.lejeaftaleId = aftaleid;}
+    public int getLejeaftaleId() {return lejeaftaleId;}
+    public void setLejeaftaleId(int aftaleid) {this.lejeaftaleId = aftaleid;}
 
     public int getMedarbejderId() {return medarbejderId;}
     public void setMedarbejderId(int medarbejderId) {this.medarbejderId = medarbejderId;}
@@ -36,7 +36,7 @@ public class Skadesrapport {
     public void setBeskrivelse(String beskrivelse) {this.beskrivelse = beskrivelse;}
 
     public double getPris() {return pris;}
-    public void setPris(int pris) {this.pris = pris;}
+    public void setPris(double pris) {this.pris = pris;}
 
     public int getTotalPris() {return totalPris;}
     public void setTotalPris(int totalPris) {this.totalPris = totalPris;}

@@ -15,15 +15,24 @@ body{
     box-sizing: border-box;
 }
 
+.header a {
+    text-decoration: none;
+    color: #F2E9D8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
 .header-logo {
     height: 45px;
     width: auto;
 }
 
 .header-titel {
-    color: #F2E9D8;
     font-size: 22px;
     margin: 0;
+    display: inline;
 }
 
 .forside-container{
