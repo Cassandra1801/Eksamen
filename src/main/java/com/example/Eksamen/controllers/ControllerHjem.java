@@ -18,9 +18,14 @@ public class ControllerHjem {
         return "dataregistrering";
     }
 
-    @GetMapping("/skadesrapport")
+    @GetMapping("/opret-skade")
+    public String opretSkade() {
+        return "skade/opret-skade";
+    }
+
+    @GetMapping("/registrer-skadesrapport")
     public String skadesrapport(Model model) {
-        model.addAttribute("skadesrapport", new Skadesrapport());
+        model.addAttribute("registrerSkadesrapport", new Skadesrapport());
         return "skade/registrer-skade";
     }
 

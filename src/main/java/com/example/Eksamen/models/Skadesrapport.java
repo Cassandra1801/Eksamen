@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Skadesrapport {
 
     private int skadeId;
-    private int bilId;
+    private int vognnummer;
     private int lejeaftaleId;
     private int medarbejderId;
     private LocalDate dato;
@@ -19,8 +19,8 @@ public class Skadesrapport {
     public int getSkadeId() {return skadeId;}
     public void setSkadeId(int skadeid) {this.skadeId = skadeid;}
 
-    public int getBilId() {return bilId;}
-    public void setBilId(int bilId) {this.bilId = bilId;}
+    public int getVognnummer() {return vognnummer;}
+    public void setVognnummer(int vognnummer) {this.vognnummer = vognnummer;}
 
     public int getLejeaftaleId() {return lejeaftaleId;}
     public void setLejeaftaleId(int aftaleid) {this.lejeaftaleId = aftaleid;}
@@ -36,5 +36,6 @@ public class Skadesrapport {
 
     public double getPris() {return pris;}
     public void setPris(double pris) {this.pris = pris;}
+
 
 }

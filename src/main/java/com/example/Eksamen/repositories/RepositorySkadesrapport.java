@@ -18,21 +18,23 @@ public class RepositorySkadesrapport {
         public void tilfoejSkadeTilRapport (Skadesrapport skade) {
             // Metoden tager imod et Skadesrapport objekt
 
-            String sql = "INSERT INTO skader (aftale_id, beskrivelse, pris, dato) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO skader (vognnummer, lejeaftale_Id, medarbejder_Id, dato, beskrivelse, pris) VALUES (?,?,?,?,?,?)";
             // SQL sætning der indsætter en ny række i databasen
             // ? er pladsholdere som udfyldes nedenfor
 
-            jdbcTemplate.update(sql, skade.getLejeaftaleId(), skade.getBeskrivelse(), skade.getPris(), skade.getDato());
-            // udfylder de 4 spørgsmålstegn med data fra skade objektet
-            // ? 1 = aftaleId
-            // ? 2 = beskrivelse
-            // ? 3 = pris
-            // ? 4 = dato
+            jdbcTemplate.update(sql,
+                    skade.getVognnummer(),
+                    skade.getLejeaftaleId(),
+                    skade.getMedarbejderId(),
+                    skade.getDato(),
+                    skade.getBeskrivelse(),
+                    skade.getPris()
+            );
         }
 
-    public double totalPris(int aftaleId) {
-        String sql = "SELECT SUM(pris) FROM skader WHERE aftale_id = ?";
-        return jdbcTemplate.queryForObject(sql, Double.class, aftaleId);
+    public double totalPris(int vognnummer) {
+        String sql = "SELECT SUM(pris) FROM skader WHERE vognnummer = ?";
+        return jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
     }
 
 }

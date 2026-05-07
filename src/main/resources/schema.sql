@@ -31,6 +31,21 @@ CREATE TABLE IF NOT EXISTS kunder (
             mobil VARCHAR(50) NOT NULL UNIQUE
 );
 
+
+CREATE TABLE IF NOT EXISTS skader (
+    skade_Id INT PRIMARY KEY AUTO_INCREMENT,
+    vognnummer INT NOT NULL,
+    lejeaftale_Id INT NOT NULL,
+    medarbejder_Id INT NOT NULL,
+    dato DATE NOT NULL,
+    beskrivelse VARCHAR(255) NOT NULL,
+    pris DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (vognnummer)
+        REFERENCES biler(vognnummer),
+    FOREIGN KEY (lejeaftale_Id)
+        REFERENCES lejeaftaler(aftale_Id)
+  
+  
 CREATE TABLE IF NOT EXISTS lejeaftaler (
             lejeaftale_Id INT PRIMARY KEY AUTO_INCREMENT,
             medarbejder_Id VARCHAR(50) NOT NULL,

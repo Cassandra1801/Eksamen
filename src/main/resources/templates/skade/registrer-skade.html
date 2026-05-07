@@ -12,39 +12,28 @@
         <div class="formular-container">
             <h2 class="formular-titel">Registrer skade</h2>
 
-            <form th:action="@{/skadesrapport/opret}" th:object="${skadesrapport}" method="post">
+            <form th:action="@{/gem-skadesrapport}" method="post">
 
-                <div class="felt-gruppe">
-                    <label>Bil ID</label>
-                    <input type="number" th:field="*{bilId}" placeholder="Indtast bil ID"/>
+                <!-- Skjulte felter fra side 1 -->
+                <input type="hidden" name="vognnummer" th:value="${vognnummer}"/>
+                <input type="hidden" name="lejeaftaleId" th:value="${lejeaftaleId}"/>
+                <input type="hidden" name="medarbejderId" th:value="${medarbejderId}"/>
+                <input type="hidden" name="dato" th:value="${dato}"/>
+
+                <!-- Gentager skadefelter -->
+                <div th:each="i : ${#numbers.sequence(1, antalSkader)}">
+                    <h3 class="skade-titel" th:text="'Skade ' + ${i}"></h3>
+                    <div class="felt-gruppe">
+                        <label>Beskrivelse</label>
+                        <input type="text" name="beskrivelse" placeholder="Beskriv skaden"/>
+                    </div>
+                    <div class="felt-gruppe">
+                        <label>Pris</label>
+                        <input type="number" name="pris" placeholder="Indtast pris"/>
+                    </div>
                 </div>
 
-                <div class="felt-gruppe">
-                    <label>Lejeaftale ID</label>
-                    <input type="number" th:field="*{lejeaftaleId}" placeholder="Indtast lejeaftale ID"/>
-                </div>
-
-                <div class="felt-gruppe">
-                    <label>Medarbejder ID</label>
-                    <input type="number" th:field="*{medarbejderId}" placeholder="Indtast medarbejder ID"/>
-                </div>
-
-                <div class="felt-gruppe">
-                    <label>Dato</label>
-                    <input type="date" th:field="*{dato}"/>
-                </div>
-
-                <div class="felt-gruppe">
-                    <label>Beskrivelse</label>
-                    <input type="text" th:field="*{beskrivelse}" placeholder="Beskriv skaden"/>
-                </div>
-
-                <div class="felt-gruppe">
-                    <label>Pris</label>
-                    <input type="number" th:field="*{pris}" placeholder="Indtast pris"/>
-                </div>
-
-                <button type="submit" class="indsend-knap">Registrer skade</button>
+                <button type="submit" class="indsend-knap">Registrer skadesrapport</button>
             </form>
         </div>
     </div>
