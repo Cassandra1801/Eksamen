@@ -1,11 +1,10 @@
-DROP TABLE skadesrapport;
-DROP TABLE lejeaftale;
-DROP TABLE bil;
-DROP TABLE kunde;
-DROP TABLE medarbejder;
+DROP TABLE skadesrapporter;
+DROP TABLE lejeaftaler;
+DROP TABLE biler;
+DROP TABLE kunder;
 
 
-CREATE TABLE IF NOT EXISTS bil (
+CREATE TABLE IF NOT EXISTS biler (
             vognnummer INT PRIMARY KEY,
             stelnummer VARCHAR(50) NOT NULL UNIQUE,
             maerke VARCHAR(50) NOT NULL,
@@ -25,28 +24,16 @@ CREATE TABLE IF NOT EXISTS bil (
             )
 );
 
-CREATE TABLE IF NOT EXISTS medarbejder (
-            medarbejder_Id INT PRIMARY KEY AUTO_INCREMENT,
-            navn VARCHAR(50),
-            kodeord VARCHAR(255),
-            email VARCHAR(255),
-            rolle ENUM (
-                'DATAREGISTRERING',
-                'SKADE OG UDBEDRING',
-                'FORRETNINGSUDVIKLER'
-            )
-);
-
-CREATE TABLE IF NOT EXISTS kunde (
+CREATE TABLE IF NOT EXISTS kunder (
             kunde_Id INT PRIMARY KEY AUTO_INCREMENT,
             navn VARCHAR(100) NOT NULL,
             email VARCHAR(50) NOT NULL UNIQUE,
             mobil VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS lejeaftale (
+CREATE TABLE IF NOT EXISTS lejeaftaler (
             lejeaftale_Id INT PRIMARY KEY AUTO_INCREMENT,
-            medarbejder_Id INT NOT NULL,
+            medarbejder_Id VARCHAR(50) NOT NULL,
             kunde_Id INT NOT NULL,
             vognnummer INT NOT NULL,
             lokation VARCHAR(200),
@@ -54,28 +41,23 @@ CREATE TABLE IF NOT EXISTS lejeaftale (
             slutdato DATE NOT NULL,
             pris_pr_maaned DECIMAL(10,2) NOT NULL,
             km_graense INT NOT NULL,
-            FOREIGN KEY (medarbejder_Id)
-                REFERENCES medarbejder(medarbejder_Id),
             FOREIGN KEY (kunde_Id)
-                REFERENCES kunde(kunde_Id),
+                REFERENCES kunder(kunde_Id),
             FOREIGN KEY (vognnummer)
-                REFERENCES bil(vognnummer)
+                REFERENCES biler(vognnummer)
 );
 
 
-CREATE TABLE IF NOT EXISTS skadesrapport (
+CREATE TABLE IF NOT EXISTS skadesrapporter (
             skade_Id INT NOT NULL,
             vognnummer INT NOT NULL,
             lejeaftale_Id INT NOT NULL,
-            medarbejder_Id INT NOT NULL,
+            medarbejder_Id VARCHAR(50) NOT NULL,
             dato DATE NOT NULL,
             beskrivelse VARCHAR(255) NOT NULL,
             pris DECIMAL(10,2) NOT NULL,
-            total_pris DECIMAL(10,2) NOT NULL,
             FOREIGN KEY (vognnummer)
-                REFERENCES bil(vognnummer),
+                REFERENCES biler(vognnummer),
             FOREIGN KEY (lejeaftale_Id)
-                REFERENCES lejeaftale(lejeaftale_Id),
-            FOREIGN KEY (medarbejder_Id)
-                REFERENCES medarbejder(medarbejder_Id)
+                REFERENCES lejeaftaler(lejeaftale_Id)
 );

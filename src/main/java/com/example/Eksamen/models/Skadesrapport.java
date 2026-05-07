@@ -11,7 +11,6 @@ public class Skadesrapport {
     private LocalDate dato;
     private String beskrivelse;
     private double pris;
-    private int totalPris;
 
 
 
@@ -37,9 +36,5 @@ public class Skadesrapport {
 
     public double getPris() {return pris;}
     public void setPris(double pris) {this.pris = pris;}
-
-    public int getTotalPris() {return totalPris;}
-    public void setTotalPris(int totalPris) {this.totalPris = totalPris;}
-
 
 }
