@@ -1,8 +1,8 @@
 package com.example.Eksamen.models;
 
-public class Bil {
+public abstract class Bil {
 
-    private int vognnummer;
+    private String vognnummer;
     private String stelnummer;
     private String maerke;
     private String model;
@@ -10,20 +10,30 @@ public class Bil {
     private int staalpris;
     private int regAfgift;
     private int co2Udledning;
+    private String farve;
     private BilStatus status;
 
     public Bil () {}
 
-    public Bil (int vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, BilStatus status) {
+    public Bil (String vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, String farve, BilStatus status) {
         this.vognnummer= vognnummer;
         this.stelnummer = stelnummer;
         this.maerke = maerke;
         this.model = model;
+        this.udstyrsniveau = udstyrsniveau;
+        this.staalpris = staalpris;
+        this.regAfgift = regAfgift;
+        this.co2Udledning = co2Udledning;
+        this.farve = farve;
         this.status = status;
     }
 
-    public int getVognnummer() {return vognnummer;}
-    public void setVognnummer(int vognnummer) {this.vognnummer = vognnummer;}
+
+    public abstract int getMaxLejePeriodeIDage();
+    public abstract String getAbonnementsType();
+
+    public String getVognnummer() {return vognnummer;}
+    public void setVognnummer(String vognnummer) {this.vognnummer = vognnummer;}
 
     public String getStelnummer() {return stelnummer;}
     public void setStelnummer(String stelnummer) {this.stelnummer = stelnummer;}
@@ -46,8 +56,9 @@ public class Bil {
     public int getCo2Udledning() {return co2Udledning;}
     public void setCo2Udledning(int co2Udledning) {this.co2Udledning = co2Udledning;}
 
+    public String getFarve() {return farve;}
+    public void setFarve(String farve) {this.farve = farve;}
+
     public BilStatus getStatus() {return status;}
     public void setStatus(BilStatus status) {this.status = status;}
-
-
 }
