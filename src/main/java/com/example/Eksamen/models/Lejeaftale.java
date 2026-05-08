@@ -8,7 +8,7 @@ public class Lejeaftale {
     private int lejeAftaleId;
     private int medarbejderId;
     private int kundeId;
-    private int vognnummer;
+    private String vognnummer;
     private String lokation;
     private LocalDate startDato;
     private LocalDate slutDato;
@@ -17,7 +17,7 @@ public class Lejeaftale {
     
     public Lejeaftale () {}
 
-    public Lejeaftale (int lejeAftaleId, int medarbejderId,  int kundeId, int vognnummer, String lokation, LocalDate startDato, LocalDate slutDato, BigDecimal prisPrMaaned, int kmGraense) {
+    public Lejeaftale (int lejeAftaleId, int medarbejderId,  int kundeId, String vognnummer, String lokation, LocalDate startDato, LocalDate slutDato, BigDecimal prisPrMaaned, int kmGraense) {
         this.vognnummer = vognnummer;
         this.kundeId = kundeId;
         this.startDato = startDato;
@@ -35,8 +35,8 @@ public class Lejeaftale {
     public int getKundeId() {return kundeId;}
     public void setKundeId(int kundeId) {this.kundeId = kundeId;}
 
-    public int getVognnummer() {return vognnummer;}
-    public void setVognnummer(int vognnummer) {this.vognnummer = vognnummer;}
+    public String getVognnummer() {return vognnummer;}
+    public void setVognnummer(String vognnummer) {this.vognnummer = vognnummer;}
 
     public String getLokation() {return lokation;}
     public void setLokation(String lokation) {this.lokation = lokation;}

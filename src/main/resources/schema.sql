@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS biler (
                        farve VARCHAR(50) NOT NULL,
                        status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT'),
 
-                       bil_type VARCHAR(20) NOT NULL,              #LIMITED eller UNLIMITED
+                       bil_type VARCHAR(20) NOT NULL,               -- LIMITED eller UNLIMITED
 
-                       aftalte_periode_i_maaneder INT NULL,   #Bruges KUN af UnlimitedBil - derfor nullable
+                       aftalte_periode_i_maaneder INT NULL,    -- Bruges KUN af UnlimitedBil - derfor nullable
 
                        CONSTRAINT chk_bil_type CHECK ( bil_type IN ('LIMITED', 'UNLIMITED')),
                        CONSTRAINT chk_unlimited_periode CHECK (

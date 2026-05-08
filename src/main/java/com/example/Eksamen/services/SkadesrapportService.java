@@ -17,6 +17,6 @@ public class SkadesrapportService {
     }
 
     public double totalPris(int aftaleId) {
-        return repository.totalPris(aftaleId);
+        return repository.totalPris(String.valueOf(aftaleId));
     }
 }

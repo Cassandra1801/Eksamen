@@ -21,7 +21,7 @@ public class BilRepository {
 
 
     ///Finder ud af om en bil eksisterer med det vognnummer i biler tabellen (registrering af lejeaftale funktionalitet)
-    public boolean eksistererVognnummeret(int vognnummer) {
+    public boolean eksistererVognnummeret(String vognnummer) {
 
         //SQL Statement returnerer boolean om eksistensen af vognnummer i biler
         String sql = """
@@ -39,7 +39,7 @@ public class BilRepository {
 
 
     ///Finder ud af om en bil er ledig inde på biler tabellen via vognnummer (registrering af lejeaftale funktionalitet)
-    public boolean erBilenLedig(int vognnummer) {
+    public boolean erBilenLedig(String vognnummer) {
 
         //SQL Statement boolean
         String sql = """
@@ -57,7 +57,7 @@ public class BilRepository {
 
 
     ///Ændrer ledig status på bil (registrering af lejeaftale funktionalitet)
-    public void opdaterStatus(int vognnummer, BilStatus status) {
+    public void opdaterStatus(String vognnummer, BilStatus status) {
 
         //SQL Statement
         String sql = "UPDATE biler SET  status = ? WHERE vognnummer = ?";
