@@ -49,4 +49,7 @@ public class Lejeaftale {
 
     public BigDecimal getPris() {return prisPrMaaned;}
     public void setPris(BigDecimal pris) {this.prisPrMaaned = pris;}
+
+    public int getKmGraense() {return kmGraense;}
+    public void setKmGraense(int kmGraense) {this.kmGraense = kmGraense;}
 }

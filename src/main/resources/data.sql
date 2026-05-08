@@ -1,8 +1,8 @@
 INSERT IGNORE INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, reg_afgift, CO2_udledning, status)
 VALUES
-    (01,'EF889','hej','Audi','A8','style',200,500,'INDKØBT'),
-    (02,'EF899','neJ','Audi','A7','pretty',220,600,'UDLEJET'),
-    (03,'EF999','JA','Audi','A5','Mmeh',2200,5200,'INDKØBT');
+    (01,'EF889','hej','Audi','A8',4,200,500,'INDKØBT'),
+    (02,'EF899','neJ','Audi','A7',5,220,600,'UDLEJET'),
+    (03,'EF999','JA','Audi','A5',6,2200,5200,'INDKØBT');
 
 INSERT IGNORE INTO kunder(kunde_id, navn, email, mobil)
 VALUES

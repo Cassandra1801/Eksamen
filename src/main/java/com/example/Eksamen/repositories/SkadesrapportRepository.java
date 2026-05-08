@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 // Fortæller Spring Boot at dette er en Repository klasse
 // Spring Boot opretter automatisk et objekt af klassen
 @Repository
-public class RepositorySkadesrapport {
+public class SkadesrapportRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
