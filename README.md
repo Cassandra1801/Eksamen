@@ -2,8 +2,8 @@
 
 ## Deployment
 - URL: https://eksamen-production.up.railway.app
-- Brugernavn: <se Rapport>
-- Password: <se Rapport>
+- Brugernavn: se Rapport
+- Password: se Rapport
 
 ## GitHub Repository
 - URL: https://github.com/Cassandra1801/Eksamen
@@ -11,8 +11,8 @@
 ## Database
 - URL: roundhouse.proxy.rlwy.net:45274
 - Database: railway
-- Brugernavn: <se Rapport>
-- Password: <se Rapport>
+- Brugernavn: se Rapport
+- Password: se Rapport
 
 ## Forudsætninger
 Følgende skal være installeret for at køre applikationen:
