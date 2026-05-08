@@ -1,9 +1,18 @@
+DROP TABLE skadesrapporter;
+DROP TABLE lejeaftaler;
+DROP TABLE biler;
+DROP TABLE kunder;
+
+
 CREATE TABLE IF NOT EXISTS biler (
-    vognnummer INT PRIMARY KEY,
+    vognnummer INT PRIMARY KEY AUTO_INCREMENT,
     stelnummer VARCHAR(50) NOT NULL UNIQUE,
     maerke VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
-    farve VARCHAR(50) NOT NULL,
+    udstyrsniveau VARCHAR(50) NOT NULL,
+    staalpris DECIMAL NOT NULL,
+    reg_afgift INT NOT NULL,
+    CO2_udledning INT NOT NULL,
     status ENUM(
         'INDKØBT',
         'LEDIG',
@@ -12,35 +21,43 @@ CREATE TABLE IF NOT EXISTS biler (
         'SKADET',
         'KLAR_TIL_SALG',
         'SOLGT'
-    ) NOT NULL
-);
+    )
+    );
 
 CREATE TABLE IF NOT EXISTS kunder (
-    kunde_id INT PRIMARY KEY AUTO_INCREMENT,
+    kunde_Id INT PRIMARY KEY AUTO_INCREMENT,
     navn VARCHAR(100) NOT NULL,
-    telefon VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(50) NOT NULL UNIQUE
-);
+    email VARCHAR(50) NOT NULL UNIQUE,
+    mobil VARCHAR(50) NOT NULL UNIQUE
+    );
 
-CREATE TABLE IF NOT EXISTS lejeaftale (
-    aftale_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS lejeaftaler (
+    lejeaftale_Id INT PRIMARY KEY AUTO_INCREMENT,
+    medarbejder_Id VARCHAR(50) NOT NULL,
+    kunde_Id INT NOT NULL,
     vognnummer INT NOT NULL,
-    kunde_id INT NOT NULL,
+    lokation VARCHAR(200),
     startdato DATE NOT NULL,
     slutdato DATE NOT NULL,
-    pris DECIMAL(10,2) NOT NULL,
+    pris_pr_maaned DECIMAL(10,2) NOT NULL,
+    km_graense INT NOT NULL,
+    FOREIGN KEY (kunde_Id)
+    REFERENCES kunder(kunde_Id),
     FOREIGN KEY (vognnummer)
-        REFERENCES biler(vognnummer),
-    FOREIGN KEY (kunde_id)
-        REFERENCES kunder(kunde_id)
-);
+    REFERENCES biler(vognnummer)
+    );
 
-CREATE TABLE IF NOT EXISTS skader (
-    skade_id INT PRIMARY KEY AUTO_INCREMENT,
-    aftale_id INT NOT NULL,
+
+CREATE TABLE IF NOT EXISTS skadesrapporter (
+    skade_Id INT PRIMARY KEY AUTO_INCREMENT,
+    vognnummer INT NOT NULL,
+    lejeaftale_Id INT NOT NULL,
+    medarbejder_Id VARCHAR(50) NOT NULL,
+    dato DATE NOT NULL,
     beskrivelse VARCHAR(255) NOT NULL,
     pris DECIMAL(10,2) NOT NULL,
-    dato DATE NOT NULL,
-    FOREIGN KEY (aftale_id)
-        REFERENCES lejeaftale(aftale_id)
-);
+    FOREIGN KEY (vognnummer)
+    REFERENCES biler(vognnummer),
+    FOREIGN KEY (lejeaftale_Id)
+    REFERENCES lejeaftaler(lejeaftale_Id)
+    );

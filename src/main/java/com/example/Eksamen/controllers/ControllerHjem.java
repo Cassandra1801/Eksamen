@@ -13,7 +13,7 @@ public class ControllerHjem {
 
     @GetMapping("/dataregistrering")
     public String dataregistrering() {
-        return "dataregistrering";
+        return "/dataregistrering/dataregistrering";
     }
 
     @GetMapping("/skade")
