@@ -15,7 +15,7 @@ public class HjemController {
 
     @GetMapping("/dataregistrering")
     public String dataregistrering() {
-        return "dataregistrering";
+        return "/dataregistrering/dataregistrering";
     }
 
     @GetMapping("/opret-skade")

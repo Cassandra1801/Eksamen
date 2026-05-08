@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Opret Lejeaftale</title>
+</head>
+<body>
+
+
+
+<h1>Opret Lejeaftale</h1>
+
+
+
+<!--Success besked af oprettelse-->
+<p th:if="${param.success}" style="color: green;">
+    Lejeaftale blev oprettet.
+</p>
+
+<!--Fejl besked af oprettelse-->
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+
+<!--Form-->
+<form th:action="@{/lejeaftale/opret}" method="post">
+
+    <!--Kunde Informationer-->
+    <h2>Kunde</h2>
+
+    <label>Navn</label>
+    <input type="text" name="navn" required>
+
+    <label>Mobil</label>
+    <input type="text" name="mobil" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+
+    <!--Lejeaftale Informationer-->
+    <h2>Lejeaftale</h2>
+
+    <label>Medarbejder ID</label>
+    <input type="text" name="medarbejderId" required>
+
+    <label>Vognnummer</label>
+    <input type="number" name="vognnummer" required>
+
+    <label>Lokation</label>
+    <input type="text" name="lokation">
+
+    <label>Startdato</label>
+    <input type="date" name="startdato" required>
+
+    <label>Slutdato</label>
+    <input type="date" name="slutdato" required>
+
+    <label>Pris pr. måned</label>
+    <input type="number" step="0.01" name="prisPrMaaned" required>
+
+    <label>Km grænse</label>
+    <input type="number" name="kmGraense" required>
+
+
+    <!--Submit Knap-->
+    <button type="submit">Opret Lejeaftale</button>
+
+
+</form>
+
+</body>
+</html>
