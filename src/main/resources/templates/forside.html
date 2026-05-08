@@ -2,8 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <body>
 
-
-
 <div th:replace="~{fragments/layout :: html(~{::content})}">
     <div th:fragment="content">
         <div class="forside-container">
@@ -12,7 +10,7 @@
                 <div class="boks-titel">Dataregistrering</div>
             </a>
 
-            <a th:href="@{/skade}" class="rolle-boks">
+            <a th:href="@{/opret-skade}" class="rolle-boks">
                 <div class="boks-titel">Skade og udbedring</div>
             </a>
 

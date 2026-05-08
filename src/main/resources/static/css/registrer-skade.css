@@ -1,0 +1,66 @@
+.formular-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 70px);
+    gap: 20px;
+}
+
+.formular-titel {
+    font-size: 24px;
+    color: #1a3a2a;
+    margin-top: 30px;
+}
+
+.skade-titel {
+    color: #1a3a2a;
+    margin: 10px 0 5px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 450px;
+}
+
+.felt-gruppe {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.felt-gruppe label {
+    font-weight: bold;
+    color: #1a3a2a;
+}
+
+.felt-gruppe input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #1a3a2a;
+    background-color: rgba(40, 90, 70, 0.10);
+    font-size: 16px;
+}
+
+.felt-gruppe input:focus {
+    outline: none;
+    background-color: rgba(40, 90, 70, 0.20);
+}
+
+.indsend-knap {
+    padding: 15px;
+    background-color: #1a3a2a;
+    color: #F2E9D8;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.indsend-knap:hover {
+    opacity: 0.85;
+}

@@ -6,21 +6,24 @@ public class Bil {
     private String stelnummer;
     private String maerke;
     private String model;
-    private String farve;
+    private String udstyrsniveau;
+    private int staalpris;
+    private int regAfgift;
+    private int co2Udledning;
     private BilStatus status;
 
     public Bil () {}
 
-    public Bil (String stelnummer, String maerke, String model, String farve, BilStatus status) {
+    public Bil (int vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, BilStatus status) {
+        this.vognnummer= vognnummer;
         this.stelnummer = stelnummer;
         this.maerke = maerke;
         this.model = model;
-        this.farve = farve;
         this.status = status;
     }
 
-    public int getVognnummer () {return vognnummer;}
-    public void setVognnummer (int vognnummer) {this.vognnummer = vognnummer;}
+    public int getVognnummer() {return vognnummer;}
+    public void setVognnummer(int vognnummer) {this.vognnummer = vognnummer;}
 
     public String getStelnummer() {return stelnummer;}
     public void setStelnummer(String stelnummer) {this.stelnummer = stelnummer;}
@@ -31,8 +34,17 @@ public class Bil {
     public String getModel() {return model;}
     public void setModel(String model) {this.model = model;}
 
-    public String getFarve() {return farve;}
-    public void setFarve(String farve) {this.farve = farve;}
+    public String getUdstyrsniveau() {return udstyrsniveau;}
+    public void setUdstyrsniveau(String udstyrsniveau) {this.udstyrsniveau = udstyrsniveau;}
+
+    public int getStaalpris() {return staalpris;}
+    public void setStaalpris(int staalpris) {this.staalpris = staalpris;}
+
+    public int getRegAfgift() {return regAfgift;}
+    public void setRegAfgift(int regAfgift) {this.regAfgift = regAfgift;}
+
+    public int getCo2Udledning() {return co2Udledning;}
+    public void setCo2Udledning(int co2Udledning) {this.co2Udledning = co2Udledning;}
 
     public BilStatus getStatus() {return status;}
     public void setStatus(BilStatus status) {this.status = status;}

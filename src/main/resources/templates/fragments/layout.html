@@ -7,8 +7,11 @@
 </head>
 <body>
 
-<header>
-    <h1>Bilabonnement</h1>
+<header class="header">
+    <a th:href="@{/}">
+    <img th:src="@{/images/timer.png}" alt="Logo" class="header-logo">
+    <h1 class="header-titel">BILABONNEMENT</h1>
+    </a>
 </header>
 
 <main th:replace="${content}"></main>

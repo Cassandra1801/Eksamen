@@ -5,102 +5,51 @@ import java.time.LocalDate;
 
 public class Lejeaftale {
 
-    private int lejeaftaleId;
-    private String medarbejderId;
+    private int lejeAftaleId;
+    private int medarbejderId;
     private int kundeId;
     private int vognnummer;
     private String lokation;
-    private LocalDate startdato;
-    private LocalDate slutdato;
+    private LocalDate startDato;
+    private LocalDate slutDato;
     private BigDecimal prisPrMaaned;
     private int kmGraense;
     
     public Lejeaftale () {}
 
-    public Lejeaftale (int kundeId, int vognnummer, String lokation, LocalDate startdato, LocalDate slutdato, BigDecimal prisPrMaaned, int kmGraense) {
-        this.kundeId = kundeId;
+    public Lejeaftale (int lejeAftaleId, int medarbejderId,  int kundeId, int vognnummer, String lokation, LocalDate startDato, LocalDate slutDato, BigDecimal prisPrMaaned, int kmGraense) {
         this.vognnummer = vognnummer;
-        this.lokation = lokation;
-        this.startdato = startdato;
-        this.slutdato = slutdato;
+        this.kundeId = kundeId;
+        this.startDato = startDato;
+        this.slutDato = slutDato;
         this.prisPrMaaned = prisPrMaaned;
         this.kmGraense = kmGraense;
     }
 
-    public int getLejeaftaleId() {
-        return lejeaftaleId;
-    }
+    public int getAftaleId() {return lejeAftaleId;}
+    public void setAftaleId(int aftaleId) {this.lejeAftaleId = aftaleId;}
 
-    public void setLejeaftaleId(int lejeaftaleId) {
-        this.lejeaftaleId = lejeaftaleId;
-    }
+    public int getMedarbejderId() {return medarbejderId;}
+    public void setMedarbejderId(int medarbejderId) {this.medarbejderId = medarbejderId;}
 
-    public String getMedarbejderId() {
-        return medarbejderId;
-    }
+    public int getKundeId() {return kundeId;}
+    public void setKundeId(int kundeId) {this.kundeId = kundeId;}
 
-    public void setMedarbejderId(String medarbejderId) {
-        this.medarbejderId = medarbejderId;
-    }
+    public int getVognnummer() {return vognnummer;}
+    public void setVognnummer(int vognnummer) {this.vognnummer = vognnummer;}
 
-    public int getKundeId() {
-        return kundeId;
-    }
+    public String getLokation() {return lokation;}
+    public void setLokation(String lokation) {this.lokation = lokation;}
 
-    public void setKundeId(int kundeId) {
-        this.kundeId = kundeId;
-    }
+    public LocalDate getStartDato() {return startDato;}
+    public void setStartDato(LocalDate startDato) {this.startDato = startDato;}
 
-    public int getVognnummer() {
-        return vognnummer;
-    }
+    public LocalDate getSlutDato() {return slutDato;}
+    public void setSlutDato(LocalDate slutDato) {this.slutDato = slutDato;}
 
-    public void setVognnummer(int vognnummer) {
-        this.vognnummer = vognnummer;
-    }
+    public BigDecimal getPris() {return prisPrMaaned;}
+    public void setPris(BigDecimal pris) {this.prisPrMaaned = pris;}
 
-    public String getLokation() {
-        return lokation;
-    }
-
-    public void setLokation(String lokation) {
-        this.lokation = lokation;
-    }
-
-    public LocalDate getStartdato() {
-        return startdato;
-    }
-
-    public void setStartdato(LocalDate startdato) {
-        this.startdato = startdato;
-    }
-
-    public LocalDate getSlutdato() {
-        return slutdato;
-    }
-
-    public void setSlutdato(LocalDate slutdato) {
-        this.slutdato = slutdato;
-    }
-
-    public BigDecimal getPrisPrMaaned() {
-        return prisPrMaaned;
-    }
-
-    public void setPrisPrMaaned(BigDecimal prisPrMaaned) {
-        this.prisPrMaaned = prisPrMaaned;
-    }
-
-    public int getKmGraense() {
-        return kmGraense;
-    }
-
-    public void setKmGraense(int kmGraense) {
-        this.kmGraense = kmGraense;
-    }
-
-
-
-
-    
+    public int getKmGraense() {return kmGraense;}
+    public void setKmGraense(int kmGraense) {this.kmGraense = kmGraense;}
 }

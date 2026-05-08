@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registrer Skade</title>
+    <link rel="stylesheet" th:href="@{/css/registrer-skade.css}"/>
+
 </head>
 <body>
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+        <div class="formular-container">
+            <h2 class="formular-titel">Registrer skade</h2>
+
+            <form th:action="@{/gem-skadesrapport}" method="post">
+
+                <!-- Skjulte felter fra side 1 -->
+                <input type="hidden" name="vognnummer" th:value="${vognnummer}"/>
+                <input type="hidden" name="lejeaftaleId" th:value="${lejeaftaleId}"/>
+                <input type="hidden" name="medarbejderId" th:value="${medarbejderId}"/>
+                <input type="hidden" name="dato" th:value="${dato}"/>
+
+                <!-- Gentager skadefelter -->
+                <div th:each="i : ${#numbers.sequence(1, antalSkader)}">
+                    <h3 class="skade-titel" th:text="'Skade ' + ${i}"></h3>
+                    <div class="felt-gruppe">
+                        <label>Beskrivelse</label>
+                        <input type="text" name="beskrivelse" placeholder="Beskriv skaden"/>
+                    </div>
+                    <div class="felt-gruppe">
+                        <label>Pris</label>
+                        <input type="number" name="pris" placeholder="Indtast pris"/>
+                    </div>
+                </div>
+
+                <button type="submit" class="indsend-knap">Registrer skadesrapport</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
