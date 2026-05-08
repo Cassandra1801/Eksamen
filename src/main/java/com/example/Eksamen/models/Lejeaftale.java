@@ -47,6 +47,6 @@ public class Lejeaftale {
     public LocalDate getSlutDato() {return slutDato;}
     public void setSlutDato(LocalDate slutDato) {this.slutDato = slutDato;}
 
-    public BigDecimal getPris() {return pris;}
-    public void setPris(BigDecimal pris) {this.pris = pris;}
+    public BigDecimal getPris() {return prisPrMaaned;}
+    public void setPris(BigDecimal pris) {this.prisPrMaaned = pris;}
 }
