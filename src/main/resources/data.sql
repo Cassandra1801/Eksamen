@@ -1,14 +1,14 @@
-INSERT IGNORE INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, reg_afgift, CO2_udledning, status)
+INSERT IGNORE INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, reg_afgift, CO2_udledning,farve, status)
 VALUES
-    (01,'EF889','hej','Audi','A8',4,200,500,'INDKØBT'),
-    (02,'EF899','neJ','Audi','A7',5,220,600,'UDLEJET'),
-    (03,'EF999','JA','Audi','A5',6,2200,5200,'INDKØBT');
+    ('BA0534','VF7SXHMZ6PT123456','Citroën','C3','Shine',50.000,25.000,150,'Sort','KLAR_TIL_SALG'),
+    ('EV2975','VF7SXHMZ6PT123174', 'Renault', 'Clio','techno E-tech Hybrid',22.450,30.520,450,'Rød','UDLEJET'),
+    ('AB2097','VF7SXANZ6PT654321','Peugeeot',208,'Normal',146.000,38.200,304,'Allure','INDKØBT');
 
 INSERT IGNORE INTO kunder(kunde_id, navn, email, mobil)
 VALUES
-    (01,'Casws','cassmich@gmail.com','279039'),
+    (01,'Cass','cassmich@gmail.com','279039'),
     (02,'Cam','cammich@gmail.com','279857'),
-    (03,'Cah','cah@gmail.com','2795849');
+    (03,'Call','cah@gmail.com','2795849');
 
 
 INSERT IGNORE INTO lejeaftaler (lejeaftale_Id, medarbejder_Id, kunde_Id, vognnummer, lokation, startdato, slutdato, pris_pr_maaned, km_graense)

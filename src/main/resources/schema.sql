@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS biler (
                        staalpris DECIMAL NOT NULL,
                        reg_afgift INT NOT NULL,
                        CO2_udledning INT NOT NULL,
+                       farve VARCHAR(50) NOT NULL,
                        status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT')
 );
 
@@ -28,8 +29,8 @@ CREATE TABLE IF NOT EXISTS lejeaftaler (
                              kunde_Id INT NOT NULL,
                              vognnummer VARCHAR(50) NOT NULL,
                              lokation VARCHAR(200),
-                             startdato DATE NOT NULL,
-                             slutdato DATE NOT NULL,
+                             startDato DATE NOT NULL,
+                             slutDato DATE NOT NULL,
                              pris_pr_maaned DECIMAL(10,2) NOT NULL,
                              km_graense INT NOT NULL,
                              FOREIGN KEY (kunde_Id) REFERENCES kunder(kunde_Id),

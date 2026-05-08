@@ -20,7 +20,7 @@ public class LejeaftaleRepository {
         //SQL Statement
         String sql = """
                 INSERT INTO lejeaftaler
-                (medarbejder_Id, kunde_Id, vognnummer, lokation, startdato, slutdato, pris_pr_maaned, km_graense)
+                (medarbejder_Id, kunde_Id, vognnummer, lokation, startDato, slutDato, pris_pr_maaned, km_graense)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
@@ -30,8 +30,8 @@ public class LejeaftaleRepository {
                 lejeaftale.getKundeId(), //Værdien af det andet ?
                 lejeaftale.getVognnummer(), //Værdien af det tredje ?
                 lejeaftale.getLokation(), //Værdien af det fjerde ?
-                lejeaftale.getStartdato(), //Værdien af det femte ?
-                lejeaftale.getSlutdato(), //Værdien af det sjette ?
+                lejeaftale.getStartDato(), //Værdien af det femte ?
+                lejeaftale.getSlutDato(), //Værdien af det sjette ?
                 lejeaftale.getPrisPrMaaned(), //Værdien af det syvende ?
                 lejeaftale.getKmGraense() //Værdien af det åttende ?
         );
