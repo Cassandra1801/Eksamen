@@ -30,8 +30,8 @@ public class LejeaftaleRepository {
                 lejeaftale.getKundeId(), //Værdien af det andet ?
                 lejeaftale.getVognnummer(), //Værdien af det tredje ?
                 lejeaftale.getLokation(), //Værdien af det fjerde ?
-                lejeaftale.getStartdato(), //Værdien af det femte ?
-                lejeaftale.getSlutdato(), //Værdien af det sjette ?
+                lejeaftale.getStartDato(), //Værdien af det femte ?
+                lejeaftale.getSlutDato(), //Værdien af det sjette ?
                 lejeaftale.getPrisPrMaaned(), //Værdien af det syvende ?
                 lejeaftale.getKmGraense() //Værdien af det åttende ?
         );
