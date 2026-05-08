@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS skader;
-DROP TABLE IF EXISTS skadesrapporter;
-DROP TABLE IF EXISTS lejeaftaler;
-DROP TABLE IF EXISTS biler;
-DROP TABLE IF EXISTS kunder;
+# DROP TABLE IF EXISTS skader;
+# DROP TABLE IF EXISTS skadesrapporter;
+# DROP TABLE IF EXISTS lejeaftaler;
+# DROP TABLE IF EXISTS biler;
+# DROP TABLE IF EXISTS kunder;
 
-CREATE TABLE biler (
+CREATE TABLE IF NOT EXISTS biler (
                        vognnummer INT PRIMARY KEY,
                        stelnummer VARCHAR(50) NOT NULL UNIQUE,
                        maerke VARCHAR(50) NOT NULL,
@@ -16,14 +16,14 @@ CREATE TABLE biler (
                        status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT')
 );
 
-CREATE TABLE kunder (
+CREATE TABLE IF NOT EXISTS kunder (
                         kunde_Id INT PRIMARY KEY AUTO_INCREMENT,
                         navn VARCHAR(100) NOT NULL,
                         email VARCHAR(50) NOT NULL UNIQUE,
                         mobil VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE lejeaftaler (
+CREATE TABLE IF NOT EXISTS lejeaftaler (
                              lejeaftale_Id INT PRIMARY KEY AUTO_INCREMENT,
                              medarbejder_Id VARCHAR(50) NOT NULL,
                              kunde_Id INT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE lejeaftaler (
                              FOREIGN KEY (vognnummer) REFERENCES biler(vognnummer)
 );
 
-CREATE TABLE skader (
+CREATE TABLE IF NOT EXISTS skader (
                         skade_Id INT PRIMARY KEY AUTO_INCREMENT,
                         vognnummer INT NOT NULL,
                         lejeaftale_Id INT NOT NULL,
