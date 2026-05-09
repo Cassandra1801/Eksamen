@@ -13,7 +13,7 @@ VALUES
 
 INSERT IGNORE INTO lejeaftaler (lejeaftale_Id, medarbejder_Id, kunde_Id, vognnummer, lokation, startdato, slutdato, pris_pr_maaned, km_graense)
 VALUES
-    (1, 'M001', 1, 'BA0534', 'København', '2026-01-01', '2026-06-01', 5000.00, 15000),
-    (2, 'M002', 2, 'EV2975', 'Aarhus', '2026-02-01', '2026-07-01', 4500.00, 12000),
-    (3, 'M001', 3, 'AB2097', 'Odense', '2026-03-01', '2026-08-01', 5500.00, 18000);
+    (1, '001', 1, 'BA0534', 'København', '2026-01-01', '2026-06-01', 5000.00, 15000),
+    (2, '002', 2, 'EV2975', 'Aarhus', '2026-02-01', '2026-07-01', 4500.00, 12000),
+    (3, '001', 3, 'AB2097', 'Odense', '2026-03-01', '2026-08-01', 5500.00, 18000);
 

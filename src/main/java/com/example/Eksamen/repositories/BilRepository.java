@@ -67,9 +67,15 @@ public class BilRepository {
     }
 
 
-    /// RowMapper der vælger rigtige subklasser ud fra bil_type-kolonnen
-    ///  Bruges af findAlle() og findVedVognnummer() til at bygge Bil-objekter
-    ///  fra ResultSet-rækker
+
+
+    /** Bruger Single Table Inheritance:
+     * alle biler i samme tabel, med bil_type-kolonnen som diskriminator.
+     * RowMapper vælger subklasse ud fra den kolonne*/
+
+    /**  Bruges af findAlle() og findVedVognnummer() til at bygge Bil-objekter fra ResultSet-rækker
+     * Læser en række fra biler-tabellen og bygger den korrekte Bil-subklasse
+     *  ud fra bil_type-kolonnen. Sætter derefter de fælles felter fra superklassen*/
     private final RowMapper<Bil> bilRowMapper = (rs, rowNum) -> {
         String type = rs.getString("bil_type");
         Bil bil;
@@ -99,26 +105,28 @@ public class BilRepository {
         return bil;
     } ;
 
-    // Henter alle biler fra databasen
+    /** Henter alle biler fra databasen
+     * Subklasse.typen bestemmes af RowMapper*/
     public List<Bil> findAlle() {
         return jdbcTemplate.query("SELECT * FROM biler", bilRowMapper);
     }
 
-    // Henter en specifik bil ud fra vognnummer
-    public Bil findVedVognnummer(int vognnummer) {
+    /** Henter en specifik bil ud fra vognnummer
+     * Kaster EmptyResultDataAccesException hvis ikke fundet*/
+    public Bil findVedVognnummer(String vognnummer) {
         return jdbcTemplate.queryForObject(
                 "SELECT * FROM biler WHERE vognnummer = ?",
                 bilRowMapper, vognnummer);
     }
 
-    ///  Gemmer en bil i databasen. Vælger SQL ud fra subklasse-typen,
-    ///  så aftalte_perioder_i_maaneder kun sættes for UnlimitedBil
+    /** Indsætter en bil i databasen. Vælger SQL ud fra subklasse-typen,
+    * så aftalte_perioder_i_maaneder kun udfyldes for UnlimtedBil */
     public int gem(Bil bil) {
         if (bil instanceof LimitedBil) {
             return jdbcTemplate.update("""
                     INSERT INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau,
-                                 staalpris, registreringsafgift, co2_udledning, farve, bil_type)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'LIMITED')
+                                 staalpris, reg_afgift, co2_udledning, farve, status, bil_type)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'LIMITED')
                     """,
                     bil.getVognnummer(), bil.getStelnummer(), bil.getMaerke(),
                     bil.getModel(), bil.getUdstyrsniveau(), bil.getStaalpris(),
@@ -127,9 +135,9 @@ public class BilRepository {
         } else if (bil instanceof UnlimitedBil u) {
             return jdbcTemplate.update("""
                     INSERT INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau,
-                                 staalpris, registreringsafgift, co2_udledning, farve,
+                                 staalpris, reg_afgift, co2_udledning, farve, status,
                                  bil_type, aftalte_periode_i_maaneder)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'UNLIMITED', ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'UNLIMITED', ?)
                     """,
                     u.getVognnummer(), u.getStelnummer(), u.getMaerke(),
                     u.getModel(), u.getUdstyrsniveau(), u.getStaalpris(),

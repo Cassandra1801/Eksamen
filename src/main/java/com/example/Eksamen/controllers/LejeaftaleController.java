@@ -40,7 +40,7 @@ public class LejeaftaleController {
 
         } catch (IllegalArgumentException e) {
 
-            model.addAttribute("error", e.getMessage() + "   -   Fejl hved oprettelse af lejeaftale");
+            model.addAttribute("error", e.getMessage() + "   -   Fejl ved oprettelse af lejeaftale");
 
             return "/dataregistrering/opret-lejeaftale";
         }

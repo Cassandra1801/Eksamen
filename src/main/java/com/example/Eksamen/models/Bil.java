@@ -1,5 +1,6 @@
 package com.example.Eksamen.models;
 
+/* Abstrakt tivnger alle subklasser til at implemtere dem og giver polymorfi */
 public abstract class Bil {
 
     private String vognnummer;
@@ -13,6 +14,8 @@ public abstract class Bil {
     private String farve;
     private BilStatus status;
 
+    /** RowMapper i BilRepo instantierer subklasserne uden argumenter og
+    * derefter sætter felter via setters */
     public Bil () {}
 
     public Bil (String vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, String farve, BilStatus status) {
@@ -29,7 +32,10 @@ public abstract class Bil {
     }
 
 
+    /* Hver biltype har sin egen regel for hvor længe den må lejes */
     public abstract int getMaxLejePeriodeIDage();
+
+    /* Returnere den forretningsmæssige betegnelse ("Limited"/"Unlimited"), som bruges i UI og rapporter */
     public abstract String getAbonnementsType();
 
     public String getVognnummer() {return vognnummer;}

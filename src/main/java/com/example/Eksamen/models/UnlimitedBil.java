@@ -1,10 +1,18 @@
 package com.example.Eksamen.models;
 
+/* Lejeperioden er variabel - fra 3 op til 36 måneder */
+
+/**  Det er "aftaltePeriodeIMaaneder der retfærdiggøre brugen af arv,
+ * i stedet for at have en Bil-klasse med "if-type"-check */
+
 public class UnlimitedBil extends Bil {
     private int aftaltePeriodeIMaaneder;   //3-36 måneder, variabel
 
     public UnlimitedBil() { super(); }
 
+    /**  Kontruktøren validerer perioden og kaster en IllegalArgumentException,
+     * hvis værdien er udenfor intervallet.
+     * Dette gør at et ugyldigt UnlimitedBil-objekt aldrig kan eksistrerer (fail-fast princip) */
     public UnlimitedBil(String vognnummer, String stelnummer, String maerke, String model,
                         String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning,
                         String farve, BilStatus status, int aftalePeriodeIMaaneder) {
@@ -16,6 +24,9 @@ public class UnlimitedBil extends Bil {
         this.aftaltePeriodeIMaaneder = aftaltePeriodeIMaaneder;
     }
 
+    /**  Beregner periode dynamisk ud fra det konkrete antal måneder,
+    * modsat LimitedBil hvor den er konstant.
+    * Polymorfi: samme metodekald, forskellig implementering afhængigt af det faktiske objekt */
     @Override
     public int getMaxLejePeriodeIDage() {
         return aftaltePeriodeIMaaneder * 30;
