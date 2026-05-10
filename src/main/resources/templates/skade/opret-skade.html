@@ -11,6 +11,10 @@
         <div class="forside-container">
             <h2 class="formular-titel">Opret skadesrapport</h2>
 
+            <div th:if="${param.success}" class="success-besked">
+                ✓ Skadesrapport er registeret!
+            </div>
+
             <form th:action="@{/registrer-skadesrapport}" method="post">
 
                 <div class="felt-gruppe">
