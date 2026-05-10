@@ -62,6 +62,11 @@ public class ForretningsService {
         return antalLedige;
     }
 
+    /// Henter sammenlagt pris på nuværende udlejede biler
+    public double sammenlagtPris() {
+        return lejeaftaleRepository.sammenlagtPrisUdlejede();
+    }
+
 
 
 }

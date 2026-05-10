@@ -22,11 +22,12 @@ public class ForretningController {
         int totalAntalBiler = forretningsService.totalAntalBiler();
         int totalAntalUdlejet = forretningsService.totalAntalUdlejet();
         int totalAntalLedige = forretningsService.totalAntalLedige();
+        double sammenlagtPris = forretningsService.sammenlagtPris();
 
         model.addAttribute("totalAntalBiler", totalAntalBiler);
         model.addAttribute("totalAntalUdlejet", totalAntalUdlejet);
         model.addAttribute("totalAntalLedige", totalAntalLedige);
-
+        model.addAttribute("sammenlagtPris", sammenlagtPris);
         return "forretning/dashboard";
     }
 
