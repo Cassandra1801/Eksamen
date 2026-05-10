@@ -28,9 +28,4 @@ public class HjemController {
         model.addAttribute("registrerSkadesrapport", new Skadesrapport());
         return "skade/registrer-skade";
     }
-
-    @GetMapping("/forretning")
-    public String forretning() {
-        return "forretning";
-    }
 }

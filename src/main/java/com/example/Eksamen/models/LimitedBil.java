@@ -8,8 +8,28 @@ public class LimitedBil  extends Bil {
 
     public LimitedBil() { super(); }
 
-    public LimitedBil(String vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, String farve, BilStatus status) {
-        super(vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, regAfgift, co2Udledning, farve, status);
+    public LimitedBil(
+            String vognnummer,
+            String stelnummer,
+            String maerke,
+            String model,
+            String udstyrsniveau,
+            int staalpris,
+            int regAfgift,
+            int co2Udledning,
+            String farve,
+            BilStatus status) {
+        super(
+                vognnummer,
+                stelnummer,
+                maerke,
+                model,
+                udstyrsniveau,
+                staalpris,
+                regAfgift,
+                co2Udledning,
+                farve,
+                status);
     }
 
     /* Returnerer altid 150 - den har ingen variabel periode */
