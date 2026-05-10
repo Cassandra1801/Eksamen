@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 @Controller
-public class ControllerHjem {
+public class HjemController {
 
     @GetMapping("/")
     public String forside() {
@@ -15,7 +15,7 @@ public class ControllerHjem {
 
     @GetMapping("/dataregistrering")
     public String dataregistrering() {
-        return "dataregistrering";
+        return "/dataregistrering/dataregistrering";
     }
 
     @GetMapping("/opret-skade")

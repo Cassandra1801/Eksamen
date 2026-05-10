@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret skadesrapport</title>
-    <link rel="stylesheet" th:href="@{/css/opret-skade.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formular.css}"/>
 </head>
 <body>
 <div th:replace="~{fragments/layout :: html(~{::content})}">
@@ -19,7 +19,7 @@
 
                 <div class="felt-gruppe">
                     <label>Vognnummer</label>
-                    <input type="number" name="vognnummer" placeholder="Indtast vognnummer"/>
+                    <input type="text" name="vognnummer" placeholder="Indtast vognnummer"/>
                 </div>
 
             <div class="felt-gruppe">

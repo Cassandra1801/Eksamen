@@ -1,7 +1,7 @@
 package com.example.Eksamen.controllers;
 
 import com.example.Eksamen.models.Skadesrapport;
-import com.example.Eksamen.services.ServiceSkadesrapport;
+import com.example.Eksamen.services.SkadesrapportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,14 +12,14 @@ import java.util.List;
 
 
 @Controller
-public class ControllerSkadesrapport {
+public class SkadesrapportController {
 
     @Autowired
-    private ServiceSkadesrapport service;
+    private SkadesrapportService service;
 
     // Modtager data fra side 1 og viser side 2
     @PostMapping("/registrer-skadesrapport")
-    public String visSkadefelter(@RequestParam int vognnummer,
+    public String visSkadefelter(@RequestParam String vognnummer,
                                  @RequestParam int lejeaftaleId,
                                  @RequestParam int medarbejderId,
                                  @RequestParam String dato,
@@ -35,7 +35,7 @@ public class ControllerSkadesrapport {
 
     // Modtager skader fra side 2 og gemmer i databasen
     @PostMapping("/gem-skadesrapport")
-    public String gemSkader(@RequestParam int vognnummer,
+    public String gemSkader(@RequestParam String vognnummer,
                             @RequestParam int lejeaftaleId,
                             @RequestParam int medarbejderId,
                             @RequestParam String dato,

@@ -75,3 +75,7 @@ form {
     font-size: 18px;
     width: 450px;
 }
+
+.end-block {
+    height: 10vh;
+}

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 // Fortæller Spring Boot at dette er en Repository klasse
 // Spring Boot opretter automatisk et objekt af klassen
 @Repository
-public class RepositorySkadesrapport {
+public class SkadesrapportRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -32,7 +32,7 @@ public class RepositorySkadesrapport {
             );
         }
 
-    public double totalPris(int vognnummer) {
+    public double totalPris(String vognnummer) {
         String sql = "SELECT SUM(pris) FROM skader WHERE vognnummer = ?";
         return jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
     }
