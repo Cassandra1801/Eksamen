@@ -9,10 +9,21 @@ CREATE TABLE IF NOT EXISTS biler (
                        maerke VARCHAR(50) NOT NULL,
                        model VARCHAR(50) NOT NULL,
                        udstyrsniveau VARCHAR(50) NOT NULL,
-                       staalpris DECIMAL NOT NULL,
+                       staalpris INT NOT NULL,
                        reg_afgift INT NOT NULL,
-                       CO2_udledning INT NOT NULL,
-                       status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT')
+                       co2_udledning INT NOT NULL,
+                       farve VARCHAR(50) NOT NULL,
+                       status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT'),
+
+                       bil_type VARCHAR(20) NOT NULL,               -- LIMITED eller UNLIMITED
+
+                       aftalte_periode_i_maaneder INT NULL,    -- Bruges KUN af UnlimitedBil - derfor nullable
+
+                       CONSTRAINT chk_bil_type CHECK ( bil_type IN ('LIMITED', 'UNLIMITED')),
+                       CONSTRAINT chk_unlimited_periode CHECK (
+                            (bil_type = 'LIMITED' AND aftalte_periode_i_maaneder IS NULL ) OR
+                            (bil_type = 'UNLIMITED' AND aftalte_periode_i_maaneder BETWEEN 3 AND 36)
+                            )
 );
 
 CREATE TABLE IF NOT EXISTS kunder (
@@ -28,8 +39,8 @@ CREATE TABLE IF NOT EXISTS lejeaftaler (
                              kunde_Id INT NOT NULL,
                              vognnummer VARCHAR(50) NOT NULL,
                              lokation VARCHAR(200),
-                             startdato DATE NOT NULL,
-                             slutdato DATE NOT NULL,
+                             startDato DATE NOT NULL,
+                             slutDato DATE NOT NULL,
                              pris_pr_maaned DECIMAL(10,2) NOT NULL,
                              km_graense INT NOT NULL,
                              FOREIGN KEY (kunde_Id) REFERENCES kunder(kunde_Id),

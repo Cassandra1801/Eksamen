@@ -33,7 +33,7 @@ public class LejeaftaleService {
     public void registrerLejeaftale (Lejeaftale lejeaftale, Kunde kunde){
 
         //Definerer vognnummeret for lejeaftalen
-        int vognnummer = lejeaftale.getVognnummer();
+        String vognnummer = lejeaftale.getVognnummer();
 
         //Exception vis bilen ikke eksisterer
         if (!bilRepository.eksistererVognnummeret(vognnummer)) {

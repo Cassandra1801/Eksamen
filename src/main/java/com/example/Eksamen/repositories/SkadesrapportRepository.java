@@ -32,7 +32,7 @@ public class SkadesrapportRepository {
             );
         }
 
-    public double totalPris(int vognnummer) {
+    public double totalPris(String vognnummer) {
         String sql = "SELECT SUM(pris) FROM skader WHERE vognnummer = ?";
         return jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
     }

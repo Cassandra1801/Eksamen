@@ -20,7 +20,7 @@ public class LejeaftaleRepository {
         //SQL Statement
         String sql = """
                 INSERT INTO lejeaftaler
-                (medarbejder_Id, kunde_Id, vognnummer, lokation, startdato, slutdato, pris_pr_maaned, km_graense)
+                (medarbejder_Id, kunde_Id, vognnummer, lokation, startDato, slutDato, pris_pr_maaned, km_graense)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
