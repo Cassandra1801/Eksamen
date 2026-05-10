@@ -54,7 +54,7 @@ public class SkadesrapportController {
             service.opretSkade(skade);
         }
         // gem hver skade i databasen
-        return "redirect:/opret-skade";
+        return "redirect:/opret-skade?success=true";
     }
 }
 
