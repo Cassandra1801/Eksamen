@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <title>Title</title>
+    <title>Dashboard</title>
+    <html xmlns:th="http://www.thymeleaf.org" lang="da">
 </head>
 <body>
+
+<p>Total antal biler: <span th:text="${totalAntalBiler}">0</span></p>
+
+<p>Antal ledige biler: <span th:text="${totalAntalLedige}">0</span></p>
+
+<p>Antal udlejede biler: <span th:text="${totalAntalUdlejet}">0</span></p>
 
 </body>
 </html>
