@@ -37,5 +37,10 @@ public class LejeaftaleRepository {
         );
     }
 
+    public double sammenlagtPrisUdlejede() {
+        String sql = "SELECT SUM(pris) FROM lejeaftale WHERE slutdato >= CURDATE()";
+        return jdbcTemplate.queryForObject(sql, Double.class);
+    }
+
 
 }
