@@ -6,12 +6,18 @@
 </head>
 <body>
 
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+
 <h1>DATAREGISTRERING</h1>
 
 <!-- Link til opret lejeaftale -->
 <a th:href="@{/lejeaftale/opret}">
     Gå til opret lejeaftale
 </a>
+
+    </div>
+</div>
 
 </body>
 </html>
