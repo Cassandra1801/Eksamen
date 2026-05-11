@@ -6,6 +6,7 @@ import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.LejeaftaleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -67,6 +68,31 @@ public class ForretningsService {
         return lejeaftaleRepository.sammenlagtPrisUdlejede();
     }
 
+    public List<Bil> findAlleLedige() {
+        List<Bil> bilerListe = bilRepository.findAlle();
+        List<Bil> lejedeBiler = new ArrayList<>();
+
+        for (Bil b : bilerListe) {
+            if (b.getStatus() == BilStatus.LEDIG) {
+                lejedeBiler.add(b);
+            }
+        }
+
+        return lejedeBiler;
+    }
+
+    public List<Bil> findAlleUdlejede() {
+        List<Bil> bilerListe = bilRepository.findAlle();
+        List<Bil> udlejedeBiler = new ArrayList<>();
+
+        for (Bil b : bilerListe) {
+            if (b.getStatus() == BilStatus.UDLEJET) {
+                udlejedeBiler.add(b);
+            }
+        }
+
+        return udlejedeBiler;
+    }
 
 
 }

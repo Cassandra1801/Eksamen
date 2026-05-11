@@ -10,5 +10,6 @@ public enum BilStatus {
     TILBAGELEVERET,
     SKADET,
     KLAR_TIL_SALG,
-    SOLGT
+    SOLGT,
+    RESERVERET
 }

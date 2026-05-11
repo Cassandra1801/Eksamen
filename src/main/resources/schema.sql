@@ -1,7 +1,7 @@
-# DROP TABLE IF EXISTS skader;
-# DROP TABLE IF EXISTS lejeaftaler;
-# DROP TABLE IF EXISTS biler;
-# DROP TABLE IF EXISTS kunder;
+DROP TABLE IF EXISTS skader;
+DROP TABLE IF EXISTS lejeaftaler;
+DROP TABLE IF EXISTS biler;
+DROP TABLE IF EXISTS kunder;
 
 CREATE TABLE IF NOT EXISTS biler (
                        vognnummer VARCHAR(50) PRIMARY KEY,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS biler (
                        reg_afgift INT NOT NULL,
                        co2_udledning INT NOT NULL,
                        farve VARCHAR(50) NOT NULL,
-                       status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT'),
+                       status ENUM('INDKØBT','LEDIG','UDLEJET','TILBAGELEVERET','SKADET','KLAR_TIL_SALG','SOLGT','RESERVERET'),
 
                        bil_type VARCHAR(20) NOT NULL,               -- LIMITED eller UNLIMITED
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS lejeaftaler (
                              vognnummer VARCHAR(50) NOT NULL,
                              lokation VARCHAR(200),
                              startDato DATE NOT NULL,
-                             slutDato DATE NOT NULL,
+                             antalMaaneder INT NOT NULL,
                              pris_pr_maaned DECIMAL(10,2) NOT NULL,
                              km_graense INT NOT NULL,
                              FOREIGN KEY (kunde_Id) REFERENCES kunder(kunde_Id),
