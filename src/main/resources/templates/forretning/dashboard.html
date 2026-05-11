@@ -1,17 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <html xmlns:th="http://www.thymeleaf.org" lang="da">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
 </head>
 <body>
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+        <div class="dashboard-container">
+            <h2 class="dashboard-titel"> Forretningsoverblik</h2>
 
-<p>Total antal biler: <span th:text="${totalAntalBiler}">0</span></p>
+            <div class="info-boks">
+                <p class="info-label">Total antal biler</p>
+                <p class="info-tal" th:text="${totalAntalBiler}">0</p>
+            </div>
 
-<p>Antal ledige biler: <span th:text="${totalAntalLedige}">0</span></p>
+            <div class="info-boks">
+                <p class="info-label">Antal ledige biler</p>
+                <p class="info-tal" th:text="${totalAntalLedige}">0</p>
+            </div>
 
-<p>Antal udlejede biler: <span th:text="${totalAntalUdlejet}">0</span></p>
+            <div class="info-boks">
+                <p class="info-label">Antal udlejede biler</p>
+                <p class="info-tal" th:text="${totalAntalUdlejet}">0</p>
+            </div>
 
+            <div class="info-boks">
+                <p class="info-label"> Sammenlagt pris på udlejede biler</p>
+                <p class="info-tal" th:text="${sammenlagtPris} + ' kr.'">0 kr.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class LejeaftaleRepository {
     }
 
     public double sammenlagtPrisUdlejede() {
-        String sql = "SELECT SUM(pris) FROM lejeaftale WHERE slutdato >= CURDATE()";
+        String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(startDato, INTERVAL antalMaaneder MONTH) >= CURDATE()";
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
 
