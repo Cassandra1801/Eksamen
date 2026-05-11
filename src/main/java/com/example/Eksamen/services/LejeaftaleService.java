@@ -64,7 +64,7 @@ public class LejeaftaleService {
         lejeaftaleRepository.opretLejeaftale(lejeaftale);
 
         //Sætter bilens status til udlejet
-        bilRepository.opdaterStatus(vognnummer, BilStatus.UDLEJET);
+        bilRepository.opdaterStatus(vognnummer, BilStatus.RESERVERET);
 
     }
 

@@ -10,9 +10,9 @@ public class Kunde {
 
     public Kunde() {}
 
-    public Kunde(String navn, String telefon, String email) {
+    public Kunde(String navn, String mobil, String email) {
         this.navn = navn;
-        this.mobil = telefon;
+        this.mobil = mobil;
         this.email = email;
     }
 
@@ -23,7 +23,7 @@ public class Kunde {
     public void setNavn(String navn) {this.navn = navn;}
 
     public String getMobil() {return mobil;}
-    public void setMobil(String telefon) {this.mobil = mobil;}
+    public void setMobil(String mobil) {this.mobil = mobil;}
 
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;    }
