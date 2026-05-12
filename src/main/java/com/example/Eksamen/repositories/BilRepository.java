@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Repository
 public class BilRepository {
@@ -66,6 +68,54 @@ public class BilRepository {
         jdbcTemplate.update(sql, status.name(), vognnummer);
     }
 
+    ///Finder alle bilerne der samsvarer parametrerne, og returnerer dem i en liste
+    public List<Bil> findFiltreredeBiler(boolean limited, boolean unlimited, String maerke) {
+
+        // 1 = 1, er for at man slipper fra at skule håndtere om det skal være WHERE eller AND,
+        // Nu kan man bare bruge AND til alle string tilføjelser.
+        // Det fungerer fordi 1 = 1 er altid true, så den vil bare hente
+        // alle biler, vis ingen parametrer er tilføjet
+        String sql = """
+                SELECT * FROM biler
+                WHERE 1 = 1
+                """;
+
+        //liste med de tilføjede parametrer til at bruge i query
+        List<Object> parametrer = new ArrayList<>();
+
+        //Mulig tilføjelse til SQL statement
+        if (limited && !unlimited) {
+            sql += " AND bil_type = ?";
+            parametrer.add("LIMITED");
+        }
+
+        //Mulig tilføjelse til SQL statement
+        if (!limited && unlimited) {
+            sql += " AND bil_type = ?";
+            parametrer.add("UNLIMITED");
+        }
+
+        //Mulig tilføjelse til SQL statement
+        //isBlank() fikser ting som "" eller "  ".
+        if (maerke != null && !maerke.isBlank()) {
+            sql += " AND maerke = ?";
+            parametrer.add(maerke);
+        }
+
+        //returnerer liste i forhold til query på den færdige
+        //SQL statement til de tilføjede parametrer
+        return jdbcTemplate.query(sql, bilRowMapper, parametrer.toArray());
+
+    }
+
+    ///Returnerer en liste med alle "maerke"r på bilerne der er i databasen
+    public List<String> findAlleMaerker() {
+
+        //Henter maerker og sorterer dem
+        String sql = "SELECT DISTINCT maerke FROM biler ORDER BY maerke";
+
+        return jdbcTemplate.queryForList(sql, String.class);
+    }
 
 
 
