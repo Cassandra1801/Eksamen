@@ -41,6 +41,4 @@ public class LejeaftaleRepository {
         String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(startDato, INTERVAL antalMaaneder MONTH) >= CURDATE()";
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
-
-
 }

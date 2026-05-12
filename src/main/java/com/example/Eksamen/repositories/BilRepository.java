@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -125,35 +127,41 @@ public class BilRepository {
 
     /**  Bruges af findAlle() og findVedVognnummer() til at bygge Bil-objekter fra ResultSet-rækker
      * Læser en række fra biler-tabellen og bygger den korrekte Bil-subklasse
-     *  ud fra bil_type-kolonnen. Sætter derefter de fælles felter fra superklassen*/
-    private final RowMapper<Bil> bilRowMapper = (rs, rowNum) -> {
-        String type = rs.getString("bil_type");
-        Bil bil;
+     *  ud fra bil_type-kolonnen. Sætter derefter de fælles felter fra superklassen
+     *
+     *  Implementeret som anonym inner class: RowMapper<Bil> er et interface med én metode, og der er kun brug for én implementering ét sted i koden.
+     *  Klassen erklæres og instansieres derfor direkte med "new RowMapper<Bil> frem for at oprette en separat, navngivet klasse i en egen .java-fil*/
+    private final RowMapper<Bil> bilRowMapper = new RowMapper<Bil>() {
+        @Override
+        public Bil mapRow(ResultSet rs, int rowNum) throws SQLException {
+            String type = rs.getString("bil_type");
+            Bil bil;
 
-        if("LIMITED".equals(type)) {
-            bil = new LimitedBil();
-        } else if ("UNLIMITED".equals(type)) {
-            UnlimitedBil u = new UnlimitedBil();
-            u.setAftaltePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
-            bil = u;
-        } else {
-            throw new IllegalStateException("Ukendt bil_type: " + type);
+            if ("LIMITED".equals(type)) {
+                bil = new LimitedBil();
+            } else if ("UNLIMITED".equals(type)) {
+                UnlimitedBil u = new UnlimitedBil();
+                u.setAftaltePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
+                bil = u;
+            } else {
+                throw new IllegalStateException("Ukendt bil_type: " + type);
+            }
+
+            // Fælles felter fra Bil-superklassen
+            bil.setVognnummer(rs.getString("vognnummer"));
+            bil.setStelnummer(rs.getString("stelnummer"));
+            bil.setMaerke(rs.getString("maerke"));
+            bil.setModel(rs.getString("model"));
+            bil.setUdstyrsniveau(rs.getString("udstyrsniveau"));
+            bil.setStaalpris(rs.getInt("staalpris"));
+            bil.setRegAfgift(rs.getInt("reg_afgift"));
+            bil.setCo2Udledning(rs.getInt("co2_udledning"));
+            bil.setFarve(rs.getString("farve"));
+            bil.setStatus(BilStatus.valueOf(rs.getString("status")));
+
+            return bil;
         }
-
-        // Fælles felter fra Bil-superklassen
-        bil.setVognnummer(rs.getString("vognnummer"));
-        bil.setStelnummer(rs.getString("stelnummer"));
-        bil.setMaerke(rs.getString("maerke"));
-        bil.setModel(rs.getString("model"));
-        bil.setUdstyrsniveau(rs.getString("udstyrsniveau"));
-        bil.setStaalpris(rs.getInt("staalpris"));
-        bil.setRegAfgift(rs.getInt("reg_afgift"));
-        bil.setCo2Udledning(rs.getInt("co2_udledning"));
-        bil.setFarve(rs.getString("farve"));
-        bil.setStatus(BilStatus.valueOf(rs.getString("status")));
-
-        return bil;
-    } ;
+    };
 
     /** Henter alle biler fra databasen
      * Subklasse.typen bestemmes af RowMapper*/
