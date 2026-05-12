@@ -63,11 +63,6 @@ public class ForretningsService {
         return antalLedige;
     }
 
-    /// Henter sammenlagt pris på nuværende udlejede biler
-    public double sammenlagtPris() {
-        return lejeaftaleRepository.sammenlagtPrisUdlejede();
-    }
-
     public List<Bil> findAlleLedige() {
         List<Bil> bilerListe = bilRepository.findAlle();
         List<Bil> lejedeBiler = new ArrayList<>();
@@ -92,6 +87,19 @@ public class ForretningsService {
         }
 
         return udlejedeBiler;
+    }
+
+    /// Henter sammenlagt pris på nuværende udlejede biler
+    public double sammenlagtPris() {
+        return lejeaftaleRepository.sammenlagtPrisUdlejede();
+    }
+
+    public List<Bil> findFiltreredeBiler(boolean limited, boolean unlimited, String maerke) {
+        return bilRepository.findFiltreredeBiler(limited, unlimited, maerke);
+    }
+
+    public List<String> findAlleMaerker() {
+        return bilRepository.findAlleMaerker();
     }
 
 
