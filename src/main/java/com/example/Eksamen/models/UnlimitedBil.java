@@ -6,7 +6,7 @@ package com.example.Eksamen.models;
  * i stedet for at have en Bil-klasse med "if-type"-check */
 
 public class UnlimitedBil extends Bil {
-    private int aftaltePeriodeIMaaneder;   //3-36 måneder, variabel
+    private int aftalePeriodeIMaaneder;   //3-36 måneder, variabel
 
     public UnlimitedBil() { super(); }
 
@@ -18,10 +18,10 @@ public class UnlimitedBil extends Bil {
                         String farve, BilStatus status, int aftalePeriodeIMaaneder) {
         super (vognnummer, stelnummer, maerke, model, udstyrsniveau,
                 staalpris, regAfgift, co2Udledning, farve, status);
-        if (aftaltePeriodeIMaaneder < 3 || aftaltePeriodeIMaaneder > 36) {
+        if (this.aftalePeriodeIMaaneder < 3 || this.aftalePeriodeIMaaneder > 36) {
             throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
         }
-        this.aftaltePeriodeIMaaneder = aftaltePeriodeIMaaneder;
+        this.aftalePeriodeIMaaneder = aftalePeriodeIMaaneder;
     }
 
     /**  Beregner periode dynamisk ud fra det konkrete antal måneder,
@@ -29,7 +29,7 @@ public class UnlimitedBil extends Bil {
     * Polymorfi: samme metodekald, forskellig implementering afhængigt af det faktiske objekt */
     @Override
     public int getMaxLejePeriodeIDage() {
-        return aftaltePeriodeIMaaneder * 30;
+        return aftalePeriodeIMaaneder * 30;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class UnlimitedBil extends Bil {
         return "Unlimited";
     }
 
-    public int getAftaltePeriodeIMaaneder() {return aftaltePeriodeIMaaneder; }
-    public void setAftaltePeriodeIMaaneder(int v) {
-        this.aftaltePeriodeIMaaneder = v;
+    public int getAftalePeriodeIMaaneder() {return aftalePeriodeIMaaneder; }
+    public void setAftalePeriodeIMaaneder(int v) {
+        this.aftalePeriodeIMaaneder = v;
     }
 }

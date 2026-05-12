@@ -12,13 +12,13 @@ import java.util.Optional;
 
 
 @Service
-public class LejeaftaleService {
+public class DataregistreringService {
 
     private final LejeaftaleRepository lejeaftaleRepository;
     private final KundeRepository kundeRepository;
     private final BilRepository bilRepository;
 
-    public LejeaftaleService (
+    public DataregistreringService(
             LejeaftaleRepository lejeaftaleRepository,
             KundeRepository kundeRepository,
             BilRepository bilRepository

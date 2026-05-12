@@ -134,7 +134,7 @@ public class BilRepository {
             bil = new LimitedBil();
         } else if ("UNLIMITED".equals(type)) {
             UnlimitedBil u = new UnlimitedBil();
-            u.setAftaltePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
+            u.setAftalePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
             bil = u;
         } else {
             throw new IllegalStateException("Ukendt bil_type: " + type);
@@ -178,10 +178,16 @@ public class BilRepository {
                                  staalpris, reg_afgift, co2_udledning, farve, status, bil_type)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'LIMITED')
                     """,
-                    bil.getVognnummer(), bil.getStelnummer(), bil.getMaerke(),
-                    bil.getModel(), bil.getUdstyrsniveau(), bil.getStaalpris(),
-                    bil.getRegAfgift(), bil.getCo2Udledning(), bil.getFarve(),
-                    bil.getStatus().name());
+                    bil.getVognnummer(),
+                    bil.getStelnummer(),
+                    bil.getMaerke(),
+                    bil.getModel(),
+                    bil.getUdstyrsniveau(),
+                    bil.getStaalpris(),
+                    bil.getRegAfgift(),
+                    bil.getCo2Udledning(),
+                    bil.getFarve(),
+                    bil.getStatus());
         } else if (bil instanceof UnlimitedBil u) {
             return jdbcTemplate.update("""
                     INSERT INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau,
@@ -189,11 +195,17 @@ public class BilRepository {
                                  bil_type, aftalte_periode_i_maaneder)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'UNLIMITED', ?)
                     """,
-                    u.getVognnummer(), u.getStelnummer(), u.getMaerke(),
-                    u.getModel(), u.getUdstyrsniveau(), u.getStaalpris(),
-                    u.getRegAfgift(), u.getCo2Udledning(), u.getFarve(),
-                    u.getStatus().name(),
-                    u.getAftaltePeriodeIMaaneder());
+                    u.getVognnummer(),
+                    u.getStelnummer(),
+                    u.getMaerke(),
+                    u.getModel(),
+                    u.getUdstyrsniveau(),
+                    u.getStaalpris(),
+                    u.getRegAfgift(),
+                    u.getCo2Udledning(),
+                    u.getFarve(),
+                    u.getStatus(),
+                    u.getAftalePeriodeIMaaneder());
         }
         throw new IllegalArgumentException("Ukendt biltype");
     }

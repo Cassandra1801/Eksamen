@@ -2,18 +2,18 @@ package com.example.Eksamen.controllers;
 
 import com.example.Eksamen.models.Kunde;
 import com.example.Eksamen.models.Lejeaftale;
-import com.example.Eksamen.services.LejeaftaleService;
+import com.example.Eksamen.services.DataregistreringService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class LejeaftaleController {
+public class DataregistrerigController {
 
-    private final LejeaftaleService lejeaftaleService;
+    private final DataregistreringService dataregistreringService;
 
-    public LejeaftaleController (LejeaftaleService lejeaftaleService) {
-        this.lejeaftaleService = lejeaftaleService;
+    public DataregistrerigController(DataregistreringService dataregistreringService) {
+        this.dataregistreringService = dataregistreringService;
     }
 
     /// GetMapping for oprettelse af lejeaftale form
@@ -33,7 +33,7 @@ public class LejeaftaleController {
             Model model
     ) {
         try {
-            lejeaftaleService.registrerLejeaftale(lejeaftale, kunde);
+            dataregistreringService.registrerLejeaftale(lejeaftale, kunde);
 
             //Redirect for at registrering ikke sker flere gange, ?success er til success besked
             return "redirect:/lejeaftale/opret?success";
