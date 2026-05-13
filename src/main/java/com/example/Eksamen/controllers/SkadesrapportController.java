@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class SkadesrapportController {
     @PostMapping("/registrer-skadesrapport")
     public String visSkadefelter(@RequestParam String vognnummer,
                                  @RequestParam int lejeaftaleId,
-                                 @RequestParam int medarbejderId,
+                                 @RequestParam String medarbejderId,
                                  @RequestParam String dato,
                                  @RequestParam int antalSkader,
                                  Model model) {
@@ -37,10 +38,10 @@ public class SkadesrapportController {
     @PostMapping("/gem-skadesrapport")
     public String gemSkader(@RequestParam String vognnummer,
                             @RequestParam int lejeaftaleId,
-                            @RequestParam int medarbejderId,
+                            @RequestParam String medarbejderId,
                             @RequestParam String dato,
                             @RequestParam List<String> beskrivelse,
-                            @RequestParam List<Double> pris,
+                            @RequestParam List<BigDecimal> pris,
                             Model model) {
 
         for (int i = 0; i < beskrivelse.size(); i++) {

@@ -71,5 +71,4 @@ public class KundeRepository {
                 Integer.class
         );
     }
-
 }

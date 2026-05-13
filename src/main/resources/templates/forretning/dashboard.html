@@ -8,30 +8,115 @@
 <body>
 <div th:replace="~{fragments/layout :: html(~{::content})}">
     <div th:fragment="content">
-        <div class="dashboard-container">
-            <h2 class="dashboard-titel"> Forretningsoverblik</h2>
 
-            <div class="info-boks">
-                <p class="info-label">Total antal biler</p>
-                <p class="info-tal" th:text="${totalAntalBiler}">0</p>
+        <div class="center-box">
+
+            <div class="dashboard-container-et">
+
+                <h2 class="dashboard-titel">Forretningsoverblik</h2>
+
+                <div class="total-boks">
+                    <div class="total-boks-inner">
+                        <div>
+                            <p class="info-label">Total</p>
+                            <p class="info-tal" th:text="${totalAntalBiler}">0</p>
+                        </div>
+
+                        <div>
+                            <p class="info-label">Ledige</p>
+                            <p class="info-tal" th:text="${totalAntalLedige}">0</p>
+                        </div>
+
+                        <div>
+                            <p class="info-label">Udlejet</p>
+                            <p class="info-tal" th:text="${totalAntalUdlejet}">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-boks">
+                    <p class="info-label">Sammenlagt pris på udlejede biler</p>
+                    <p class="info-tal" th:text="${sammenlagtPris} + ' kr.'">0 kr.</p>
+                </div>
+
             </div>
 
-            <div class="info-boks">
-                <p class="info-label">Antal ledige biler</p>
-                <p class="info-tal" th:text="${totalAntalLedige}">0</p>
-            </div>
+            <div class="dashboard-container-to">
 
-            <div class="info-boks">
-                <p class="info-label">Antal udlejede biler</p>
-                <p class="info-tal" th:text="${totalAntalUdlejet}">0</p>
-            </div>
+                <div class="bil-scroll">
 
-            <div class="info-boks">
-                <p class="info-label"> Sammenlagt pris på udlejede biler</p>
-                <p class="info-tal" th:text="${sammenlagtPris} + ' kr.'">0 kr.</p>
+                    <form class="filter-bar" th:action="@{/forretning}" method="get">
+
+                        <label>
+                            <input type="checkbox" name="limited" value="true"
+                                   th:checked="${limited}">
+                            Limited
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="unlimited" value="true"
+                                   th:checked="${unlimited}">
+                            Unlimited
+                        </label>
+
+                        <select name="maerke">
+                            <option value="">Alle mærker</option>
+
+                            <option th:each="maerkeValg : ${maerkeListe}"
+                                    th:value="${maerkeValg}"
+                                    th:text="${maerkeValg}"
+                                    th:selected="${maerkeValg == maerke}">
+                            </option>
+                        </select>
+
+                        <button type="submit">Søg</button>
+
+                    </form>
+
+                    <div class="bil-liste">
+
+                        <div class="bil-card" th:each="bil : ${bilListe}">
+                            <div>
+                                <p class="bil-title">
+                                    <span th:text="${bil.maerke}">BMW</span>
+                                    <span th:text="${bil.model}">i4</span>
+                                </p>
+
+                                <p>
+                                    Vognnummer:
+                                    <span th:text="${bil.vognnummer}">1001</span>
+                                </p>
+
+                                <p>
+                                    Stelnummer:
+                                    <span th:text="${bil.stelnummer}">ABC123</span>
+                                </p>
+
+                                <p>
+                                    Udstyrsniveau:
+                                    <span th:text="${bil.udstyrsniveau}">Sport</span>
+                                </p>
+
+                                <p>
+                                    Farve:
+                                    <span th:text="${bil.farve}">Sort</span>
+                                </p>
+
+                                <p>
+                                    Status:
+                                    <span th:text="${bil.status}">UDLEJET</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
+
     </div>
 </div>
 </body>
