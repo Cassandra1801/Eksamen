@@ -2,6 +2,8 @@ package com.example.Eksamen.models;
 
 /* Lejeperioden er variabel - fra 3 op til 36 måneder */
 
+import java.math.BigDecimal;
+
 /**  Det er "aftaltePeriodeIMaaneder der retfærdiggøre brugen af arv,
  * i stedet for at have en Bil-klasse med "if-type"-check */
 
@@ -14,7 +16,7 @@ public class UnlimitedBil extends Bil {
      * hvis værdien er udenfor intervallet.
      * Dette gør at et ugyldigt UnlimitedBil-objekt aldrig kan eksistrerer (fail-fast princip) */
     public UnlimitedBil(String vognnummer, String stelnummer, String maerke, String model,
-                        String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning,
+                        String udstyrsniveau, BigDecimal staalpris, int regAfgift, int co2Udledning,
                         String farve, BilStatus status, int aftalePeriodeIMaaneder) {
         super (vognnummer, stelnummer, maerke, model, udstyrsniveau,
                 staalpris, regAfgift, co2Udledning, farve, status);

@@ -153,7 +153,7 @@ public class BilRepository {
             bil.setMaerke(rs.getString("maerke"));
             bil.setModel(rs.getString("model"));
             bil.setUdstyrsniveau(rs.getString("udstyrsniveau"));
-            bil.setStaalpris(rs.getInt("staalpris"));
+            bil.setStaalpris(rs.getBigDecimal("staalpris"));
             bil.setRegAfgift(rs.getInt("reg_afgift"));
             bil.setCo2Udledning(rs.getInt("co2_udledning"));
             bil.setFarve(rs.getString("farve"));
