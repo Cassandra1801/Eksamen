@@ -35,7 +35,11 @@ public class Skadesrapport {
     public void setBeskrivelse(String beskrivelse) {this.beskrivelse = beskrivelse;}
 
     public double getPris() {return pris;}
-    public void setPris(double pris) {this.pris = pris;}
 
-
+    public void setPris(double pris) {
+        if (pris < 0) {
+            throw new IllegalArgumentException("Pris må ikke være negativ");
+        }
+        this.pris = pris;
+    }
 }
