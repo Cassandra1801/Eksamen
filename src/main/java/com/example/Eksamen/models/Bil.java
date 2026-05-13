@@ -1,5 +1,7 @@
 package com.example.Eksamen.models;
 
+import java.math.BigDecimal;
+
 /* Abstrakt tivnger alle subklasser til at implemtere dem og giver polymorfi */
 public abstract class Bil {
 
@@ -8,7 +10,7 @@ public abstract class Bil {
     private String maerke;
     private String model;
     private String udstyrsniveau;
-    private int staalpris;
+    private BigDecimal staalpris;
     private int regAfgift;
     private int co2Udledning;
     private String farve;
@@ -18,7 +20,7 @@ public abstract class Bil {
     * derefter sætter felter via setters */
     public Bil () {}
 
-    public Bil (String vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, int staalpris, int regAfgift, int co2Udledning, String farve, BilStatus status) {
+    public Bil (String vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, BigDecimal staalpris, int regAfgift, int co2Udledning, String farve, BilStatus status) {
         this.vognnummer= vognnummer;
         this.stelnummer = stelnummer;
         this.maerke = maerke;
@@ -53,8 +55,8 @@ public abstract class Bil {
     public String getUdstyrsniveau() {return udstyrsniveau;}
     public void setUdstyrsniveau(String udstyrsniveau) {this.udstyrsniveau = udstyrsniveau;}
 
-    public int getStaalpris() {return staalpris;}
-    public void setStaalpris(int staalpris) {this.staalpris = staalpris;}
+    public BigDecimal getStaalpris() {return staalpris;}
+    public void setStaalpris(BigDecimal staalpris) {this.staalpris = staalpris;}
 
     public int getRegAfgift() {return regAfgift;}
     public void setRegAfgift(int regAfgift) {this.regAfgift = regAfgift;}

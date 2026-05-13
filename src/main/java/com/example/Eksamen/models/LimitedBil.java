@@ -1,5 +1,7 @@
 package com.example.Eksamen.models;
 
+import java.math.BigDecimal;
+
 /** Værdien er ens for alle LimitedBil-objekter, deraf static
 * final fordi den aldrig ændrer sig */
 
@@ -14,7 +16,7 @@ public class LimitedBil  extends Bil {
             String maerke,
             String model,
             String udstyrsniveau,
-            int staalpris,
+            BigDecimal staalpris,
             int regAfgift,
             int co2Udledning,
             String farve,

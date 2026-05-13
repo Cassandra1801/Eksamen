@@ -1,6 +1,8 @@
 import com.example.Eksamen.models.Skadesrapport;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SkadesrapportTestTest {
@@ -11,10 +13,10 @@ class SkadesrapportTestTest {
         Skadesrapport skade = new Skadesrapport();
 
         // Act
-        skade.setPris(1500.0);
+        skade.setPris(BigDecimal.valueOf(1500.0));
 
         // Assert
-        assertEquals(1500.0, skade.getPris());
+        assertEquals(BigDecimal.valueOf(1500.0), skade.getPris());
     }
 
     @Test
@@ -24,7 +26,7 @@ class SkadesrapportTestTest {
 
         // Assert
         assertThrows(IllegalArgumentException.class, () -> {
-            skade.setPris(-100.0);
+            skade.setPris(BigDecimal.valueOf(-100.0));
         });
     }
 }
