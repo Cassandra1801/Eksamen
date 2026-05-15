@@ -26,16 +26,17 @@
                                 th:text="${bil.vognnummer + ' - ' + bil.maerke + ' ' + bil.model}">
                         </option>
                     </select>
+                    <input type="text" name="vognnummer" min="1" placeholder="Indtast vognnummer"/>
                 </div>
 
             <div class="felt-gruppe">
                 <label>Lejeaftale ID</label>
-                <input type="number" name="lejeaftaleId" placeholder="Indtast lejeaftaleId"/>
+                <input type="number" name="lejeaftaleId" min="1" placeholder="Indtast lejeaftaleId"/>
             </div>
 
             <div class="felt-gruppe">
                 <label>Medarbejder ID</label>
-                <input type="number" name="medarbejderId" placeholder="Indtast medarbejder ID"/>
+                <input type="number" name="medarbejderId" min="1" placeholder="Indtast medarbejder ID"/>
             </div>
 
             <div class="felt-gruppe">
@@ -45,7 +46,7 @@
 
             <div class="felt-gruppe">
                 <label>Antal skader</label>
-                <input type="number" name="antalSkader" placeholder="Hvor mange skader?"/>
+                <input type="number" name="antalSkader" min="1" placeholder="Hvor mange skader?"/>
             </div>
 
             <div th:if="${error}" th:text="${error}" style="color: red;"></div>

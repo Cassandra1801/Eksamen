@@ -36,7 +36,11 @@ public class Skadesrapport {
     public void setBeskrivelse(String beskrivelse) {this.beskrivelse = beskrivelse;}
 
     public BigDecimal getPris() {return pris;}
-    public void setPris(BigDecimal pris) {this.pris = pris;}
 
-
+    public void setPris(BigDecimal pris) {
+        if (pris.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Pris må ikke være negativ");
+        }
+        this.pris = pris;
+    }
 }
