@@ -15,6 +15,8 @@
                 ✓ Skadesrapport er registeret!
             </div>
 
+            <div th:if="${error}" th:text="${error}" style="color: red;"></div>
+
             <form th:action="@{/registrer-skadesrapport}" method="post">
 
                 <div class="felt-gruppe">
@@ -26,36 +28,36 @@
                                 th:text="${bil.vognnummer + ' - ' + bil.maerke + ' ' + bil.model}">
                         </option>
                     </select>
-                    <input type="text" name="vognnummer" min="1" placeholder="Indtast vognnummer"/>
                 </div>
 
-            <div class="felt-gruppe">
-                <label>Lejeaftale ID</label>
-                <input type="number" name="lejeaftaleId" min="1" placeholder="Indtast lejeaftaleId"/>
-            </div>
+                <div class="felt-gruppe">
+                    <label>Lejeaftale ID</label>
+                    <input type="number" name="lejeaftaleId" min="1" placeholder="Indtast lejeaftaleId" required/>
+                </div>
 
-            <div class="felt-gruppe">
-                <label>Medarbejder ID</label>
-                <input type="number" name="medarbejderId" min="1" placeholder="Indtast medarbejder ID"/>
-            </div>
+                <div class="felt-gruppe">
+                    <label>Medarbejder ID</label>
+                    <input type="number" name="medarbejderId" min="1" placeholder="Indtast medarbejder ID" required/>
+                </div>
 
-            <div class="felt-gruppe">
-                <label>Dato</label>
-                <input type="date" name="dato"/>
-            </div>
+                <div class="felt-gruppe">
+                    <label>Dato</label>
+                    <input type="date" name="dato" required/>
+                </div>
 
-            <div class="felt-gruppe">
-                <label>Antal skader</label>
-                <input type="number" name="antalSkader" min="1" placeholder="Hvor mange skader?"/>
-            </div>
+                <div class="felt-gruppe">
+                    <label>Antal skader</label>
+                    <input type="number" name="antalSkader" min="1" placeholder="Hvor mange skader?" required/>
+                </div>
 
-            <div th:if="${error}" th:text="${error}" style="color: red;"></div>
-
-            <button type="submit" class="indsend-knap">Fortsæt</button>
+                <button type="submit" class="indsend-knap">Fortsæt</button>
             </form>
+
+            <p th:if="${#lists.isEmpty(klareBiler)}" style="color: #666;">
+                Ingen biler er klar til skaderegistrering lige nu.
+            </p>
         </div>
     </div>
 </div>
-
 </body>
 </html>
