@@ -54,7 +54,7 @@ public class LejeaftaleService {
         if (potentielKunde.isPresent()) {
             kundeId = potentielKunde.get().getKundeId(); //Er der en kunde, finder vi kundeId
         } else {
-            kundeId = kundeRepository.opretKunde(kunde); //Er der ingen kunde, opretter vi en nykunde
+            kundeId = kundeRepository.opretKunde(kunde); //Er der ingen kunde, opretter vi en ny kunde
         }
 
         //Indsætter kundeID ind i lejeaftale objektet
@@ -64,7 +64,7 @@ public class LejeaftaleService {
         lejeaftaleRepository.opretLejeaftale(lejeaftale);
 
         //Sætter bilens status til udlejet
-        bilRepository.opdaterStatus(vognnummer, BilStatus.RESERVERET);
+        bilRepository.opdaterStatus(vognnummer, BilStatus.UDLEJET);
 
     }
 

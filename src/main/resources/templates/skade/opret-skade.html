@@ -19,7 +19,13 @@
 
                 <div class="felt-gruppe">
                     <label>Vognnummer</label>
-                    <input type="text" name="vognnummer" placeholder="Indtast vognnummer"/>
+                    <select name="vognnummer" required>
+                        <option value="">Vælg bil...</option>
+                        <option th:each="bil : ${klareBiler}"
+                                th:value="${bil.vognnummer}"
+                                th:text="${bil.vognnummer + ' - ' + bil.maerke + ' ' + bil.model}">
+                        </option>
+                    </select>
                 </div>
 
             <div class="felt-gruppe">
@@ -41,6 +47,8 @@
                 <label>Antal skader</label>
                 <input type="number" name="antalSkader" placeholder="Hvor mange skader?"/>
             </div>
+
+            <div th:if="${error}" th:text="${error}" style="color: red;"></div>
 
             <button type="submit" class="indsend-knap">Fortsæt</button>
             </form>

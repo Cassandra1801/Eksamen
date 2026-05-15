@@ -43,19 +43,28 @@ public class SkadesrapportController {
                             @RequestParam List<String> beskrivelse,
                             @RequestParam List<BigDecimal> pris,
                             Model model) {
+        try {
+            for (int i = 0; i < beskrivelse.size(); i++) {
+                Skadesrapport skade = new Skadesrapport();
+                skade.setVognnummer(vognnummer);
+                skade.setLejeaftaleId(lejeaftaleId);
+                skade.setMedarbejderId(medarbejderId);
+                skade.setDato(LocalDate.parse(dato));
+                skade.setBeskrivelse(beskrivelse.get(i));
+                skade.setPris(pris.get(i));
+                service.opretSkade(skade);
+            }
 
-        for (int i = 0; i < beskrivelse.size(); i++) {
-            Skadesrapport skade = new Skadesrapport();
-            skade.setVognnummer(vognnummer);
-            skade.setLejeaftaleId(lejeaftaleId);
-            skade.setMedarbejderId(medarbejderId);
-            skade.setDato(LocalDate.parse(dato));
-            skade.setBeskrivelse(beskrivelse.get(i));
-            skade.setPris(pris.get(i));
-            service.opretSkade(skade);
+            // Når alle skader er oprettet, ændres bilens status til SKADET
+            service.afslutSkaderegistrering(vognnummer);
+
+            // gem hver skade i databasen
+            return "redirect:/opret-skade?success=true";
+
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "skade/opret-skade";
         }
-        // gem hver skade i databasen
-        return "redirect:/opret-skade?success=true";
     }
 }
 
