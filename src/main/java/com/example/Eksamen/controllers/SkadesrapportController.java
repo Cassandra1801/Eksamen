@@ -43,6 +43,9 @@ public class SkadesrapportController {
                             @RequestParam List<String> beskrivelse,
                             @RequestParam List<BigDecimal> pris,
                             Model model) {
+        System.out.println("Antal beskrivelser modtgaet: " + beskrivelse.size());
+        System.out.println("Antal priser modtaget: " + pris.size());
+
         try {
             for (int i = 0; i < beskrivelse.size(); i++) {
                 Skadesrapport skade = new Skadesrapport();

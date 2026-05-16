@@ -213,12 +213,13 @@ public class BilRepository {
         /** SQL Statement: bilen skal have status TILBAGELEVERET,
         * og dens seneste lejeaftale skal være udløbet (startDato + antalMaaneder < i dag) */
         String sql = """
-                SELECT 1 
-                FROM biler b
-                JOIN lejeaftaler 1 ON b.vognnummer = 1.vognnummer
-                WHERE b.vognnummer = ?
-                    AND b.status = 'TILBAGELEVERET'
-                    AND DATE_ADD(1.startDato, INTERVAL 1.antalMaaneder MONTH) < CURDATE()
+                SELECT EXISTS ( 
+                    SELECT 1
+                    FROM biler b
+                    JOIN lejeaftaler lej ON b.vognnummer = lej.vognnummer
+                    WHERE b.vognnummer = ?
+                      AND b.status = 'TILBAGELEVERET'
+                        AND DATE_ADD(lej.startDato, INTERVAL lej.antalMaaneder MONTH) < CURDATE()
                 );
                 """;
         Boolean klar = jdbcTemplate.queryForObject(sql, Boolean.class, vognnummer);
@@ -229,12 +230,12 @@ public class BilRepository {
     ///  Henter alle biler der er klar til skaderegistrering
     public List<Bil> findKlarTilSkaderegistrering() {
         String sql = """
-                SELECT DISTINCT b.*
-                FROM biler b
-                JOIN lejeaftaler 1 ON b.vognnumer = 1.vognnummer
-                WHERE b.status = 'TILBAGELEVERET'
-                    AND DATE_ADD(1.startDato, INTERVAL 1.antalMaaneder MONTH) < CURDATE()
-                """;
+            SELECT DISTINCT b.*
+            FROM biler b
+            JOIN lejeaftaler lej ON b.vognnummer = lej.vognnummer
+            WHERE b.status = 'TILBAGELEVERET'
+              AND DATE_ADD(lej.startDato, INTERVAL lej.antalMaaneder MONTH) < CURDATE()
+            """;
         return jdbcTemplate.query(sql, bilRowMapper);
     }
 }

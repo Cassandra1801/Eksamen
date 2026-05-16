@@ -15,7 +15,9 @@ INSERT IGNORE INTO biler (
 VALUES
     ('BA0534', 'VF7SXHMZ6PT123456', 'Citroën', 'C3', 'Shine', 50000, 25000, 150, 'Sort', 'UDLEJET', 'UNLIMITED', 6),
     ('EV2975', 'VF7SXHMZ6PT123174', 'Renault', 'Clio', 'Techno E-tech Hybrid', 22450, 30520, 450, 'Rød', 'UDLEJET', 'UNLIMITED', 6),
-    ('AB2097', 'VF7SXANZ6PT654321', 'Peugeot', '208', 'Allure', 146000, 38200, 304, 'Blå', 'UDLEJET', 'UNLIMITED', 6);
+    ('AB2097', 'VF7SXANZ6PT654321', 'Peugeot', '208', 'Allure', 146000, 38200, 304, 'Blå', 'UDLEJET', 'UNLIMITED', 6),
+    ('TR1234', 'VF7TESTTEST123456', 'Toyota', 'Yaris', 'Comfort',
+     45000, 22000, 130, 'Hvid', 'TILBAGELEVERET', 'UNLIMITED', 3);
 
 
 INSERT IGNORE INTO kunder (
@@ -44,4 +46,5 @@ INSERT IGNORE INTO lejeaftaler (
 VALUES
     (1, '001', 1, 'BA0534', 'København', '2026-01-01', 6, 5000.00, 15000),
     (2, '002', 2, 'EV2975', 'Aarhus', '2026-02-01', 6, 4500.00, 12000),
-    (3, '001', 3, 'AB2097', 'Odense', '2026-03-01', 6, 5500.00, 18000);
+    (3, '001', 3, 'AB2097', 'Odense', '2026-03-01', 6, 5500.00, 18000),
+    (4, '001', 1, 'TR1234', 'København', '2025-01-01', 3, 4000.00, 10000);
