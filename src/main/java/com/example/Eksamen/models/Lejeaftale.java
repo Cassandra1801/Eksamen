@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Lejeaftale {
 
-    private int lejeAftaleId;
+    private int lejeaftaleId;
     private String medarbejderId;
     private int kundeId;
     private String vognnummer;
@@ -17,8 +17,8 @@ public class Lejeaftale {
     
     public Lejeaftale () {}
 
-    public Lejeaftale (int lejeAftaleId, String medarbejderId,  int kundeId, String vognnummer, String lokation, LocalDate startDato, int antalMaaneder, BigDecimal prisPrMaaned, int kmGraense) {
-        this.lejeAftaleId = lejeAftaleId;
+    public Lejeaftale (int lejeaftaleId, String medarbejderId, int kundeId, String vognnummer, String lokation, LocalDate startDato, int antalMaaneder, BigDecimal prisPrMaaned, int kmGraense) {
+        this.lejeaftaleId = lejeaftaleId;
         this.medarbejderId = medarbejderId;
         this.kundeId = kundeId;
         this.vognnummer = vognnummer;
@@ -29,8 +29,8 @@ public class Lejeaftale {
         this.kmGraense = kmGraense;
     }
 
-    public int getLejeaftaleId() {return lejeAftaleId;}
-    public void setLejeaftaleId(int lejeaftaleId) {this.lejeAftaleId = lejeaftaleId;}
+    public int getLejeaftaleId() {return lejeaftaleId;}
+    public void setLejeaftaleId(int lejeaftaleId) {this.lejeaftaleId = lejeaftaleId;}
 
     public String getMedarbejderId() {return medarbejderId;}
     public void setMedarbejderId(String medarbejderId) {this.medarbejderId = medarbejderId;}

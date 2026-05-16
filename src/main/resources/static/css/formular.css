@@ -38,7 +38,8 @@ form {
     color: #1a3a2a;
 }
 
-.felt-gruppe input {
+.felt-gruppe input,
+.felt-gruppe select {
     padding: 12px;
     border-radius: 8px;
     border: 2px solid #1a3a2a;
@@ -46,7 +47,8 @@ form {
     font-size: 16px;
 }
 
-.felt-gruppe input:focus {
+.felt-gruppe input:focus,
+.felt-gruppe select:focus {
     outline: none;
     background-color: rgba(40, 90, 70, 0.20);
 }

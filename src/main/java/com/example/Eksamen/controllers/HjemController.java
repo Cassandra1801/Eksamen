@@ -1,12 +1,19 @@
 package com.example.Eksamen.controllers;
 
 import com.example.Eksamen.models.Skadesrapport;
+import com.example.Eksamen.repositories.BilRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 @Controller
 public class HjemController {
+
+    private final BilRepository bilRepository;
+
+    public HjemController(BilRepository bilRepository) {
+        this.bilRepository = bilRepository;
+    }
 
     @GetMapping("/")
     public String forside() {
@@ -19,7 +26,8 @@ public class HjemController {
     }
 
     @GetMapping("/opret-skade")
-    public String opretSkade() {
+    public String opretSkade(Model model) {
+        model.addAttribute("klareBiler", bilRepository.findKlarTilSkaderegistrering());
         return "skade/opret-skade";
     }
 
