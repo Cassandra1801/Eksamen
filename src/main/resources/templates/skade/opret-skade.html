@@ -20,8 +20,8 @@
             <form th:action="@{/registrer-skadesrapport}" method="post">
 
                 <div class="felt-gruppe">
-                    <label>Vognnummer</label>
-                    <select name="vognnummer" required>
+                    <label for="vognnummer">Vognnummer</label>
+                    <select id="vognnummer" name="vognnummer" required>
                         <option value="">Vælg bil...</option>
                         <option th:each="bil : ${klareBiler}"
                                 th:value="${bil.vognnummer}"

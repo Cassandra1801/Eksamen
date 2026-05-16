@@ -121,16 +121,15 @@ public class BilRepository {
 
 
 
-    /** Bruger Single Table Inheritance:
-     * alle biler i samme tabel, med bil_type-kolonnen som diskriminator.
-     * RowMapper vælger subklasse ud fra den kolonne*/
+    /* Bruger Single Table Inheritance:
+     alle biler i samme tabel, med bil_type-kolonnen som diskriminator.
+     RowMapper vælger subklasse ud fra den kolonne */
 
-    /**  Bruges af findAlle() og findVedVognnummer() til at bygge Bil-objekter fra ResultSet-rækker
-     * Læser en række fra biler-tabellen og bygger den korrekte Bil-subklasse
-     *  ud fra bil_type-kolonnen. Sætter derefter de fælles felter fra superklassen
-     *
-     *  Implementeret som anonym inner class: RowMapper<Bil> er et interface med én metode, og der er kun brug for én implementering ét sted i koden.
-     *  Klassen erklæres og instansieres derfor direkte med "new RowMapper<Bil> frem for at oprette en separat, navngivet klasse i en egen .java-fil*/
+    /* Bruges af findAlle() og findVedVognnummer() til at bygge Bil-objekter fra ResultSet-rækker
+     Læser en række fra biler-tabellen og bygger den korrekte Bil-subklasse
+     ud fra bil_type-kolonnen. Sætter derefter de fælles felter fra superklassen */
+     /* Implementeret som anonym inner class: RowMapper<Bil> er et interface med én metode, og der er kun brug for én implementering ét sted i koden.
+     Klassen erklæres og instansieres derfor direkte med "new RowMapper<Bil> frem for at oprette en separat, navngivet klasse i en egen .java-fil */
     private final RowMapper<Bil> bilRowMapper = new RowMapper<Bil>() {
         @Override
         public Bil mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -169,43 +168,6 @@ public class BilRepository {
         return jdbcTemplate.query("SELECT * FROM biler", bilRowMapper);
     }
 
-    /** Henter en specifik bil ud fra vognnummer
-     * Kaster EmptyResultDataAccesException hvis ikke fundet*/
-    public Bil findVedVognnummer(String vognnummer) {
-        return jdbcTemplate.queryForObject(
-                "SELECT * FROM biler WHERE vognnummer = ?",
-                bilRowMapper, vognnummer);
-    }
-
-    /** Indsætter en bil i databasen. Vælger SQL ud fra subklasse-typen,
-    * så aftalte_perioder_i_maaneder kun udfyldes for UnlimtedBil */
-    public int gem(Bil bil) {
-        if (bil instanceof LimitedBil) {
-            return jdbcTemplate.update("""
-                    INSERT INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau,
-                                 staalpris, reg_afgift, co2_udledning, farve, status, bil_type)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'LIMITED')
-                    """,
-                    bil.getVognnummer(), bil.getStelnummer(), bil.getMaerke(),
-                    bil.getModel(), bil.getUdstyrsniveau(), bil.getStaalpris(),
-                    bil.getRegAfgift(), bil.getCo2Udledning(), bil.getFarve(),
-                    bil.getStatus().name());
-        } else if (bil instanceof UnlimitedBil u) {
-            return jdbcTemplate.update("""
-                    INSERT INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau,
-                                 staalpris, reg_afgift, co2_udledning, farve, status,
-                                 bil_type, aftalte_periode_i_maaneder)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'UNLIMITED', ?)
-                    """,
-                    u.getVognnummer(), u.getStelnummer(), u.getMaerke(),
-                    u.getModel(), u.getUdstyrsniveau(), u.getStaalpris(),
-                    u.getRegAfgift(), u.getCo2Udledning(), u.getFarve(),
-                    u.getStatus().name(),
-                    u.getAftaltePeriodeIMaaneder());
-        }
-        throw new IllegalArgumentException("Ukendt biltype");
-    }
-
 
     /* Tjekker om en bil er tilbageleveret OG har en udløbet lejeperiode */
     public boolean erKlarTilSkaderegistrering(String vognnummer) {
@@ -213,7 +175,7 @@ public class BilRepository {
         /** SQL Statement: bilen skal have status TILBAGELEVERET,
         * og dens seneste lejeaftale skal være udløbet (startDato + antalMaaneder < i dag) */
         String sql = """
-                SELECT EXISTS ( 
+                SELECT EXISTS (
                     SELECT 1
                     FROM biler b
                     JOIN lejeaftaler lej ON b.vognnummer = lej.vognnummer

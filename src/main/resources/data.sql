@@ -17,7 +17,9 @@ VALUES
     ('EV2975', 'VF7SXHMZ6PT123174', 'Renault', 'Clio', 'Techno E-tech Hybrid', 22450, 30520, 450, 'Rød', 'UDLEJET', 'UNLIMITED', 6),
     ('AB2097', 'VF7SXANZ6PT654321', 'Peugeot', '208', 'Allure', 146000, 38200, 304, 'Blå', 'UDLEJET', 'UNLIMITED', 6),
     ('TR1234', 'VF7TESTTEST123456', 'Toyota', 'Yaris', 'Comfort',
-     45000, 22000, 130, 'Hvid', 'TILBAGELEVERET', 'UNLIMITED', 3);
+     45000, 22000, 130, 'Hvid', 'TILBAGELEVERET', 'UNLIMITED', 3),
+    ('BC4321', 'VF7TESTTEST123454', 'Audi', 'A8', 'Comfort',
+     45000, 22000, 130, 'Sort', 'LEDIG', 'UNLIMITED', 3);
 
 
 INSERT IGNORE INTO kunder (
