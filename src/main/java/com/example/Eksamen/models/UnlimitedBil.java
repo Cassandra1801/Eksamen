@@ -4,8 +4,8 @@ package com.example.Eksamen.models;
 
 import java.math.BigDecimal;
 
-/**  Det er "aftaltePeriodeIMaaneder der retfærdiggøre brugen af arv,
- * i stedet for at have en Bil-klasse med "if-type"-check */
+/* Det er "aftaltePeriodeIMaaneder der retfærdiggøre brugen af arv,
+    i stedet for at have en Bil-klasse med "if-type"-check */
 
 public class UnlimitedBil extends Bil {
     private int aftaltePeriodeIMaaneder;   //3-36 måneder, variabel
@@ -17,8 +17,8 @@ public class UnlimitedBil extends Bil {
      * Dette gør at et ugyldigt UnlimitedBil-objekt aldrig kan eksistrerer (fail-fast princip) */
     public UnlimitedBil(String vognnummer, String stelnummer, String maerke, String model,
                         String udstyrsniveau, BigDecimal staalpris, int regAfgift, int co2Udledning,
-                        String farve, BilStatus status, int aftalePeriodeIMaaneder) {
-        super (vognnummer, stelnummer, maerke, model, udstyrsniveau,
+                        String farve, BilStatus status, int aftaltePeriodeIMaaneder) {
+        super(vognnummer, stelnummer, maerke, model, udstyrsniveau,
                 staalpris, regAfgift, co2Udledning, farve, status);
         if (aftaltePeriodeIMaaneder < 3 || aftaltePeriodeIMaaneder > 36) {
             throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
