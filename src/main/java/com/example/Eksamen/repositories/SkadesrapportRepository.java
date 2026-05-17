@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
-
 // Fortæller Spring Boot at dette er en Repository klasse
 // Spring Boot opretter automatisk et objekt af klassen
 @Repository
@@ -36,7 +34,14 @@ public class SkadesrapportRepository {
 
     public double totalPris(String vognnummer) {
         String sql = "SELECT SUM(pris) FROM skader WHERE vognnummer = ?";
-        return jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
+        Double resultat = jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
+
+        /* SUM() returnerer NULL hvis bilen ingen skader har.
+            Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
+        if (resultat == null) {
+            return 0.0;
+        }
+        return resultat;
     }
 
 }

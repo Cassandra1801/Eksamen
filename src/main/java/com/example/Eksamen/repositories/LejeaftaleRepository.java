@@ -39,6 +39,13 @@ public class LejeaftaleRepository {
 
     public double sammenlagtPrisUdlejede() {
         String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(startDato, INTERVAL antalMaaneder MONTH) >= CURDATE()";
-        return jdbcTemplate.queryForObject(sql, Double.class);
+        Double resultat = jdbcTemplate.queryForObject(sql, Double.class);
+
+        /* SUM() returnerer NULL hvis bilen ingen skader har.
+            Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
+        if (resultat == null) {
+            return 0.0;
+        }
+        return resultat;
     }
 }
