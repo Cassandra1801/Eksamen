@@ -34,30 +34,6 @@ public class SkadesrapportRepository {
             );
         }
 
-    public boolean kanRegistrereSkade(String vognnummer, int lejeaftaleId, LocalDate dato) {
-        String sql = """
-                SELECT EXISTS (
-                    SELECT 1
-                    FROM biler b
-                    INNER JOIN lejeaftaler l ON l.vognnummer = b.vognnummer
-                    WHERE b.vognnummer = ?
-                      AND l.lejeaftale_Id = ?
-                      AND b.status = 'TILBAGELEVERET'
-                      AND DATE_ADD(l.startDato, INTERVAL l.antalMaaneder MONTH) <= ?
-                )
-                """;
-
-        Boolean kanRegistreres = jdbcTemplate.queryForObject(
-                sql,
-                Boolean.class,
-                vognnummer,
-                lejeaftaleId,
-                dato
-        );
-
-        return Boolean.TRUE.equals(kanRegistreres);
-    }
-
     public double totalPris(String vognnummer) {
         String sql = "SELECT SUM(pris) FROM skader WHERE vognnummer = ?";
         return jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
