@@ -8,9 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -168,12 +168,25 @@ public class BilRepository {
         return jdbcTemplate.query("SELECT * FROM biler", bilRowMapper);
     }
 
+    ///  Tæller alle biler i databasen
+    public int antalBiler() {
+        String sql = "SELECT COUNT(*) FROM biler";
+        Integer antal = jdbcTemplate.queryForObject(sql, Integer.class);
+        return antal == null ? 0 : antal;
+    }
 
-    /* Tjekker om en bil er tilbageleveret OG har en udløbet lejeperiode */
+    ///  Tæller biler med en bestemt status
+    public int antalMedStatus(BilStatus status) {
+        String sql = "SELECT COUNT(*) FROM biler WHERE status = ?";
+        Integer antal = jdbcTemplate.queryForObject(sql, Integer.class, status.name());
+        return antal == null ? 0 : antal;
+    }
+
+    // Tjekker om en bil er tilbageleveret OG har en udløbet lejeperiode
     public boolean erKlarTilSkaderegistrering(String vognnummer) {
 
         /** SQL Statement: bilen skal have status TILBAGELEVERET,
-        * og dens seneste lejeaftale skal være udløbet (startDato + antalMaaneder < i dag) */
+        * og dens seneste lejeaftale skal være udløbet (start_dato + antal_maaneder < i dag) */
         String sql = """
                 SELECT EXISTS (
                     SELECT 1
@@ -181,7 +194,7 @@ public class BilRepository {
                     JOIN lejeaftaler lej ON b.vognnummer = lej.vognnummer
                     WHERE b.vognnummer = ?
                       AND b.status = 'TILBAGELEVERET'
-                        AND DATE_ADD(lej.startDato, INTERVAL lej.antalMaaneder MONTH) < CURDATE()
+                        AND DATE_ADD(lej.start_dato, INTERVAL lej.antal_maaneder MONTH) < CURDATE()
                 );
                 """;
         Boolean klar = jdbcTemplate.queryForObject(sql, Boolean.class, vognnummer);
@@ -196,7 +209,7 @@ public class BilRepository {
             FROM biler b
             JOIN lejeaftaler lej ON b.vognnummer = lej.vognnummer
             WHERE b.status = 'TILBAGELEVERET'
-              AND DATE_ADD(lej.startDato, INTERVAL lej.antalMaaneder MONTH) < CURDATE()
+              AND DATE_ADD(lej.start_dato, INTERVAL lej.antal_maaneder MONTH) < CURDATE()
             """;
         return jdbcTemplate.query(sql, bilRowMapper);
     }

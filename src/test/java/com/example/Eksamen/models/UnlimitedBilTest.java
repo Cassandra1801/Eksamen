@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UnlimitedBilTest {
 
     /* Happy flow: en gyldig periode (3-36 måneder) skal accepteres,
-        og objektet skal oprettes med rigitge værdi. */
+        og objektet skal oprettes med rigtig værdi. */
     @Test
     void konstruktoer_gyldigPeriode_opretterObjekt(){
         // Act: opret objekter med gyldigt input (konstruktørem ER metoden under test)
@@ -29,7 +30,7 @@ class UnlimitedBilTest {
         // Asser: verficér at ugyldigt input kaster en exception
         assertThrows(IllegalArgumentException.class, () -> {
             new UnlimitedBil(
-                    "AB1234", "VF7TESTSTEL000001", "Toyota", "Yaris", "Confort",
+                    "AB1234", "VF7TESTSTEL000001", "Toyota", "Yaris", "Comfort",
                     BigDecimal.valueOf(45000), 22000, 130, "Hvid", null, 2);
         });
     }

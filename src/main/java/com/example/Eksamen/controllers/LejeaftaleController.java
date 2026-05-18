@@ -5,7 +5,9 @@ import com.example.Eksamen.models.Lejeaftale;
 import com.example.Eksamen.services.LejeaftaleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LejeaftaleController {
@@ -42,7 +44,7 @@ public class LejeaftaleController {
 
             model.addAttribute("error", e.getMessage() + "   -   Fejl ved oprettelse af lejeaftale");
 
-            return "/dataregistrering/opret-lejeaftale";
+            return "dataregistrering/opret-lejeaftale";
         }
     }
 

@@ -1,7 +1,7 @@
-# DROP TABLE IF EXISTS skader;
-# DROP TABLE IF EXISTS lejeaftaler;
-# DROP TABLE IF EXISTS biler;
-# DROP TABLE IF EXISTS kunder;
+-- DROP TABLE IF EXISTS skader;
+-- DROP TABLE IF EXISTS lejeaftaler;
+-- DROP TABLE IF EXISTS biler;
+-- DROP TABLE IF EXISTS kunder;
 
 CREATE TABLE IF NOT EXISTS biler (
                        vognnummer VARCHAR(50) PRIMARY KEY,
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS lejeaftaler (
                              kunde_id INT NOT NULL,
                              vognnummer VARCHAR(50) NOT NULL,
                              lokation VARCHAR(200),
-                             startDato DATE NOT NULL,
-                             antalMaaneder INT NOT NULL,
+                             start_dato DATE NOT NULL,
+                             antal_maaneder INT NOT NULL,
                              pris_pr_maaned DECIMAL(10,2) NOT NULL,
                              km_graense INT NOT NULL,
                              FOREIGN KEY (kunde_id) REFERENCES kunder(kunde_id),

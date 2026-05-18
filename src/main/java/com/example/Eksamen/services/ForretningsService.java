@@ -6,7 +6,6 @@ import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.LejeaftaleRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,73 +19,19 @@ public class ForretningsService {
         this.lejeaftaleRepository = lejeaftaleRepository;
     }
 
-    /// Henter antallet af biler i systemet som int
+    ///  Henter antallet af biler i systemet som int
     public int totalAntalBiler() {
-
-        int antal = 0;
-        List<Bil> liste = bilRepository.findAlle();
-
-        for (Bil b : liste) {
-            antal++;
-        }
-
-        return antal;
+        return bilRepository.antalBiler();
     }
 
     /// Henter antallet biler der til udlejning i nuværende tidspunkt som int
     public int totalAntalUdlejet() {
-
-        int antalUdlejet = 0;
-        List<Bil> liste = bilRepository.findAlle();
-
-        for (Bil b : liste) {
-            if (b.getStatus() == BilStatus.UDLEJET) {
-                antalUdlejet++;
-            }
-        }
-
-        return antalUdlejet;
+        return bilRepository.antalMedStatus(BilStatus.UDLEJET);
     }
 
     /// Henter antallet biler der er ledige i nuværende tidspunkt som int
     public int totalAntalLedige() {
-
-        int antalLedige = 0;
-        List<Bil> liste = bilRepository.findAlle();
-
-        for (Bil b : liste) {
-            if (b.getStatus() == BilStatus.LEDIG) {
-                antalLedige++;
-            }
-        }
-
-        return antalLedige;
-    }
-
-    public List<Bil> findAlleLedige() {
-        List<Bil> bilerListe = bilRepository.findAlle();
-        List<Bil> lejedeBiler = new ArrayList<>();
-
-        for (Bil b : bilerListe) {
-            if (b.getStatus() == BilStatus.LEDIG) {
-                lejedeBiler.add(b);
-            }
-        }
-
-        return lejedeBiler;
-    }
-
-    public List<Bil> findAlleUdlejede() {
-        List<Bil> bilerListe = bilRepository.findAlle();
-        List<Bil> udlejedeBiler = new ArrayList<>();
-
-        for (Bil b : bilerListe) {
-            if (b.getStatus() == BilStatus.UDLEJET) {
-                udlejedeBiler.add(b);
-            }
-        }
-
-        return udlejedeBiler;
+        return bilRepository.antalMedStatus(BilStatus.LEDIG);
     }
 
     /// Henter sammenlagt pris på nuværende udlejede biler
@@ -101,6 +46,4 @@ public class ForretningsService {
     public List<String> findAlleMaerker() {
         return bilRepository.findAlleMaerker();
     }
-
-
 }

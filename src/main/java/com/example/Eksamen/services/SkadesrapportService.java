@@ -45,6 +45,6 @@ public class SkadesrapportService {
 
     /// Henter den samlede pris for alle skader på en lejeaftale
     public double totalPris(int aftaleId) {
-        return repository.totalPris(String.valueOf(aftaleId));
+        return repository.totalPris(aftaleId);
     }
 }

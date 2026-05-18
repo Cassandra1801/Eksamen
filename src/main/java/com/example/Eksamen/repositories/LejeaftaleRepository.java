@@ -20,7 +20,7 @@ public class LejeaftaleRepository {
         //SQL Statement
         String sql = """
                 INSERT INTO lejeaftaler
-                (medarbejder_Id, kunde_Id, vognnummer, lokation, startDato, antalMaaneder, pris_pr_maaned, km_graense)
+                (medarbejder_Id, kunde_Id, vognnummer, lokation, start_dato, antal_maaneder, pris_pr_maaned, km_graense)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
@@ -38,10 +38,10 @@ public class LejeaftaleRepository {
     }
 
     public double sammenlagtPrisUdlejede() {
-        String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(startDato, INTERVAL antalMaaneder MONTH) >= CURDATE()";
+        String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(start_dato, INTERVAL antal_maaneder MONTH) >= CURDATE()";
         Double resultat = jdbcTemplate.queryForObject(sql, Double.class);
 
-        /* SUM() returnerer NULL hvis bilen ingen skader har.
+        /* SUM() returnerer NULL hvis ingen lejeaftaler er aktive.
             Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
         if (resultat == null) {
             return 0.0;

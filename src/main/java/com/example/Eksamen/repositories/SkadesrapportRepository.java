@@ -32,11 +32,11 @@ public class SkadesrapportRepository {
             );
         }
 
-    public double totalPris(String vognnummer) {
-        String sql = "SELECT SUM(pris) FROM skader WHERE vognnummer = ?";
-        Double resultat = jdbcTemplate.queryForObject(sql, Double.class, vognnummer);
+    public double totalPris(int lejeaftaleId) {
+        String sql = "SELECT SUM(pris) FROM skader WHERE lejeaftale_id = ?";
+        Double resultat = jdbcTemplate.queryForObject(sql, Double.class, lejeaftaleId);
 
-        /* SUM() returnerer NULL hvis bilen ingen skader har.
+        /* SUM() returnerer NULL hvis lejeaftale ingen skader har.
             Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
         if (resultat == null) {
             return 0.0;

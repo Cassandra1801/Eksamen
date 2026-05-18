@@ -3,8 +3,8 @@ package com.example.Eksamen.controllers;
 import com.example.Eksamen.models.Skadesrapport;
 import com.example.Eksamen.repositories.BilRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HjemController {
@@ -22,7 +22,7 @@ public class HjemController {
 
     @GetMapping("/dataregistrering")
     public String dataregistrering() {
-        return "/dataregistrering/dataregistrering";
+        return "dataregistrering/dataregistrering";
     }
 
     @GetMapping("/opret-skade")

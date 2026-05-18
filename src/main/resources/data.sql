@@ -40,8 +40,8 @@ INSERT IGNORE INTO lejeaftaler (
     kunde_id,
     vognnummer,
     lokation,
-    startdato,
-    antalMaaneder,
+    start_dato,
+    antal_maaneder,
     pris_pr_maaned,
     km_graense
 )
