@@ -12,85 +12,84 @@
 
 <div th:replace="~{fragments/layout :: html(~{::content})}">
     <div th:fragment="content">
-        <div class="forside-container">
+        <div class="formular-container">
 
-<h2 class="formular-titel">Opret Lejeaftale</h2>
-
-
-
-<!--Success besked af oprettelse-->
-<p th:if="${param.success}" style="color: green;">
-    Lejeaftale blev oprettet.
-</p>
-
-<!--Fejl besked af oprettelse-->
-<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+            <h2 class="formular-titel">Opret Lejeaftale</h2>
 
 
-<!--Form-->
-<form th:action="@{/lejeaftale/opret}" method="post">
+            <!--Success besked af oprettelse-->
+            <p th:if="${param.success}" style="color: green;">
+                Lejeaftale blev oprettet.
+            </p>
 
-    <!--Kunde Informationer-->
-    <h3 class="formular-undertitel">Kunde</h3>
+            <!--Fejl besked af oprettelse-->
+            <p th:if="${error}" th:text="${error}" style="color: red;"></p>
 
-    <div class="felt-gruppe">
-        <label>Navn</label>
-        <input type="text" name="navn" required>
-    </div>
 
-    <div class="felt-gruppe">
-        <label>Mobil</label>
-        <input type="text" name="mobil" required>
-    </div>
+            <!--Form-->
+            <form th:action="@{/lejeaftale/opret}" method="post">
 
-    <div class="felt-gruppe">
-        <label>Email</label>
-        <input type="email" name="email" required>
-    </div>
+                <!--Kunde Informationer-->
+                <h3 class="formular-undertitel">Kunde</h3>
 
-    <!--Lejeaftale Informationer-->
-    <h3 class="formular-undertitel">Lejeaftale</h3>
+                <div class="felt-gruppe">
+                    <label>Navn</label>
+                    <input type="text" name="navn" required>
+                </div>
 
-    <div class="felt-gruppe">
-        <label>Medarbejder ID</label>
-        <input type="text" name="medarbejderId" required>
-    </div>
+                <div class="felt-gruppe">
+                    <label>Mobil</label>
+                    <input type="text" name="mobil" required>
+                </div>
 
-    <div class="felt-gruppe">
-        <label>Vognnummer</label>
-        <input type="text" name="vognnummer" required>
-    </div>
+                <div class="felt-gruppe">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
 
-    <div class="felt-gruppe">
-        <label>Lokation</label>
-        <input type="text" name="lokation">
-    </div>
+                <!--Lejeaftale Informationer-->
+                <h3 class="formular-undertitel">Lejeaftale</h3>
 
-    <div class="felt-gruppe">
-        <label>Startdato</label>
-        <input type="date" name="startDato" required>
-    </div>
+                <div class="felt-gruppe">
+                    <label>Medarbejder ID</label>
+                    <input type="text" name="medarbejderId" required>
+                </div>
 
-    <div class="felt-gruppe">
-        <label>Antal Måneder</label>
-        <input type="number" name="antalMaaneder" required>
-    </div>
+                <div class="felt-gruppe">
+                    <label>Vognnummer</label>
+                    <input type="text" name="vognnummer" required>
+                </div>
 
-    <div class="felt-gruppe">
-        <label>Pris pr. måned</label>
-        <input type="number" step="0.01" name="prisPrMaaned" required>
-    </div>
+                <div class="felt-gruppe">
+                    <label>Lokation</label>
+                    <input type="text" name="lokation">
+                </div>
 
-    <div class="felt-gruppe">
-        <label>Km grænse</label>
-        <input type="number" name="kmGraense" required>
-    </div>
+                <div class="felt-gruppe">
+                    <label>Startdato</label>
+                    <input type="date" name="startDato" required>
+                </div>
 
-    <!--Submit Knap-->
-    <button type="submit" class="indsend-knap">Opret Lejeaftale</button>
+                <div class="felt-gruppe">
+                    <label>Antal Måneder</label>
+                    <input type="number" name="antalMaaneder" required>
+                </div>
 
-</form>
-            </div>
+                <div class="felt-gruppe">
+                    <label>Pris pr. måned</label>
+                    <input type="number" step="0.01" name="prisPrMaaned" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Km grænse</label>
+                    <input type="number" name="kmGraense" required>
+                </div>
+
+                <!--Submit Knap-->
+                <button type="submit" class="indsend-knap">Opret Lejeaftale</button>
+
+            </form>
+        </div>
     </div>
 </div>
 

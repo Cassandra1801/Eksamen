@@ -1,5 +1,6 @@
 package com.example.Eksamen.services;
 
+import com.example.Eksamen.models.Bil;
 import com.example.Eksamen.models.BilStatus;
 import com.example.Eksamen.models.Kunde;
 import com.example.Eksamen.models.Lejeaftale;
@@ -8,17 +9,18 @@ import com.example.Eksamen.repositories.KundeRepository;
 import com.example.Eksamen.repositories.LejeaftaleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
 @Service
-public class LejeaftaleService {
+public class DataregistreringService {
 
     private final LejeaftaleRepository lejeaftaleRepository;
     private final KundeRepository kundeRepository;
     private final BilRepository bilRepository;
 
-    public LejeaftaleService (
+    public DataregistreringService(
             LejeaftaleRepository lejeaftaleRepository,
             KundeRepository kundeRepository,
             BilRepository bilRepository
@@ -67,5 +69,21 @@ public class LejeaftaleService {
         bilRepository.opdaterStatus(vognnummer, BilStatus.UDLEJET);
 
     }
+
+    public void registrerNyBil(Bil bil) {
+
+        String vognnummer = bil.getVognnummer();
+
+        if (bilRepository.eksistererVognnummeret(vognnummer)) {
+            throw new IllegalArgumentException("Bilen findes allerede i systemet");
+        }
+
+        bilRepository.gem(bil);
+    }
+
+    public List<Lejeaftale> findFiltreredeLejeaftaler(String sogning) {
+        return lejeaftaleRepository.findFiltreredeLejeaftaler(sogning);
+    }
+
 
 }

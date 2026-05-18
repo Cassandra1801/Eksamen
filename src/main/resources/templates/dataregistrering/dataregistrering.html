@@ -1,20 +1,110 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Dataregistrering</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
 </head>
 <body>
 
 <div th:replace="~{fragments/layout :: html(~{::content})}">
     <div th:fragment="content">
 
-<h1>DATAREGISTRERING</h1>
+        <div class="center-box">
 
-<!-- Link til opret lejeaftale -->
-<a th:href="@{/lejeaftale/opret}">
-    Gå til opret lejeaftale
-</a>
+            <div class="dashboard-container-et">
+
+                <h2 class="dashboard-titel">Dataregistrering</h2>
+
+                <div class="total-boks">
+                    <div class="total-boks-inner">
+                        <a th:href="@{/lejeaftale/opret}">
+                            Opret lejeaftale
+                        </a>
+
+                        <a th:href="@{/bil/opret}">
+                            Registrer ny bil
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dashboard-container-to">
+
+                <div class="bil-scroll">
+
+                    <form class="filter-bar" th:action="@{/dataregistrering}" method="get">
+
+                        <input type="text"
+                               name="sogning"
+                               placeholder="Søg navn, email, telefon eller vognnummer"
+                               th:value="${sogning}">
+
+                        <button type="submit">Søg</button>
+
+                        <a th:href="@{/dataregistrering}">Nulstil</a>
+
+                    </form>
+
+                    <div class="bil-liste">
+
+                        <div class="bil-card" th:each="lejeaftale : ${lejeaftaleListe}">
+                            <div>
+                                <p class="bil-title">
+                                    Lejeaftale #
+                                    <span th:text="${lejeaftale.lejeaftaleId}">1</span>
+                                </p>
+
+                                <p>
+                                    Kunde ID:
+                                    <span th:text="${lejeaftale.kundeId}">1</span>
+                                </p>
+
+                                <p>
+                                    Vognnummer:
+                                    <span th:text="${lejeaftale.vognnummer}">1001</span>
+                                </p>
+
+                                <p>
+                                    Medarbejder:
+                                    <span th:text="${lejeaftale.medarbejderId}">MB01</span>
+                                </p>
+
+                                <p>
+                                    Lokation:
+                                    <span th:text="${lejeaftale.lokation}">København</span>
+                                </p>
+
+                                <p>
+                                    Startdato:
+                                    <span th:text="${lejeaftale.startDato}">2026-05-17</span>
+                                </p>
+
+                                <p>
+                                    Antal måneder:
+                                    <span th:text="${lejeaftale.antalMaaneder}">12</span>
+                                </p>
+
+                                <p>
+                                    Pris pr. måned:
+                                    <span th:text="${lejeaftale.prisPrMaaned} + ' kr.'">3000 kr.</span>
+                                </p>
+
+                                <p>
+                                    Km-grænse:
+                                    <span th:text="${lejeaftale.kmGraense}">1500</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 </div>
