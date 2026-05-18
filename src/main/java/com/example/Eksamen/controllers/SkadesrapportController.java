@@ -60,8 +60,11 @@ public class SkadesrapportController {
             // Når alle skader er oprettet, ændres bilens status til SKADET
             service.afslutSkaderegistrering(vognnummer);
 
-            // gem hver skade i databasen
-            return "redirect:/opret-skade?success=true";
+            // Henter den samlede pris for alle skader på lejeaftalen
+            double totalPris = service.totalPris(lejeaftaleId);
+
+            // Sender total med som query-parameter, så succes-siden kan vise den
+            return "redirect:/opret-skade?success=true&total=" + totalPris;
 
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
