@@ -43,8 +43,4 @@ public class SkadesrapportService {
         bilRepository.opdaterStatus(vognnumer, BilStatus.SKADET);
     }
 
-    /// Henter den samlede pris for alle skader på en lejeaftale
-    public double totalPris(int aftaleId) {
-        return repository.totalPris(aftaleId);
-    }
 }
