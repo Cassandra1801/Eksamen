@@ -1,5 +1,7 @@
 package com.example.Eksamen.models;
 
+import java.math.BigDecimal;
+
 public class BilForm {
 
     /// Denne klasse er lavet for at understøtte oprettelsen af nye biler
@@ -11,7 +13,7 @@ public class BilForm {
     private String maerke;
     private String model;
     private String udstyrsniveau;
-    private int staalpris;
+    private BigDecimal staalpris;
     private int regAfgift;
     private int co2Udledning;
     private String farve;
@@ -67,11 +69,11 @@ public class BilForm {
         this.udstyrsniveau = udstyrsniveau;
     }
 
-    public int getStaalpris() {
+    public BigDecimal getStaalpris() {
         return staalpris;
     }
 
-    public void setStaalpris(int staalpris) {
+    public void setStaalpris(BigDecimal staalpris) {
         this.staalpris = staalpris;
     }
 

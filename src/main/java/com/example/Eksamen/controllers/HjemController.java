@@ -20,10 +20,7 @@ public class HjemController {
         return "forside";
     }
 
-    @GetMapping("/dataregistrering")
-    public String dataregistrering() {
-        return "dataregistrering/dataregistrering";
-    }
+
 
     @GetMapping("/opret-skade")
     public String opretSkade(Model model) {

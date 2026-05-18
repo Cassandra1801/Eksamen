@@ -49,6 +49,13 @@ public class LejeaftaleRepository {
         String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(start_dato, INTERVAL antal_maaneder MONTH) >= CURDATE()";
         Double resultat = jdbcTemplate.queryForObject(sql, Double.class);
 
+        /* SUM() returnerer NULL hvis ingen lejeaftaler er aktive.
+            Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
+        if (resultat == null) {
+            return 0.0;
+        }
+        return resultat;
+    }
 
     public final RowMapper<Lejeaftale> lejeaftaleRowMapper = new RowMapper<Lejeaftale>() {
         @Override
@@ -56,13 +63,13 @@ public class LejeaftaleRepository {
 
             Lejeaftale lejeaftale = new Lejeaftale();
 
-            lejeaftale.setLejeaftaleId(rs.getInt("lejeaftale_Id"));
-            lejeaftale.setMedarbejderId(rs.getString("medarbejder_Id"));
-            lejeaftale.setKundeId(rs.getInt("kunde_Id"));
+            lejeaftale.setLejeaftaleId(rs.getInt("lejeaftale_id"));
+            lejeaftale.setMedarbejderId(rs.getString("medarbejder_id"));
+            lejeaftale.setKundeId(rs.getInt("kunde_id"));
             lejeaftale.setVognnummer(rs.getString("vognnummer"));
             lejeaftale.setLokation(rs.getString("lokation"));
-            lejeaftale.setStartDato(rs.getDate("startDato").toLocalDate());
-            lejeaftale.setAntalMaaneder(rs.getInt("antalMaaneder"));
+            lejeaftale.setStartDato(rs.getDate("start_dato").toLocalDate());
+            lejeaftale.setAntalMaaneder(rs.getInt("antal_maaneder"));
             lejeaftale.setPrisPrMaaned(rs.getBigDecimal("pris_pr_maaned"));
             lejeaftale.setKmGraense(rs.getInt("km_graense"));
 
@@ -86,7 +93,7 @@ public class LejeaftaleRepository {
         String sql = """
                 SELECT l.*
                 FROM lejeaftaler l 
-                INNER JOIN kunder k ON l.kunde_Id = k.kunde_Id
+                INNER JOIN kunder k ON l.kunde_id = k.kunde_id
                 WHERE 1 = 1
                 """;
 
@@ -121,11 +128,5 @@ public class LejeaftaleRepository {
     }
 
 
-        /* SUM() returnerer NULL hvis ingen lejeaftaler er aktive.
-            Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
-        if (resultat == null) {
-            return 0.0;
-        }
-        return resultat;
-    }
+
 }

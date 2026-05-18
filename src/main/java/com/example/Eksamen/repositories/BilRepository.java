@@ -140,7 +140,7 @@ public class BilRepository {
                 bil = new LimitedBil();
             } else if ("UNLIMITED".equals(type)) {
                 UnlimitedBil u = new UnlimitedBil();
-                u.setAftaltePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
+                u.setAftalePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
                 bil = u;
             } else {
                 throw new IllegalStateException("Ukendt bil_type: " + type);
@@ -212,5 +212,68 @@ public class BilRepository {
               AND DATE_ADD(lej.start_dato, INTERVAL lej.antal_maaneder MONTH) < CURDATE()
             """;
         return jdbcTemplate.query(sql, bilRowMapper);
+    }
+
+    public int gem(Bil bil) {
+
+        // LIMITED
+        if (bil instanceof LimitedBil) {
+
+            String sql = """
+            INSERT INTO biler
+            (vognnummer, stelnummer, maerke, model,
+             udstyrsniveau, staalpris, reg_afgift,
+             co2_udledning, farve, status, bil_type)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """;
+
+            return jdbcTemplate.update(
+                    sql,
+                    bil.getVognnummer(),
+                    bil.getStelnummer(),
+                    bil.getMaerke(),
+                    bil.getModel(),
+                    bil.getUdstyrsniveau(),
+                    bil.getStaalpris(),
+                    bil.getRegAfgift(),
+                    bil.getCo2Udledning(),
+                    bil.getFarve(),
+                    bil.getStatus().name(),
+                    "LIMITED"
+            );
+        }
+
+        // UNLIMITED
+        else if (bil instanceof UnlimitedBil u) {
+
+            String sql = """
+            INSERT INTO biler
+            (vognnummer, stelnummer, maerke, model,
+             udstyrsniveau, staalpris, reg_afgift,
+             co2_udledning, farve, status,
+             bil_type, aftalte_periode_i_maaneder)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """;
+
+            return jdbcTemplate.update(
+                    sql,
+                    u.getVognnummer(),
+                    u.getStelnummer(),
+                    u.getMaerke(),
+                    u.getModel(),
+                    u.getUdstyrsniveau(),
+                    u.getStaalpris(),
+                    u.getRegAfgift(),
+                    u.getCo2Udledning(),
+                    u.getFarve(),
+                    u.getStatus().name(),
+                    "UNLIMITED",
+                    u.getAftalePeriodeIMaaneder()
+            );
+        }
+
+        else {
+            throw new IllegalArgumentException("Ukendt biltype");
+        }
     }
 }
