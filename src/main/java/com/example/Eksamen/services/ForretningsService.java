@@ -63,31 +63,7 @@ public class ForretningsService {
         return antalLedige;
     }
 
-    public List<Bil> findAlleLedige() {
-        List<Bil> bilerListe = bilRepository.findAlle();
-        List<Bil> lejedeBiler = new ArrayList<>();
 
-        for (Bil b : bilerListe) {
-            if (b.getStatus() == BilStatus.LEDIG) {
-                lejedeBiler.add(b);
-            }
-        }
-
-        return lejedeBiler;
-    }
-
-    public List<Bil> findAlleUdlejede() {
-        List<Bil> bilerListe = bilRepository.findAlle();
-        List<Bil> udlejedeBiler = new ArrayList<>();
-
-        for (Bil b : bilerListe) {
-            if (b.getStatus() == BilStatus.UDLEJET) {
-                udlejedeBiler.add(b);
-            }
-        }
-
-        return udlejedeBiler;
-    }
 
     /// Henter sammenlagt pris på nuværende udlejede biler
     public double sammenlagtPris() {

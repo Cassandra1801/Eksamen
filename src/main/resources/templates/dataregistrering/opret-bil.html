@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret bil</title>
+    <link rel="stylesheet" th:href="@{/css/formular.css}">
+</head>
+<body>
+<div th:replace="~{fragments/layout :: html(~{::content})}">
+    <div th:fragment="content">
+        <div class="formular-container">
+
+            <h2 class="formular-titel">Opret ny bil</h2>
+
+            <div th:if="${success}" class="success-besked">
+                Bil oprettet succesfuldt!
+            </div>
+
+            <form th:action="@{/bil/opret}" method="post">
+
+                <!-- Biltype -->
+                <h3 class="formular-undertitel">Abonnementstype</h3>
+
+                <div class="felt-gruppe">
+                    <label>Type</label>
+
+                    <select name="abonnementsType" required>
+                        <option value="">Vælg abonnementstype</option>
+                        <option value="LIMITED">Limited</option>
+                        <option value="UNLIMITED">Unlimited</option>
+                    </select>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Aftaleperiode i måneder</label>
+
+                    <input type="number"
+                           name="aftalePeriodeIMaaneder"
+                           min="3"
+                           max="36"
+                           placeholder="Kun for Unlimited">
+                </div>
+
+                <!-- Bil information -->
+                <h3 class="formular-undertitel">Bil information</h3>
+
+                <div class="felt-gruppe">
+                    <label>Vognnummer</label>
+                    <input type="text" name="vognnummer" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Stelnummer</label>
+                    <input type="text" name="stelnummer" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Mærke</label>
+
+                    <select name="maerke" required>
+                        <option value="">Vælg bilmærke</option>
+
+                        <option value="Audi">Audi</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Citroën">Citroën</option>
+                        <option value="Cupra">Cupra</option>
+                        <option value="Dacia">Dacia</option>
+                        <option value="Fiat">Fiat</option>
+                        <option value="Ford">Ford</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Hyundai">Hyundai</option>
+                        <option value="Kia">Kia</option>
+                        <option value="Lexus">Lexus</option>
+                        <option value="Mazda">Mazda</option>
+                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                        <option value="Mini">Mini</option>
+                        <option value="Nissan">Nissan</option>
+                        <option value="Opel">Opel</option>
+                        <option value="Peugeot">Peugeot</option>
+                        <option value="Polestar">Polestar</option>
+                        <option value="Porsche">Porsche</option>
+                        <option value="Renault">Renault</option>
+                        <option value="Seat">Seat</option>
+                        <option value="Skoda">Skoda</option>
+                        <option value="Suzuki">Suzuki</option>
+                        <option value="Tesla">Tesla</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Volvo">Volvo</option>
+                    </select>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Model</label>
+                    <input type="text" name="model" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Udstyrsniveau</label>
+                    <input type="text" name="udstyrsniveau" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Stålpris</label>
+                    <input type="number" name="staalpris" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Registreringsafgift</label>
+                    <input type="number" name="regAfgift" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>CO₂-udledning</label>
+                    <input type="number" name="co2Udledning" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Farve</label>
+                    <input type="text" name="farve" required>
+                </div>
+
+                <div class="felt-gruppe">
+                    <label>Status</label>
+
+                    <select name="status" required>
+                        <option value="">Vælg status</option>
+
+                        <option value="INDKØBT">INDKØBT</option>
+                        <option value="LEDIG">LEDIG</option>
+                        <option value="UDLEJET">UDLEJET</option>
+                        <option value="TILBAGELEVERET">TILBAGELEVERET</option>
+                        <option value="SKADET">SKADET</option>
+                        <option value="KLAR_TIL_SALG">KLAR_TIL_SALG</option>
+                        <option value="SOLGT">SOLGT</option>
+                        <option value="RESERVERET">RESERVERET</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="indsend-knap">
+                    Opret bil
+                </button>
+
+            </form>
+
+            <div class="end-block"></div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

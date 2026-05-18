@@ -187,7 +187,7 @@ public class BilRepository {
                     bil.getRegAfgift(),
                     bil.getCo2Udledning(),
                     bil.getFarve(),
-                    bil.getStatus());
+                    bil.getStatus().name());
         } else if (bil instanceof UnlimitedBil u) {
             return jdbcTemplate.update("""
                     INSERT INTO biler (vognnummer, stelnummer, maerke, model, udstyrsniveau,
@@ -204,7 +204,7 @@ public class BilRepository {
                     u.getRegAfgift(),
                     u.getCo2Udledning(),
                     u.getFarve(),
-                    u.getStatus(),
+                    u.getStatus().name(),
                     u.getAftalePeriodeIMaaneder());
         }
         throw new IllegalArgumentException("Ukendt biltype");
