@@ -18,9 +18,10 @@ public class UnlimitedBil extends Bil {
                         String farve, BilStatus status, int aftalePeriodeIMaaneder) {
         super (vognnummer, stelnummer, maerke, model, udstyrsniveau,
                 staalpris, regAfgift, co2Udledning, farve, status);
-        if (this.aftalePeriodeIMaaneder < 3 || this.aftalePeriodeIMaaneder > 36) {
+        if (aftalePeriodeIMaaneder < 3 || aftalePeriodeIMaaneder > 36) {
             throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
         }
+
         this.aftalePeriodeIMaaneder = aftalePeriodeIMaaneder;
     }
 
