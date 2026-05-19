@@ -139,9 +139,10 @@ body {
     padding: 14px 28px;
 
     border-radius: 10px;
-    border: 2px solid #1a3a2a;
+    border: 2px solid rgba(26, 58, 42, 0.5);
 
-    background-color: rgba(40, 90, 70, 0.30);
+    background-color: rgba(26, 58, 42, 0.5);
+
     color: #1a3a2a;
 
     font-size: 16px;
