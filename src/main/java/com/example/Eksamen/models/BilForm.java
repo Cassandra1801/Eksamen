@@ -24,7 +24,7 @@ public class BilForm {
     private String abonnementsType;
 
     // Kun relevant for UnlimitedBil
-    private Integer aftalePeriodeIMaaneder;
+    private Integer aftaltePeriodeIMaaneder;
 
     public BilForm() {
     }
@@ -117,11 +117,11 @@ public class BilForm {
         this.abonnementsType = abonnementsType;
     }
 
-    public Integer getAftalePeriodeIMaaneder() {
-        return aftalePeriodeIMaaneder;
+    public Integer getAftaltePeriodeIMaaneder() {
+        return aftaltePeriodeIMaaneder;
     }
 
-    public void setAftalePeriodeIMaaneder(Integer aftalePeriodeIMaaneder) {
-        this.aftalePeriodeIMaaneder = aftalePeriodeIMaaneder;
+    public void setAftaltePeriodeIMaaneder(Integer aftaltePeriodeIMaaneder) {
+        this.aftaltePeriodeIMaaneder = aftaltePeriodeIMaaneder;
     }
 }

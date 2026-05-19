@@ -24,7 +24,7 @@ class UnlimitedBilTest {
 
     /* Exception flow: en periode under 3 måneder er ugyldig.
         Konstruktøren skal kaste IllegalArgumentExcpetion,
-        så et ugyldigt objekt aldrig kan eksistre (fail-fast) */
+        så et ugyldigt objekt aldrig kan eksistere (fail-fast) */
     @Test
     void konstruktoer_periodeForLav_kasterException(){
         // Asser: verficér at ugyldigt input kaster en exception
