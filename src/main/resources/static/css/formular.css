@@ -91,6 +91,16 @@ form {
     width: 450px;
 }
 
+.error-besked {
+    background-color: #1a3a2a;
+    color: #F2E9D8;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    width: 450px;
+}
+
 .end-block {
     height: 10vh;
 }

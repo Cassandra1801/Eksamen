@@ -16,6 +16,10 @@
                 Bil oprettet succesfuldt!
             </div>
 
+            <div th:if="${error}" class="error-besked">
+                <span th:text="${error}"></span>
+            </div>
+
             <form th:action="@{/bil/opret}" method="post">
 
                 <!-- Biltype -->

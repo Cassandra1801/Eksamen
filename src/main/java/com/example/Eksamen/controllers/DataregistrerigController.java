@@ -71,48 +71,51 @@ public class DataregistrerigController {
 
     /// PostMapping for oprettelse af ny bil
     @PostMapping("/bil/opret")
-    public String opretBil(@ModelAttribute BilForm bilForm) {
+    public String opretBil(@ModelAttribute BilForm bilForm, Model model) {
+        try {
+            Bil bil;
 
-        Bil bil;
+            if (bilForm.getAbonnementsType().equalsIgnoreCase("LIMITED")) {
+                bil = new LimitedBil(
+                        bilForm.getVognnummer(),
+                        bilForm.getStelnummer(),
+                        bilForm.getMaerke(),
+                        bilForm.getModel(),
+                        bilForm.getUdstyrsniveau(),
+                        bilForm.getStaalpris(),
+                        bilForm.getRegAfgift(),
+                        bilForm.getCo2Udledning(),
+                        bilForm.getFarve(),
+                        bilForm.getStatus()
+                );
+            } else if (bilForm.getAbonnementsType().equalsIgnoreCase("UNLIMITED")) {
+                bil = new UnlimitedBil(
+                        bilForm.getVognnummer(),
+                        bilForm.getStelnummer(),
+                        bilForm.getMaerke(),
+                        bilForm.getModel(),
+                        bilForm.getUdstyrsniveau(),
+                        bilForm.getStaalpris(),
+                        bilForm.getRegAfgift(),
+                        bilForm.getCo2Udledning(),
+                        bilForm.getFarve(),
+                        bilForm.getStatus(),
+                        bilForm.getAftalePeriodeIMaaneder()
+                );
+            } else {
+                throw new IllegalArgumentException("Fejl bil type indtastet i bil opretform");
+            }
 
-        if (bilForm.getAbonnementsType().equalsIgnoreCase("LIMITED")) {
+            dataregistreringService.registrerNyBil(bil);
 
-            bil = new LimitedBil(
-                    bilForm.getVognnummer(),
-                    bilForm.getStelnummer(),
-                    bilForm.getMaerke(),
-                    bilForm.getModel(),
-                    bilForm.getUdstyrsniveau(),
-                    bilForm.getStaalpris(),
-                    bilForm.getRegAfgift(),
-                    bilForm.getCo2Udledning(),
-                    bilForm.getFarve(),
-                    bilForm.getStatus()
-            );
-        } else if (bilForm.getAbonnementsType().equalsIgnoreCase("UNLIMITED")) {
+            return "redirect:/bil/opret?success";
 
-            bil = new UnlimitedBil(
-                    bilForm.getVognnummer(),
-                    bilForm.getStelnummer(),
-                    bilForm.getMaerke(),
-                    bilForm.getModel(),
-                    bilForm.getUdstyrsniveau(),
-                    bilForm.getStaalpris(),
-                    bilForm.getRegAfgift(),
-                    bilForm.getCo2Udledning(),
-                    bilForm.getFarve(),
-                    bilForm.getStatus(),
-                    bilForm.getAftalePeriodeIMaaneder()
-            );
-        } else {
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("bilForm", bilForm);
 
-            // For at understøtte fremtidige ændringer der kan give fejl
-            throw new IllegalArgumentException("Fejl bil type indtastet i bil opretform");
+            return "dataregistrering/opret-bil";
         }
-
-        dataregistreringService.registrerNyBil(bil);
-
-        return "redirect:/bil/opret?success";
     }
 
 
