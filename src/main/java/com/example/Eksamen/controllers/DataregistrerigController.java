@@ -112,7 +112,7 @@ public class DataregistrerigController {
 
         dataregistreringService.registrerNyBil(bil);
 
-        return "redirect:/bil/opret";
+        return "redirect:/bil/opret?success";
     }
 
 
