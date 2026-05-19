@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class DataregistrerigController {
+public class DataregistreringController {
 
     private final DataregistreringService dataregistreringService;
 
-    public DataregistrerigController(DataregistreringService dataregistreringService) {
+    public DataregistreringController(DataregistreringService dataregistreringService) {
         this.dataregistreringService = dataregistreringService;
     }
 
@@ -120,7 +120,7 @@ public class DataregistrerigController {
 
         dataregistreringService.registrerNyBil(bil);
 
-            return "redirect:/bil/opret?succes";
+            return "redirect:/bil/opret?success";
 
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());

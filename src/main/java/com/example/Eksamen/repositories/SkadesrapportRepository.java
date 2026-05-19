@@ -1,7 +1,6 @@
 package com.example.Eksamen.repositories;
 
 import com.example.Eksamen.models.Skadesrapport;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,10 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SkadesrapportRepository {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    // Beder Spring Boot om at give os en JdbcTemplate
-    // vi skal ikke selv oprette den med "new"
+    /* Contructor injection: Spring leverer JdbcTemplate automatisk, så
+        vi slipper for @Autowired og kan markere fletet som final*/
+    private final JdbcTemplate jdbcTemplate;
+
+    public SkadesrapportRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
         public void tilfoejSkadeTilRapport (Skadesrapport skade) {
             // Metoden tager imod et Skadesrapport objekt

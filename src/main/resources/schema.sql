@@ -1,7 +1,7 @@
-# DROP TABLE IF EXISTS skader;
-# DROP TABLE IF EXISTS lejeaftaler;
-# DROP TABLE IF EXISTS biler;
-# DROP TABLE IF EXISTS kunder;
+-- DROP TABLE IF EXISTS skader;
+-- DROP TABLE IF EXISTS lejeaftaler;
+-- DROP TABLE IF EXISTS biler;
+-- DROP TABLE IF EXISTS kunder;
 
 CREATE TABLE IF NOT EXISTS biler (
                        vognnummer VARCHAR(50) PRIMARY KEY,

@@ -42,8 +42,8 @@ public class SkadesrapportService {
     /* Afslutter skaderegistreringen for en bil ved at sætte status til SKADET.
     Kaldes af Controlleren EFTER at alle skader fra én skadesrapport er oprettet,
     så valideringen i opretSkade() ikke fejler på 2. og 3. skade i samme rapport */
-    public void afslutSkaderegistrering(String vognnumer) {
-        bilRepository.opdaterStatus(vognnumer, BilStatus.SKADET);
+    public void afslutSkaderegistrering(String vognnummer) {
+        bilRepository.opdaterStatus(vognnummer, BilStatus.SKADET);
     }
 
     /* Henter den samlede pris for alle skader på en lejeaftale.
