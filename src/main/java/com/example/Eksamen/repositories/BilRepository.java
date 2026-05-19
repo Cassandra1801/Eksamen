@@ -28,6 +28,7 @@ public class BilRepository {
     public boolean eksistererVognnummeret(String vognnummer) {
 
         //SQL Statement returnerer boolean om eksistensen af vognnummer i biler
+        //1 Er for at den ikke går igennem resten af listen da den har fundet bilen (vognnummer er unique (PK))
         String sql = """
                 SELECT EXISTS (
                     SELECT 1 FROM biler WHERE vognnummer = ?
@@ -46,6 +47,7 @@ public class BilRepository {
     public boolean erBilenLedig(String vognnummer) {
 
         //SQL Statement boolean
+        //1 Er for at den ikke går igennem resten af listen da den har fundet vognnummer (vognnummer er unique (PK))
         String sql = """
                 SELECT EXISTS (
                     SELECT 1 FROM biler WHERE vognnummer = ? AND status = 'LEDIG'
@@ -170,16 +172,30 @@ public class BilRepository {
 
     ///  Tæller alle biler i databasen
     public int antalBiler() {
+
         String sql = "SELECT COUNT(*) FROM biler";
+
         Integer antal = jdbcTemplate.queryForObject(sql, Integer.class);
-        return antal == null ? 0 : antal;
+
+        if (antal == null) {
+            return 0;
+        }
+
+        return antal;
     }
 
     ///  Tæller biler med en bestemt status
     public int antalMedStatus(BilStatus status) {
+
         String sql = "SELECT COUNT(*) FROM biler WHERE status = ?";
+
         Integer antal = jdbcTemplate.queryForObject(sql, Integer.class, status.name());
-        return antal == null ? 0 : antal;
+
+        if (antal == null) {
+            return 0;
+        }
+
+        return antal;
     }
 
     // Tjekker om en bil er tilbageleveret OG har en udløbet lejeperiode
@@ -214,11 +230,17 @@ public class BilRepository {
         return jdbcTemplate.query(sql, bilRowMapper);
     }
 
+
+    /// Gemmer en bil i databasen som Limited eller Unlimited
     public int gem(Bil bil) {
+        // Return type er en int fordi jdbcTemplate.update returnerer
+        // en int som er antal rækker i databasen der er påvirket.
+
 
         // LIMITED
         if (bil instanceof LimitedBil) {
 
+            //SQL Statement
             String sql = """
             INSERT INTO biler
             (vognnummer, stelnummer, maerke, model,
@@ -227,6 +249,7 @@ public class BilRepository {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+            //Opretter en bil i databasen
             return jdbcTemplate.update(
                     sql,
                     bil.getVognnummer(),
@@ -246,6 +269,7 @@ public class BilRepository {
         // UNLIMITED
         else if (bil instanceof UnlimitedBil u) {
 
+            //SQL Statement
             String sql = """
             INSERT INTO biler
             (vognnummer, stelnummer, maerke, model,
@@ -255,6 +279,7 @@ public class BilRepository {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+            //Opretter en bil i databasen
             return jdbcTemplate.update(
                     sql,
                     u.getVognnummer(),

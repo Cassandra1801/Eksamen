@@ -17,6 +17,7 @@ public class DataregistreringController {
         this.dataregistreringService = dataregistreringService;
     }
 
+    /// GetMapping for frontsiden hos dataregistreringen med parametrer til søgningen
     @GetMapping("/dataregistrering")
     public String dataregistrering(@RequestParam(required = false) String sogning,
                                    Model model) {
@@ -30,7 +31,6 @@ public class DataregistreringController {
     }
 
 
-
     /// GetMapping for oprettelse af lejeaftale form
     @GetMapping("/lejeaftale/opret")
     public String visOpretLejeaftaleForm(Model model) {
@@ -39,6 +39,7 @@ public class DataregistreringController {
 
         return "/dataregistrering/opret-lejeaftale";
     }
+
 
     /// PostMapping for oprettelse af lejeaftale form
     @PostMapping("/lejeaftale/opret")
@@ -55,11 +56,13 @@ public class DataregistreringController {
 
         } catch (IllegalArgumentException e) {
 
+            //Redirect med error besked i modellen
             model.addAttribute("error", e.getMessage() + "   -   Fejl ved oprettelse af lejeaftale");
 
             return "/dataregistrering/opret-lejeaftale";
         }
     }
+
 
     /// GetMapping for form af oprettelse af ny bil
     @GetMapping("/bil/opret")
@@ -69,9 +72,13 @@ public class DataregistreringController {
         return "dataregistrering/opret-bil";
     }
 
+
     /// PostMapping for oprettelse af ny bil
     @PostMapping("/bil/opret")
     public String opretBil(@ModelAttribute BilForm bilForm, Model model) {
+        // Bruger BilForm for at data kan gemmes inde i et objekt lige
+        // gyldigt om det er en LIMITED eller en UNLIMITED bil
+
         try {
             Bil bil;
 
@@ -89,6 +96,7 @@ public class DataregistreringController {
                         bilForm.getFarve(),
                         bilForm.getStatus()
                 );
+
             } else if (bilForm.getAbonnementsType().equalsIgnoreCase("UNLIMITED")) {
 
                 /* Unlimited KRÆVER en aftaleperiode. Hvis feltet er tomt, er getAftaltePeriodeIMaaneder() null,
@@ -112,10 +120,10 @@ public class DataregistreringController {
                         bilForm.getStatus(),
                         bilForm.getAftaltePeriodeIMaaneder()
                 );
-            } else {
 
+            } else {
                 // For at understøtte fremtidige ændringer der kan give fejl
-                throw new IllegalArgumentException ("Fejl: bil type indtastes i opret bil");
+                throw new IllegalArgumentException ("Fejl bil type indtastes i opret bil");
             }
 
         dataregistreringService.registrerNyBil(bil);

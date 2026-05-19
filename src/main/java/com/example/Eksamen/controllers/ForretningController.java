@@ -31,10 +31,13 @@ public class ForretningController {
             Model model
             ) {
 
+        // KPI variabler
         int totalAntalBiler = forretningsService.totalAntalBiler();
         int totalAntalUdlejet = forretningsService.totalAntalUdlejet();
         int totalAntalLedige = forretningsService.totalAntalLedige();
         double sammenlagtPris = forretningsService.sammenlagtPris();
+
+        // Overblik over biler variabler
         List<Bil> bilListe = forretningsService.findFiltreredeBiler(limited, unlimited, maerke);
         List<String> maerkerListe = forretningsService.findAlleMaerker();
 

@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 * final fordi den aldrig ændrer sig */
 
 public class LimitedBil  extends Bil {
+
     private static final int LIMITED_DAGE = 150;  //5 måneder, fast
 
     public LimitedBil() { super(); }
