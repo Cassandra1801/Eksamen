@@ -15,7 +15,7 @@ class UnlimitedBilTest {
     void konstruktoer_gyldigPeriode_opretterObjekt(){
         // Act: opret objekter med gyldigt input (konstruktørem ER metoden under test)
         UnlimitedBil bil = new UnlimitedBil(
-                "AB1234", "VF7TESTSTEL000001", "Toyota", "Yaris", "Confort",
+                "AB1234", "VF7TESTSTEL000001", "Toyota", "Yaris", "Comfort",
                 BigDecimal.valueOf(45000), 22000, 130, "Hvid", null, 12);
 
         // Assert: verficér at perioden blev sat korrekt
