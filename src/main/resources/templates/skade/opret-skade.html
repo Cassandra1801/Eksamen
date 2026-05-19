@@ -12,7 +12,8 @@
             <h2 class="formular-titel">Opret skadesrapport</h2>
 
             <div th:if="${param.success}" class="success-besked">
-                ✓ Skadesrapport er registeret!
+                ✓ Skadesrapport er registeret! Samlet pris:
+                <span th:text="${#numbers.formatDecimal(param.total, 0, 'POINT', 2, 'COMMA')} + ' kr.'">0,00 kr.</span>
             </div>
 
             <div th:if="${error}" th:text="${error}" style="color: red;"></div>
