@@ -76,6 +76,7 @@ public class DataregistrerigController {
             Bil bil;
 
             if (bilForm.getAbonnementsType().equalsIgnoreCase("LIMITED")) {
+
                 bil = new LimitedBil(
                         bilForm.getVognnummer(),
                         bilForm.getStelnummer(),
@@ -89,6 +90,15 @@ public class DataregistrerigController {
                         bilForm.getStatus()
                 );
             } else if (bilForm.getAbonnementsType().equalsIgnoreCase("UNLIMITED")) {
+
+                /* Unlimited KRÆVER en aftaleperiode. Hvis feltet er tomt, er getAftaltePeriodeIMaaneder() null,
+                    og auto-unboxing til konstruktørens int ville kaste NullPointerException.
+                    Derfor tjekkes der eksplicit, så fejlen i stedet bliver en forståelig besked til brugeren. */
+                if (bilForm.getAftaltePeriodeIMaaneder() == null) {
+                    throw new IllegalArgumentException(
+                            "Aftaleperiode skal udfyldes for en Unlimited-bil");
+                }
+
                 bil = new UnlimitedBil(
                         bilForm.getVognnummer(),
                         bilForm.getStelnummer(),
@@ -100,15 +110,17 @@ public class DataregistrerigController {
                         bilForm.getCo2Udledning(),
                         bilForm.getFarve(),
                         bilForm.getStatus(),
-                        bilForm.getAftalePeriodeIMaaneder()
+                        bilForm.getAftaltePeriodeIMaaneder()
                 );
             } else {
-                throw new IllegalArgumentException("Fejl bil type indtastet i bil opretform");
+
+                // For at understøtte fremtidige ændringer der kan give fejl
+                throw new IllegalArgumentException ("Fejl: bil type indtastes i opret bil");
             }
 
-            dataregistreringService.registrerNyBil(bil);
+        dataregistreringService.registrerNyBil(bil);
 
-            return "redirect:/bil/opret?success";
+            return "redirect:/bil/opret?succes";
 
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
