@@ -1,10 +1,13 @@
 package com.example.Eksamen.services;
 
+import com.example.Eksamen.models.Bil;
 import com.example.Eksamen.models.BilStatus;
 import com.example.Eksamen.models.Skadesrapport;
 import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.SkadesrapportRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SkadesrapportService {
@@ -48,4 +51,10 @@ public class SkadesrapportService {
     public double totalPris(int lejeaftaleId) {
         return repository.totalPris(lejeaftaleId);
     }
+
+    //henter liste af Biler der er klar til skaderegistrering
+    public List<Bil> hentKlareBiler(){
+        return bilRepository.findKlarTilSkaderegistrering();
+    }
+
 }
