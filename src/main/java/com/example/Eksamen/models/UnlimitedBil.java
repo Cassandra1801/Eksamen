@@ -8,7 +8,7 @@ import java.math.BigDecimal;
     i stedet for at have en Bil-klasse med "if-type"-check */
 
 public class UnlimitedBil extends Bil {
-    private int aftalePeriodeIMaaneder;   //3-36 måneder, variabel
+    private int aftaltePeriodeIMaaneder;   //3-36 måneder, variabel
 
     public UnlimitedBil() { super(); }
 
@@ -20,11 +20,11 @@ public class UnlimitedBil extends Bil {
                         String farve, BilStatus status, int aftaltePeriodeIMaaneder) {
         super(vognnummer, stelnummer, maerke, model, udstyrsniveau,
                 staalpris, regAfgift, co2Udledning, farve, status);
-        if (aftalePeriodeIMaaneder < 3 || aftalePeriodeIMaaneder > 36) {
+        if (aftaltePeriodeIMaaneder < 3 || aftaltePeriodeIMaaneder > 36) {
             throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
         }
 
-        this.aftalePeriodeIMaaneder = aftalePeriodeIMaaneder;
+        this.aftaltePeriodeIMaaneder = aftaltePeriodeIMaaneder;
     }
 
     /**  Beregner periode dynamisk ud fra det konkrete antal måneder,
@@ -32,7 +32,7 @@ public class UnlimitedBil extends Bil {
     * Polymorfi: samme metodekald, forskellig implementering afhængigt af det faktiske objekt */
     @Override
     public int getMaxLejePeriodeIDage() {
-        return aftalePeriodeIMaaneder * 30;
+        return aftaltePeriodeIMaaneder * 30;
     }
 
     @Override
@@ -40,8 +40,8 @@ public class UnlimitedBil extends Bil {
         return "Unlimited";
     }
 
-    public int getAftalePeriodeIMaaneder() {return aftalePeriodeIMaaneder; }
+    public int getAftalePeriodeIMaaneder() {return aftaltePeriodeIMaaneder; }
     public void setAftalePeriodeIMaaneder(int v) {
-        this.aftalePeriodeIMaaneder = v;
+        this.aftaltePeriodeIMaaneder = v;
     }
 }
