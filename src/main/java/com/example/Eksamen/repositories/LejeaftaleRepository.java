@@ -43,10 +43,16 @@ public class LejeaftaleRepository {
     }
 
     public double sammenlagtPrisUdlejede() {
-        String sql = "SELECT SUM(pris_pr_maaned) FROM lejeaftaler WHERE DATE_ADD(start_dato, INTERVAL antal_maaneder MONTH) >= CURDATE()";
+        String sql = """
+                SELECT SUM(lej.pris_pr_maaned)
+                FROM lejeaftaler lej
+                JOIN biler b ON lej.vognnummer = b.vognnummer
+                WHERE b.status = 'UDLEJET'
+                  AND DATE_ADD(lej.start_dato, INTERVAL lej.antal_maaneder MONTH) >= CURDATE()
+                """;
         Double resultat = jdbcTemplate.queryForObject(sql, Double.class);
 
-        /* SUM() returnerer NULL hvis ingen lejeaftaler er aktive.
+        /* SUM() returnerer NULL hvis ingen udlejede biler har aktive lejeaftaler.
            Derfor returneres 0.0 i stedet. */
         if (resultat == null) {
             return 0.0;

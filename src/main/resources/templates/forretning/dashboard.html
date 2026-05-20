@@ -36,7 +36,7 @@
 
                 <div class="info-boks">
                     <p class="info-label">Sammenlagt pris på udlejede biler</p>
-                    <p class="info-tal" th:text="${sammenlagtPris} + ' kr.'">0 kr.</p>
+                    <p class="info-tal" th:text="${#numbers.formatDecimal(sammenlagtPris, 0, 'POINT', 2, 'COMMA')} + ' kr.'">0,00 kr.</p>
                 </div>
 
             </div>
