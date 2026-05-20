@@ -12,24 +12,22 @@ public class UnlimitedBil extends Bil {
 
     public UnlimitedBil() { super(); }
 
-    /**  Kontruktøren validerer perioden og kaster en IllegalArgumentException,
-     * hvis værdien er udenfor intervallet.
-     * Dette gør at et ugyldigt UnlimitedBil-objekt aldrig kan eksistrerer (fail-fast princip) */
+    /* Kontruktøren validerer perioden og kaster en IllegalArgumentException,
+       hvis værdien er udenfor intervallet.
+       Dette gør at et ugyldigt UnlimitedBil-objekt aldrig kan eksistrerer (fail-fast princip) */
     public UnlimitedBil(String vognnummer, String stelnummer, String maerke, String model,
                         String udstyrsniveau, BigDecimal staalpris, int regAfgift, int co2Udledning,
                         String farve, BilStatus status, int aftaltePeriodeIMaaneder) {
         super(vognnummer, stelnummer, maerke, model, udstyrsniveau,
                 staalpris, regAfgift, co2Udledning, farve, status);
-        if (aftaltePeriodeIMaaneder < 3 || aftaltePeriodeIMaaneder > 36) {
-            throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
-        }
 
+        validerAftaltePeriodeIMaaneder(aftaltePeriodeIMaaneder);
         this.aftaltePeriodeIMaaneder = aftaltePeriodeIMaaneder;
     }
 
-    /**  Beregner periode dynamisk ud fra det konkrete antal måneder,
-    * modsat LimitedBil hvor den er konstant.
-    * Polymorfi: samme metodekald, forskellig implementering afhængigt af det faktiske objekt */
+    /* Beregner periode dynamisk ud fra det konkrete antal måneder,
+       modsat LimitedBil hvor den er konstant.
+       Polymorfi: samme metodekald, forskellig implementering afhængigt af det faktiske objekt */
     @Override
     public int getMaxLejePeriodeIDage() {
         return aftaltePeriodeIMaaneder * 30;
@@ -40,8 +38,22 @@ public class UnlimitedBil extends Bil {
         return "Unlimited";
     }
 
-    public int getAftalePeriodeIMaaneder() {return aftaltePeriodeIMaaneder; }
-    public void setAftalePeriodeIMaaneder(int v) {
-        this.aftaltePeriodeIMaaneder = v;
+    public int getAftaltePeriodeIMaaneder() {
+        return aftaltePeriodeIMaaneder;
     }
+
+    public void setAftaltePeriodeIMaaneder(int aftaltePeriodeIMaaneder) {
+        validerAftaltePeriodeIMaaneder(aftaltePeriodeIMaaneder);
+        this.aftaltePeriodeIMaaneder = aftaltePeriodeIMaaneder;
+    }
+
+    /* Samler valideringen ét sted, så både constructor og setter håndhæver samme forretningsregel:
+        UnlimitedBil skal have en aftalt periode på 3-36 måneder. */
+    private void validerAftaltePeriodeIMaaneder(int aftaltePeriodeIMaaneder) {
+        if (aftaltePeriodeIMaaneder < 3 || aftaltePeriodeIMaaneder > 36) {
+            throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
+        }
+    }
+
+
 }

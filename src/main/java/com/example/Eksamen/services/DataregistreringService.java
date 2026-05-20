@@ -47,6 +47,14 @@ public class DataregistreringService {
             throw new IllegalArgumentException("Bilen er ikke ledig");
         }
 
+        Bil bil = bilRepository.findVedVognnummer(vognnummer);
+
+        int lejeperiodeIDage = lejeaftale.getAntalMaaneder() * 30;
+
+        if (lejeperiodeIDage > bil.getMaxLejePeriodeIDage()) {
+            throw new IllegalArgumentException("Lejeperioden overstiger bilens maksimale lejeperiode");
+        }
+
         //Container for potentielt eksisterende kunde fundet med mail (schrödingers cat xD)
         Optional<Kunde> potentielKunde = kundeRepository.findMedEmail(kunde.getEmail());
 
@@ -84,6 +92,4 @@ public class DataregistreringService {
     public List<Lejeaftale> findFiltreredeLejeaftaler(String sogning) {
         return lejeaftaleRepository.findFiltreredeLejeaftaler(sogning);
     }
-
-
 }

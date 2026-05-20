@@ -2,8 +2,7 @@ package com.example.Eksamen.models;
 
 import java.math.BigDecimal;
 
-/** Værdien er ens for alle LimitedBil-objekter, deraf static
-* final fordi den aldrig ændrer sig */
+/* Værdien er ens for alle LimitedBil-objekter, deraf static final fordi den aldrig ændrer sig */
 
 public class LimitedBil  extends Bil {
     private static final int LIMITED_DAGE = 150;  //5 måneder, fast
@@ -40,8 +39,8 @@ public class LimitedBil  extends Bil {
         return LIMITED_DAGE;
     }
 
-    /**Returnerer strengen "Limited", som matcher forretningens betegnelse og
-    * bruges når biltypen skal vises i UI'en eller bruges i rapporter */
+    /* Returnerer strengen "Limited", som matcher forretningens betegnelse og
+        bruges når biltypen skal vises i UI'en eller bruges i rapporter */
     @Override
     public String getAbonnementsType() {
         return "Limited";
