@@ -8,7 +8,6 @@ import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.KundeRepository;
 import com.example.Eksamen.repositories.LejeaftaleRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +31,7 @@ public class DataregistreringService {
     }
 
 
-    // Registrerer en lejeaftale som én samlet transaktion.
-    // Hvis én databasehandling fejler, rulles hele oprettelsen tilbage.
-    @Transactional
+    // Registrerer en lejeaftale og samler validering, kundeoprettelse og statusændring ét sted.
     public void registrerLejeaftale (Lejeaftale lejeaftale, Kunde kunde){
 
         // Finder vognnummeret fra lejeaftalen
