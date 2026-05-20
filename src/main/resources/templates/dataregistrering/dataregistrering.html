@@ -12,23 +12,12 @@
 
         <div class="center-box">
 
-            <div class="dashboard-container-et">
-
                 <h2 class="dashboard-titel">Dataregistrering</h2>
 
-                <div class="total-boks">
-                    <div class="total-boks-inner">
-                        <a th:href="@{/lejeaftale/opret}" class="knap">
-                            Opret lejeaftale
-                        </a>
-
-                        <a th:href="@{/bil/opret}" class="knap">
-                            Registrer ny bil
-                        </a>
-                    </div>
+                <div class="nav-grid">
+                    <a th:href="@{/lejeaftale/opret}" class="nav-boks">Opret lejeaftale</a>
+                    <a th:href="@{/bil/opret}" class="nav-boks">Registrer ny bil</a>
                 </div>
-
-            </div>
 
             <div class="dashboard-container-to">
 
@@ -42,8 +31,7 @@
                                th:value="${sogning}">
 
                         <button type="submit">Søg</button>
-
-                        <a th:href="@{/dataregistrering}">Nulstil</a>
+                        <a th:href="@{/dataregistrering}" class="nulstil-knap">Nulstil</a>
 
                     </form>
 
@@ -51,50 +39,15 @@
 
                         <div class="bil-card" th:each="lejeaftale : ${lejeaftaleListe}">
                             <div>
-                                <p class="bil-title">
-                                    Lejeaftale #
-                                    <span th:text="${lejeaftale.lejeaftaleId}">1</span>
-                                </p>
-
-                                <p>
-                                    Kunde ID:
-                                    <span th:text="${lejeaftale.kundeId}">1</span>
-                                </p>
-
-                                <p>
-                                    Vognnummer:
-                                    <span th:text="${lejeaftale.vognnummer}">1001</span>
-                                </p>
-
-                                <p>
-                                    Medarbejder:
-                                    <span th:text="${lejeaftale.medarbejderId}">MB01</span>
-                                </p>
-
-                                <p>
-                                    Lokation:
-                                    <span th:text="${lejeaftale.lokation}">København</span>
-                                </p>
-
-                                <p>
-                                    Startdato:
-                                    <span th:text="${lejeaftale.startDato}">2026-05-17</span>
-                                </p>
-
-                                <p>
-                                    Antal måneder:
-                                    <span th:text="${lejeaftale.antalMaaneder}">12</span>
-                                </p>
-
-                                <p>
-                                    Pris pr. måned:
-                                    <span th:text="${lejeaftale.prisPrMaaned} + ' kr.'">3000 kr.</span>
-                                </p>
-
-                                <p>
-                                    Km-grænse:
-                                    <span th:text="${lejeaftale.kmGraense}">1500</span>
-                                </p>
+                                <p class="bil-title">Lejeaftale # <span th:text="${lejeaftale.lejeaftaleId}">1</span></p>
+                                <p>Kunde ID: <span th:text="${lejeaftale.kundeId}">1</span></p>
+                                <p>Vognnummer: <span th:text="${lejeaftale.vognnummer}">1001</span></p>
+                                <p>Medarbejder: <span th:text="${lejeaftale.medarbejderId}">MB01</span></p>
+                                <p>Lokation: <span th:text="${lejeaftale.lokation}">København</span></p>
+                                <p>Startdato: <span th:text="${lejeaftale.startDato}">2026-05-17</span></p>
+                                <p>Antal måneder: <span th:text="${lejeaftale.antalMaaneder}">12</span></p>
+                                <p>Pris pr. måned: <span th:text="${lejeaftale.prisPrMaaned} + ' kr.'">3000 kr.</span></p>
+                                <p>Km-grænse: <span th:text="${lejeaftale.kmGraense}">1500</span></p>
                             </div>
                         </div>
 

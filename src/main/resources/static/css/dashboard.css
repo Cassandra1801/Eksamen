@@ -141,7 +141,7 @@ body {
     border-radius: 10px;
     border: 2px solid rgba(26, 58, 42, 0.5);
 
-    background-color: rgba(26, 58, 42, 0.5);
+    background-color: rgba(26, 58, 42, 0.10);
 
     color: #1a3a2a;
 
@@ -157,5 +157,54 @@ body {
     background-color: #1a3a2a;
     color: #EDE0C8;
     transform: translateY(-2px);
+}
+
+.nulstil-knap {
+    padding: 4px 10px;
+    border: 1px solid #767676;
+    border-radius: 2px;
+    background-color: buttonface;
+    color: #1a3a2a;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-grid {
+    width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.nav-boks {
+    text-align: center;
+    padding: 40px 30px;
+    border-radius: 12px;
+    background-color: rgba(40, 90, 70, 0.30);
+    border: 2px solid #1a3a2a;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a3a2a;
+    text-decoration: none;
+    display: block;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-boks:hover {
+    background-color: #1a3a2a;
+    color: #EDE0C8;
+    transform: translateY(-2px);
+}
+
+.filter-bar input[type="text"] {
+    border-radius: 2px;
+    border: 1px solid #767676;
+    background-color: buttonface;
+    padding: 4px 10px;
+    font-size: 14px;
+    color: #1a3a2a;
+    width: 220px;
 }
 
