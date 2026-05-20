@@ -26,8 +26,7 @@ public class BilForm {
     // Kun relevant for UnlimitedBil
     private Integer aftaltePeriodeIMaaneder;
 
-    public BilForm() {
-    }
+    public BilForm() {}
 
     public String getVognnummer() {
         return vognnummer;

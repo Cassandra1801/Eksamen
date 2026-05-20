@@ -127,7 +127,7 @@ public class BilRepository {
      alle biler i samme tabel, med bil_type-kolonnen som diskriminator.
      RowMapper vælger subklasse ud fra den kolonne */
 
-    /* Bruges af findAlle() og findVedVognnummer() til at bygge Bil-objekter fra ResultSet-rækker
+    /* Bruges af repository-metoder til at bygge Bil-objekter fra ResultSet-rækker
      Læser en række fra biler-tabellen og bygger den korrekte Bil-subklasse
      ud fra bil_type-kolonnen. Sætter derefter de fælles felter fra superklassen */
      /* Implementeret som anonym inner class: RowMapper<Bil> er et interface med én metode, og der er kun brug for én implementering ét sted i koden.
@@ -142,7 +142,7 @@ public class BilRepository {
                 bil = new LimitedBil();
             } else if ("UNLIMITED".equals(type)) {
                 UnlimitedBil u = new UnlimitedBil();
-                u.setAftalePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
+                u.setAftaltePeriodeIMaaneder(rs.getInt("aftalte_periode_i_maaneder"));
                 bil = u;
             } else {
                 throw new IllegalStateException("Ukendt bil_type: " + type);
@@ -164,10 +164,9 @@ public class BilRepository {
         }
     };
 
-    /** Henter alle biler fra databasen
-     * Subklasse.typen bestemmes af RowMapper*/
-    public List<Bil> findAlle() {
-        return jdbcTemplate.query("SELECT * FROM biler", bilRowMapper);
+    public Bil findVedVognnummer(String vognnummer) {
+        String sql = "SELECT * FROM biler WHERE vognnummer = ?";
+        return jdbcTemplate.queryForObject(sql, bilRowMapper, vognnummer);
     }
 
     ///  Tæller alle biler i databasen
@@ -201,8 +200,8 @@ public class BilRepository {
     // Tjekker om en bil er tilbageleveret OG har en udløbet lejeperiode
     public boolean erKlarTilSkaderegistrering(String vognnummer) {
 
-        /** SQL Statement: bilen skal have status TILBAGELEVERET,
-        * og dens seneste lejeaftale skal være udløbet (start_dato + antal_maaneder < i dag) */
+        /* SQL Statement: bilen skal have status TILBAGELEVERET,
+           og dens seneste lejeaftale skal være udløbet (start_dato + antal_maaneder < i dag) */
         String sql = """
                 SELECT EXISTS (
                     SELECT 1
@@ -262,7 +261,7 @@ public class BilRepository {
                     bil.getCo2Udledning(),
                     bil.getFarve(),
                     bil.getStatus().name(),
-                    "LIMITED"
+                    bil.getAbonnementsType().toUpperCase()
             );
         }
 
@@ -292,8 +291,8 @@ public class BilRepository {
                     u.getCo2Udledning(),
                     u.getFarve(),
                     u.getStatus().name(),
-                    "UNLIMITED",
-                    u.getAftalePeriodeIMaaneder()
+                    u.getAbonnementsType().toUpperCase(),
+                    u.getAftaltePeriodeIMaaneder()
             );
         }
 

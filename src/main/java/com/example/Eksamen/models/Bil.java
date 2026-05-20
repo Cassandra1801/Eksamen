@@ -2,7 +2,7 @@ package com.example.Eksamen.models;
 
 import java.math.BigDecimal;
 
-/* Abstrakt tivnger alle subklasser til at implemtere dem og giver polymorfi */
+/* Abstrakt tvinger alle subklasser til at implementere dem og giver polymorfi */
 public abstract class Bil {
 
     private String vognnummer;
@@ -16,8 +16,8 @@ public abstract class Bil {
     private String farve;
     private BilStatus status;
 
-    /** RowMapper i BilRepo instantierer subklasserne uden argumenter og
-    * derefter sætter felter via setters */
+    /* RowMapper i BilRepo instantierer subklasserne uden argumenter og
+       derefter sætter felter via setters */
     public Bil () {}
 
     public Bil (String vognnummer, String stelnummer, String maerke, String model, String udstyrsniveau, BigDecimal staalpris, int regAfgift, int co2Udledning, String farve, BilStatus status) {

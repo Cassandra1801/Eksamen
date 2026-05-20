@@ -34,8 +34,8 @@ public class DataregistreringController {
     /// GetMapping for oprettelse af lejeaftale form
     @GetMapping("/lejeaftale/opret")
     public String visOpretLejeaftaleForm(Model model) {
-        model.addAttribute("lejeaftale", new Lejeaftale()); //Tomt objekt som kan udfyldes
-        model.addAttribute("kunde", new Kunde()); //Tomt objekt som kan udfyldes
+        model.addAttribute("lejeaftale", new Lejeaftale());      //Tomt objekt som kan udfyldes
+        model.addAttribute("kunde", new Kunde());                 //Tomt objekt som kan udfyldes
 
         return "/dataregistrering/opret-lejeaftale";
     }

@@ -19,7 +19,7 @@ class UnlimitedBilTest {
                 BigDecimal.valueOf(45000), 22000, 130, "Hvid", null, 12);
 
         // Assert: verficér at perioden blev sat korrekt
-        assertEquals(12, bil.getAftalePeriodeIMaaneder());
+        assertEquals(12, bil.getAftaltePeriodeIMaaneder());
     }
 
     /* Exception flow: en periode under 3 måneder er ugyldig.
