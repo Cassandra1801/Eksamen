@@ -2,7 +2,7 @@ package com.example.Eksamen.models;
 
 import java.math.BigDecimal;
 
-/* Abstrakt tvinger alle subklasser til at implementere dem og giver polymorfi */
+/* Abstrakt superklasse for biltyper. Subklasserne definerer selv type og maksimal lejeperiode. */
 public abstract class Bil {
 
     private String vognnummer;
@@ -16,7 +16,7 @@ public abstract class Bil {
     private String farve;
     private BilStatus status;
 
-    /* RowMapper i BilRepo instantierer subklasserne uden argumenter og
+    /* RowMapper i BilRepository instantierer subklasserne uden argumenter og
        derefter sætter felter via setters */
     public Bil () {}
 
@@ -37,7 +37,7 @@ public abstract class Bil {
     /* Hver biltype har sin egen regel for hvor længe den må lejes */
     public abstract int getMaxLejePeriodeIDage();
 
-    /* Returnere den forretningsmæssige betegnelse ("Limited"/"Unlimited"), som bruges i UI og rapporter */
+    /* Returnerer den forretningsmæssige betegnelse ("Limited"/"Unlimited"), som bruges i UI og rapporter */
     public abstract String getAbonnementsType();
 
     public String getVognnummer() {return vognnummer;}

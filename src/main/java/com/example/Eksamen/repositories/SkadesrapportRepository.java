@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SkadesrapportRepository {
 
-    /* Contructor injection: Spring leverer JdbcTemplate automatisk, så
-        vi slipper for @Autowired og kan markere fletet som final*/
+    /* Constructor injection: Spring leverer JdbcTemplate automatisk, så
+       vi slipper for @Autowired og kan markere feltet som final */
     private final JdbcTemplate jdbcTemplate;
 
     public SkadesrapportRepository(JdbcTemplate jdbcTemplate) {
@@ -38,8 +38,8 @@ public class SkadesrapportRepository {
         String sql = "SELECT SUM(pris) FROM skader WHERE lejeaftale_id = ?";
         Double resultat = jdbcTemplate.queryForObject(sql, Double.class, lejeaftaleId);
 
-        /* SUM() returnerer NULL hvis lejeaftale ingen skader har.
-            Returnerer 0.0 i stedet, så NULL ikke unboxes til double (NullPointerException) */
+        /* SUM() returnerer NULL hvis lejeaftalen ikke har skader.
+           Derfor returneres 0.0 i stedet. */
         if (resultat == null) {
             return 0.0;
         }

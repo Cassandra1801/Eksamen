@@ -13,21 +13,21 @@ class UnlimitedBilTest {
         og objektet skal oprettes med rigtig værdi. */
     @Test
     void konstruktoer_gyldigPeriode_opretterObjekt(){
-        // Act: opret objekter med gyldigt input (konstruktørem ER metoden under test)
+        // Act: opret objekt med gyldigt input (konstruktøren er metoden under test)
         UnlimitedBil bil = new UnlimitedBil(
                 "AB1234", "VF7TESTSTEL000001", "Toyota", "Yaris", "Comfort",
                 BigDecimal.valueOf(45000), 22000, 130, "Hvid", null, 12);
 
-        // Assert: verficér at perioden blev sat korrekt
+        // Assert: verificér at perioden blev sat korrekt
         assertEquals(12, bil.getAftaltePeriodeIMaaneder());
     }
 
     /* Exception flow: en periode under 3 måneder er ugyldig.
-        Konstruktøren skal kaste IllegalArgumentExcpetion,
+        Konstruktøren skal kaste IllegalArgumentException,
         så et ugyldigt objekt aldrig kan eksistere (fail-fast) */
     @Test
     void konstruktoer_periodeForLav_kasterException(){
-        // Asser: verficér at ugyldigt input kaster en exception
+        // Assert: verificér at ugyldigt input kaster en exception
         assertThrows(IllegalArgumentException.class, () -> {
             new UnlimitedBil(
                     "AB1234", "VF7TESTSTEL000001", "Toyota", "Yaris", "Comfort",

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,8 +18,7 @@ public class SkadesrapportController {
 
     private final SkadesrapportService service;
 
-    // Constructor injection: Spring injicerer SkadesrapportService automatisk,
-    // fordi klassen kun har én konstruktør. @Autowired er derfor unødvendig.
+    // Constructor injection: Spring injicerer SkadesrapportService automatisk
     public SkadesrapportController(SkadesrapportService service) {
         this.service = service;
     }
@@ -36,7 +36,7 @@ public class SkadesrapportController {
         model.addAttribute("medarbejderId", medarbejderId);
         model.addAttribute("dato", dato);
         model.addAttribute("antalSkader", antalSkader);
-        return "skade/registrer-skade"; // viser side 2
+        return "skade/registrer-skade";
     }
 
     // Modtager skader fra side 2 og gemmer i databasen
@@ -50,6 +50,8 @@ public class SkadesrapportController {
                             Model model) {
 
         try {
+            List<Skadesrapport> skader = new ArrayList<>();
+
             for (int i = 0; i < beskrivelse.size(); i++) {
                 Skadesrapport skade = new Skadesrapport();
                 skade.setVognnummer(vognnummer);
@@ -58,11 +60,11 @@ public class SkadesrapportController {
                 skade.setDato(LocalDate.parse(dato));
                 skade.setBeskrivelse(beskrivelse.get(i));
                 skade.setPris(pris.get(i));
-                service.opretSkade(skade);
+                skader.add(skade);
             }
 
-            // Når alle skader er oprettet, ændres bilens status til SKADET
-            service.afslutSkaderegistrering(vognnummer);
+            // Gemmer alle skader og ændrer bilens status i én samlet transaktion
+            service.opretSkadesrapport(skader, vognnummer);
 
             // Henter den samlede pris for alle skader på lejeaftalen
             double totalPris = service.totalPris(lejeaftaleId);
@@ -76,4 +78,3 @@ public class SkadesrapportController {
         }
     }
 }
-

@@ -1,8 +1,7 @@
 package com.example.Eksamen.models;
 
 
-//Dette er en ENUM som bliver brugt til status på bilerne for at holde det samsvarende SQLen. Det er renere og
-// effektivere, da det forhindrer typos.
+// Enum for bilstatus. Værdierne matcher status-feltet i databasen.
 public enum BilStatus {
     INDKØBT,
     LEDIG,

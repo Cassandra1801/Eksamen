@@ -19,22 +19,22 @@ public class ForretningsService {
         this.lejeaftaleRepository = lejeaftaleRepository;
     }
 
-    ///  Henter antallet af biler i systemet som int
+    // Henter antallet af biler i systemet
     public int totalAntalBiler() {
         return bilRepository.antalBiler();
     }
 
-    /// Henter antallet biler der til udlejning i nuværende tidspunkt som int
+    // Henter antallet af biler der er udlejet
     public int totalAntalUdlejet() {
         return bilRepository.antalMedStatus(BilStatus.UDLEJET);
     }
 
-    /// Henter antallet biler der er ledige i nuværende tidspunkt som int
+    // Henter antallet af biler der er ledige
     public int totalAntalLedige() {
         return bilRepository.antalMedStatus(BilStatus.LEDIG);
     }
 
-    /// Henter sammenlagt pris på nuværende udlejede biler
+    // Henter samlet månedlig pris for aktive lejeaftaler
     public double sammenlagtPris() {
         return lejeaftaleRepository.sammenlagtPrisUdlejede();
     }
