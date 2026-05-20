@@ -6,7 +6,6 @@ import com.example.Eksamen.models.Skadesrapport;
 import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.SkadesrapportRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,9 +39,8 @@ public class SkadesrapportService {
         repository.tilfoejSkadeTilRapport(skade);
     }
 
-    /* Opretter alle skader i én samlet transaktion og afslutter derefter
+    /* Opretter alle skader i én samlet service-metode og afslutter derefter
        skaderegistreringen ved at sætte bilens status til SKADET. */
-    @Transactional
     public void opretSkadesrapport(List<Skadesrapport> skader, String vognnummer) {
         for (Skadesrapport skade : skader) {
             opretSkade(skade);

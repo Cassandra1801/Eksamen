@@ -63,7 +63,7 @@ public class SkadesrapportController {
                 skader.add(skade);
             }
 
-            // Gemmer alle skader og ændrer bilens status i én samlet transaktion
+            // Gemmer alle skader og ændrer bilens status via service-laget
             service.opretSkadesrapport(skader, vognnummer);
 
             // Henter den samlede pris for alle skader på lejeaftalen
