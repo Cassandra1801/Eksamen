@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 /* Værdien er ens for alle LimitedBil-objekter, deraf static final fordi den aldrig ændrer sig */
 
 public class LimitedBil  extends Bil {
+
     private static final int LIMITED_DAGE = 150;  //5 måneder, fast
 
     public LimitedBil() { super(); }

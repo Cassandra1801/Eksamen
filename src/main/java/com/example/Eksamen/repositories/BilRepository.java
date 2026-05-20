@@ -24,17 +24,18 @@ public class BilRepository {
     }
 
 
-    // Tjekker om der findes en bil med det angivne vognnummer
+    ///Finder ud af om en bil eksisterer med det vognnummer i biler tabellen (registrering af lejeaftale funktionalitet)
     public boolean eksistererVognnummeret(String vognnummer) {
 
-        // SQL statement returnerer boolean om eksistensen af vognnummer i biler
+        //SQL Statement returnerer boolean om eksistensen af vognnummer i biler
+        //1 Er for at den ikke går igennem resten af listen da den har fundet bilen (vognnummer er unique (PK))
         String sql = """
                 SELECT EXISTS (
                     SELECT 1 FROM biler WHERE vognnummer = ?
                 );
                 """;
 
-        // Boolean variabel via statement
+        //Boolean variabel via statement
         Boolean exists = jdbcTemplate.queryForObject(sql, Boolean.class, vognnummer);
 
         // Returnerer false hvis databasen returnerer false eller null
@@ -51,7 +52,7 @@ public class BilRepository {
                 );
                 """;
 
-        // Boolean variabel via statement
+        //Boolean variabel via statement
         Boolean ledig = jdbcTemplate.queryForObject(sql, Boolean.class, vognnummer);
 
         // Returnerer false hvis databasen returnerer false eller null
@@ -204,7 +205,12 @@ public class BilRepository {
         return jdbcTemplate.query(sql, bilRowMapper);
     }
 
+
+    /// Gemmer en bil i databasen som Limited eller Unlimited
     public int gem(Bil bil) {
+        // Return type er en int fordi jdbcTemplate.update returnerer
+        // en int som er antal rækker i databasen der er påvirket.
+
 
         // LIMITED
         if (bil instanceof LimitedBil) {
@@ -217,6 +223,7 @@ public class BilRepository {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+            //Opretter en bil i databasen
             return jdbcTemplate.update(
                     sql,
                     bil.getVognnummer(),
@@ -245,6 +252,7 @@ public class BilRepository {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+            //Opretter en bil i databasen
             return jdbcTemplate.update(
                     sql,
                     u.getVognnummer(),

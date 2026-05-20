@@ -54,7 +54,10 @@ public class LejeaftaleRepository {
         return resultat;
     }
 
+    /// Lejeaftale RowMapper
     private final RowMapper<Lejeaftale> lejeaftaleRowMapper = new RowMapper<Lejeaftale>() {
+        /* Den ser ud som en metode og en variabel, fordi at objektet
+            i variabelen er lavet inline, som betyder at det er lavet med det samme på variabelen selv */
         @Override
         public Lejeaftale mapRow(ResultSet rs, int rowNum) throws SQLException {
 

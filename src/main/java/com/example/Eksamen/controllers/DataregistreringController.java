@@ -17,6 +17,7 @@ public class DataregistreringController {
         this.dataregistreringService = dataregistreringService;
     }
 
+    /// GetMapping for frontsiden hos dataregistreringen med parametrer til søgningen
     @GetMapping("/dataregistrering")
     public String dataregistrering(@RequestParam(required = false) String sogning,
                                    Model model) {
@@ -74,6 +75,8 @@ public class DataregistreringController {
     // Modtager formularen og opretter bilen
     @PostMapping("/bil/opret")
     public String opretBil(@ModelAttribute BilForm bilForm, Model model) {
+        // Bruger BilForm for at data kan gemmes inde i et objekt ligegyldigt om det er en LIMITED eller en UNLIMITED bil
+
         try {
             Bil bil;
 
@@ -116,6 +119,7 @@ public class DataregistreringController {
                 );
             } else {
 
+                // For at understøtte fremtidige ændringer der kan give fejl
                 throw new IllegalArgumentException ("Ukendt biltype");
             }
 
