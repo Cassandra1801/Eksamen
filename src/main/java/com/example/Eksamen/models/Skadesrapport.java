@@ -36,8 +36,10 @@ public class Skadesrapport {
     public void setBeskrivelse(String beskrivelse) {this.beskrivelse = beskrivelse;}
 
     public BigDecimal getPris() {return pris;}
-
     public void setPris(BigDecimal pris) {
+        if (pris == null) {
+            throw new IllegalArgumentException("Pris skal angives");
+        }
         if (pris.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Pris må ikke være negativ");
         }

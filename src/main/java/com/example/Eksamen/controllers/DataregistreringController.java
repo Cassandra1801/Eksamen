@@ -31,26 +31,28 @@ public class DataregistreringController {
 
 
 
-    /// GetMapping for oprettelse af lejeaftale form
+    // Viser formularen til oprettelse af lejeaftale
     @GetMapping("/lejeaftale/opret")
     public String visOpretLejeaftaleForm(Model model) {
-        model.addAttribute("lejeaftale", new Lejeaftale());      //Tomt objekt som kan udfyldes
-        model.addAttribute("kunde", new Kunde());                 //Tomt objekt som kan udfyldes
+        // Tomme objekter som kan udfyldes
+        model.addAttribute("lejeaftale", new Lejeaftale());
+        model.addAttribute("kunde", new Kunde());
 
         return "/dataregistrering/opret-lejeaftale";
     }
 
-    /// PostMapping for oprettelse af lejeaftale form
+    // Modtager formularen og opretter lejeaftalen
     @PostMapping("/lejeaftale/opret")
     public String opretLejeaftale(
-            @ModelAttribute Lejeaftale lejeaftale, //Brug formen til at fylde dette object
-            @ModelAttribute Kunde kunde, //Brug formen til at fylde dette object
+            // Bruger formen til at udfylde objekterne
+            @ModelAttribute Lejeaftale lejeaftale,
+            @ModelAttribute Kunde kunde,
             Model model
     ) {
         try {
             dataregistreringService.registrerLejeaftale(lejeaftale, kunde);
 
-            //Redirect for at registrering ikke sker flere gange, ?success er til success besked
+            // Redirect forhindrer dobbelt-oprettelse ved refresh
             return "redirect:/lejeaftale/opret?success";
 
         } catch (IllegalArgumentException e) {
@@ -61,7 +63,7 @@ public class DataregistreringController {
         }
     }
 
-    /// GetMapping for form af oprettelse af ny bil
+    // Viser formularen til oprettelse af ny bil
     @GetMapping("/bil/opret")
     public String visOpretBilForm(Model model) {
         model.addAttribute("bilForm", new BilForm());
@@ -69,7 +71,7 @@ public class DataregistreringController {
         return "dataregistrering/opret-bil";
     }
 
-    /// PostMapping for oprettelse af ny bil
+    // Modtager formularen og opretter bilen
     @PostMapping("/bil/opret")
     public String opretBil(@ModelAttribute BilForm bilForm, Model model) {
         try {
@@ -114,8 +116,7 @@ public class DataregistreringController {
                 );
             } else {
 
-                // For at understøtte fremtidige ændringer der kan give fejl
-                throw new IllegalArgumentException ("Fejl: bil type indtastes i opret bil");
+                throw new IllegalArgumentException ("Ukendt biltype");
             }
 
         dataregistreringService.registrerNyBil(bil);

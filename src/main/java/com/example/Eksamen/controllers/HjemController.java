@@ -1,6 +1,5 @@
 package com.example.Eksamen.controllers;
 
-import com.example.Eksamen.models.Skadesrapport;
 import com.example.Eksamen.services.SkadesrapportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

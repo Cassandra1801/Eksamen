@@ -4,8 +4,7 @@ import java.math.BigDecimal;
 
 public class BilForm {
 
-    /// Denne klasse er lavet for at understøtte oprettelsen af nye biler
-    /// der understøtter begge biltyper.
+    // Form-objekt der samler felter til oprettelse af både LimitedBil og UnlimitedBil.
 
     // Fælles felter fra de to Bil typer
     private String vognnummer;

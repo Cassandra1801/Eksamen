@@ -6,6 +6,7 @@ import com.example.Eksamen.models.Skadesrapport;
 import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.SkadesrapportRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,17 @@ public class SkadesrapportService {
         repository.tilfoejSkadeTilRapport(skade);
     }
 
+    /* Opretter alle skader i én samlet transaktion og afslutter derefter
+       skaderegistreringen ved at sætte bilens status til SKADET. */
+    @Transactional
+    public void opretSkadesrapport(List<Skadesrapport> skader, String vognnummer) {
+        for (Skadesrapport skade : skader) {
+            opretSkade(skade);
+        }
+
+        afslutSkaderegistrering(vognnummer);
+    }
+
     /* Afslutter skaderegistreringen for en bil ved at sætte status til SKADET.
     Kaldes af Controlleren EFTER at alle skader fra én skadesrapport er oprettet,
     så valideringen i opretSkade() ikke fejler på 2. og 3. skade i samme rapport */
@@ -47,12 +59,12 @@ public class SkadesrapportService {
     }
 
     /* Henter den samlede pris for alle skader på en lejeaftale.
-        Sender kaldet videre til Repo, som lægger priserne sammen i databasen */
+       Sender kaldet videre til repository, som lægger priserne sammen i databasen */
     public double totalPris(int lejeaftaleId) {
         return repository.totalPris(lejeaftaleId);
     }
 
-    //henter liste af Biler der er klar til skaderegistrering
+    // Henter biler der er klar til skaderegistrering
     public List<Bil> hentKlareBiler(){
         return bilRepository.findKlarTilSkaderegistrering();
     }

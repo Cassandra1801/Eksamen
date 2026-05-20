@@ -4,7 +4,7 @@ package com.example.Eksamen.models;
 
 import java.math.BigDecimal;
 
-/* Det er "aftaltePeriodeIMaaneder der retfærdiggøre brugen af arv,
+/* Det er aftaltePeriodeIMaaneder, der retfærdiggør brugen af arv,
     i stedet for at have en Bil-klasse med "if-type"-check */
 
 public class UnlimitedBil extends Bil {
@@ -12,9 +12,9 @@ public class UnlimitedBil extends Bil {
 
     public UnlimitedBil() { super(); }
 
-    /* Kontruktøren validerer perioden og kaster en IllegalArgumentException,
+    /* Konstruktøren validerer perioden og kaster en IllegalArgumentException,
        hvis værdien er udenfor intervallet.
-       Dette gør at et ugyldigt UnlimitedBil-objekt aldrig kan eksistrerer (fail-fast princip) */
+       Det gør, at et ugyldigt UnlimitedBil-objekt aldrig kan eksistere (fail-fast). */
     public UnlimitedBil(String vognnummer, String stelnummer, String maerke, String model,
                         String udstyrsniveau, BigDecimal staalpris, int regAfgift, int co2Udledning,
                         String farve, BilStatus status, int aftaltePeriodeIMaaneder) {

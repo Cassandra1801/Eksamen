@@ -19,12 +19,10 @@ public class ForretningController {
         this.forretningsService = forretningsService;
     }
 
-    /// Endpoint der henter dashboard for forretning
+    // Viser forretningsdashboard med nøgletal og filtrerede biler
     @GetMapping("/forretning")
     public String dashboard(
-            // Filter parameter
-            // (required = false) betyder at det ikke er nødvendigt at udfylde.
-            // Bliver sat til false vis ikke er udfyldt
+            // Filterparametre er valgfrie og bliver false/null, hvis de ikke er udfyldt
             @RequestParam(required = false) boolean limited,
             @RequestParam(required = false) boolean unlimited,
             @RequestParam(required = false) String maerke,

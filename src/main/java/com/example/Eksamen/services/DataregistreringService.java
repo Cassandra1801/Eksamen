@@ -8,6 +8,7 @@ import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.KundeRepository;
 import com.example.Eksamen.repositories.LejeaftaleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,18 +32,20 @@ public class DataregistreringService {
     }
 
 
-    /// Funktion som er logikken bag registreringen af lejeaftaler
+    // Registrerer en lejeaftale som én samlet transaktion.
+    // Hvis én databasehandling fejler, rulles hele oprettelsen tilbage.
+    @Transactional
     public void registrerLejeaftale (Lejeaftale lejeaftale, Kunde kunde){
 
-        //Definerer vognnummeret for lejeaftalen
+        // Finder vognnummeret fra lejeaftalen
         String vognnummer = lejeaftale.getVognnummer();
 
-        //Exception vis bilen ikke eksisterer
+        // Bilen skal eksistere
         if (!bilRepository.eksistererVognnummeret(vognnummer)) {
             throw new IllegalArgumentException("Bilen findes ikke");
         }
 
-        //Exception vis bilen ikke er ledig
+        // Bilen skal være ledig
         if (!bilRepository.erBilenLedig(vognnummer)) {
             throw new IllegalArgumentException("Bilen er ikke ledig");
         }
@@ -55,12 +58,12 @@ public class DataregistreringService {
             throw new IllegalArgumentException("Lejeperioden overstiger bilens maksimale lejeperiode");
         }
 
-        //Container for potentielt eksisterende kunde fundet med mail (schrödingers cat xD)
+        // Finder kunden via email, hvis kunden allerede findes
         Optional<Kunde> potentielKunde = kundeRepository.findMedEmail(kunde.getEmail());
 
         int kundeId;
 
-        //Tjekker om containeren indeholder en kunde
+        // Genbruger eksisterende kunde eller opretter en ny
         if (potentielKunde.isPresent()) {
             kundeId = potentielKunde.get().getKundeId(); //Er der en kunde, finder vi kundeId
         } else {
