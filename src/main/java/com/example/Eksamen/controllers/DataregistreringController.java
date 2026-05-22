@@ -27,7 +27,7 @@ public class DataregistreringController {
         model.addAttribute("lejeaftaleListe", lejeaftaleListe);
         model.addAttribute("sogning", sogning);
 
-        return "/dataregistrering/dataregistrering";
+        return "dataregistrering/dataregistrering";
     }
 
 
@@ -39,7 +39,7 @@ public class DataregistreringController {
         model.addAttribute("lejeaftale", new Lejeaftale());
         model.addAttribute("kunde", new Kunde());
 
-        return "/dataregistrering/opret-lejeaftale";
+        return "dataregistrering/opret-lejeaftale";
     }
 
     // Modtager formularen og opretter lejeaftalen
@@ -60,7 +60,7 @@ public class DataregistreringController {
 
             model.addAttribute("error", e.getMessage() + "   -   Fejl ved oprettelse af lejeaftale");
 
-            return "/dataregistrering/opret-lejeaftale";
+            return "dataregistrering/opret-lejeaftale";
         }
     }
 
