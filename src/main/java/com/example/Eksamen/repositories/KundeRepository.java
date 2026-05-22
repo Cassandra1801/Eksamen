@@ -1,9 +1,16 @@
 package com.example.Eksamen.repositories;
 
 import com.example.Eksamen.models.Kunde;
+import com.example.Eksamen.models.Lejeaftale;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,29 +23,48 @@ public class KundeRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public final RowMapper<Kunde> kundeRowMapper = new RowMapper<Kunde>() {
+        @Override
+        public Kunde mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+            Kunde kunde = new Kunde();
+
+            kunde.setKundeId(rs.getInt("kunde_id"));
+            kunde.setNavn(rs.getString("navn"));
+            kunde.setEmail(rs.getString("email"));
+            kunde.setMobil(rs.getString("mobil"));
+
+            return kunde;
+        }
+    };
 
     // Finder en kunde via email
     public Optional<Kunde> findMedEmail(String email) {
 
-        String sql = "SELECT * FROM kunder WHERE email = ?";
+        String sql = """
+            SELECT *
+            FROM kunder
+            WHERE email = ?
+            """;
 
-        // Returnerer resultaterne fra vores query via vores statement der matcher emailen der kommer for enden
-        // Et ResultSet er et objekt som indeholder det data en SQL query henter (kun det specifikke data)
-        return jdbcTemplate.query(sql, rs -> {
+        try {
 
-            // Hvis query'en finder en række, bygges et Kunde-objekt
-            if (rs.next()) {
-                Kunde kunde = new Kunde();
-                kunde.setKundeId(rs.getInt("kunde_id"));
-                kunde.setNavn(rs.getString("navn"));
-                kunde.setMobil(rs.getString("mobil"));
-                kunde.setEmail(rs.getString("email"));
-                return Optional.of(kunde);
-            }
+            // queryForObject forventer præcis ét resultat
+            // kundeRowMapper mapper SQL-resultatet til et Kunde-objekt
+            Kunde kunde = jdbcTemplate.queryForObject(
+                    sql,
+                    kundeRowMapper,
+                    email
+            );
+
+            // Returnerer kunden wrapped i en Optional hvis den findes
+            return Optional.of(kunde);
+
+        } catch (EmptyResultDataAccessException e) {
+
             // Optional.empty() bruges i stedet for null, når kunden ikke findes
             return Optional.empty();
-
-        }, email);
+        }
     }
 
 
@@ -64,5 +90,26 @@ public class KundeRepository {
                 "SELECT LAST_INSERT_ID()",
                 Integer.class
         );
+    }
+
+
+    /// Metode som returnerer en liste af kunder ud fra en liste af lejeaftaler og holder en tilsvarende sortering
+    public List<Kunde> findSamsvarendeKunde(List<Lejeaftale> aftaleListe) {
+
+        List<Kunde> kundeListe = new ArrayList<>();
+
+        for (Lejeaftale l : aftaleListe) {
+
+            String sql = """
+                    SELECT * FROM kunder
+                    WHERE kunde_id = ?
+                    """;
+
+            Kunde kunde = jdbcTemplate.queryForObject(sql, kundeRowMapper, l.getKundeId());
+
+            kundeListe.add(kunde);
+        }
+
+        return kundeListe;
     }
 }
