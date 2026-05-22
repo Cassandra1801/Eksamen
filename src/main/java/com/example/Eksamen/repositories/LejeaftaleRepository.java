@@ -83,10 +83,6 @@ public class LejeaftaleRepository {
         }
     };
 
-    public List<Lejeaftale> findAlle() {
-        return jdbcTemplate.query("SELECT * FROM lejeaftaler", lejeaftaleRowMapper);
-    }
-
 
     // Finder lejeaftaler hvor søgningen matcher kunde navn, email, mobil eller vognnummer
     public List<Lejeaftale> findFiltreredeLejeaftaler(String sogning) {

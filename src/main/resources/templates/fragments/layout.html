@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="da" th:fragment="html(content)">
+<html xmlns:th="http://www.thymeleaf.org" lang="da" th:fragment="html(content, css)">
 <head>
     <meta charset="UTF-8">
     <title>Bilabonnement</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link th:if="${css != null}" rel="stylesheet" th:href="${css}">
 </head>
 <body>
 
 <header class="header">
     <a th:href="@{/}">
-    <img th:src="@{/images/timer.png}" alt="Logo" class="header-logo">
-    <h1 class="header-titel">BILABONNEMENT</h1>
+        <img th:src="@{/images/timer.png}" alt="Logo" class="header-logo">
+        <h1 class="header-titel">BILABONNEMENT</h1>
     </a>
 </header>
 
@@ -18,4 +19,3 @@
 
 </body>
 </html>
-

@@ -28,7 +28,7 @@ public class BilRepository {
     public boolean eksistererVognnummeret(String vognnummer) {
 
         //SQL Statement returnerer boolean om eksistensen af vognnummer i biler
-        //1 Er for at den ikke går igennem resten af listen da den har fundet bilen (vognnummer er unique (PK))
+        //1 er for at den ikke går igennem resten af listen da den har fundet bilen (vognnummer er unique (PK))
         String sql = """
                 SELECT EXISTS (
                     SELECT 1 FROM biler WHERE vognnummer = ?
@@ -39,6 +39,7 @@ public class BilRepository {
         Boolean exists = jdbcTemplate.queryForObject(sql, Boolean.class, vognnummer);
 
         // Returnerer false hvis databasen returnerer false eller null
+        // (Returnere true hvis vognnummer eksisterer)
         return Boolean.TRUE.equals(exists);
     }
 
