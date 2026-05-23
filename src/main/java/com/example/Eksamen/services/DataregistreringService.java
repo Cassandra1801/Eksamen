@@ -1,9 +1,6 @@
 package com.example.Eksamen.services;
 
-import com.example.Eksamen.models.Bil;
-import com.example.Eksamen.models.BilStatus;
-import com.example.Eksamen.models.Kunde;
-import com.example.Eksamen.models.Lejeaftale;
+import com.example.Eksamen.models.*;
 import com.example.Eksamen.repositories.BilRepository;
 import com.example.Eksamen.repositories.KundeRepository;
 import com.example.Eksamen.repositories.LejeaftaleRepository;
@@ -51,8 +48,14 @@ public class DataregistreringService {
 
         int lejeperiodeIDage = lejeaftale.getAntalMaaneder() * 30;
 
-        if (lejeperiodeIDage > bil.getMaxLejePeriodeIDage()) {
-            throw new IllegalArgumentException("Lejeperioden overstiger bilens maksimale lejeperiode");
+        if (bil instanceof UnlimitedBil) {
+            if (lejeaftale.getAntalMaaneder() < 3 || lejeaftale.getAntalMaaneder() > 36) {
+                throw new IllegalArgumentException("Unlimited lejeaftale skal være mellem 3 og 36 måneder");
+            }
+        } else {
+            if (lejeperiodeIDage > bil.getMaxLejePeriodeIDage()) {
+                throw new IllegalArgumentException("Lejeperioden overstiger bilens maksimale lejeperiode");
+            }
         }
 
         // Finder kunden via email, hvis kunden allerede findes
