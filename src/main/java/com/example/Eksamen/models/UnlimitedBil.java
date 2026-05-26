@@ -54,6 +54,4 @@ public class UnlimitedBil extends Bil {
             throw new IllegalArgumentException("Unlimited skal være 3-36 måneder");
         }
     }
-
-
 }
