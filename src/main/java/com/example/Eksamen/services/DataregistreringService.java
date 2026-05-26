@@ -95,4 +95,8 @@ public class DataregistreringService {
     public List<Lejeaftale> findFiltreredeLejeaftaler(String sogning) {
         return lejeaftaleRepository.findFiltreredeLejeaftaler(sogning);
     }
+
+    public List<Kunde> findSamsvarendeKunde(List<Lejeaftale> aftaleListe) {
+        return kundeRepository.findSamsvarendeKunde(aftaleListe);
+    }
 }

@@ -23,8 +23,10 @@ public class DataregistreringController {
                                    Model model) {
 
         List<Lejeaftale> lejeaftaleListe = dataregistreringService.findFiltreredeLejeaftaler(sogning);
+        List<Kunde> kundeListe = dataregistreringService.findSamsvarendeKunde(lejeaftaleListe);
 
         model.addAttribute("lejeaftaleListe", lejeaftaleListe);
+        model.addAttribute("kundeListe", kundeListe);
         model.addAttribute("sogning", sogning);
 
         return "dataregistrering/dataregistrering";
