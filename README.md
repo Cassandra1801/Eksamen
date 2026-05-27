@@ -1,40 +1,48 @@
-# Bilabonnement.dk - Internt System
+# Eksamen Projekt
+
+## Beskrivelse
+Dette projekt er udviklet i Java med Spring Boot og benytter databaseforbindelse til lagring af data.  
+Systemet er deployet på Railway.
+
+---
 
 ## Deployment
-- URL: https://eksamen-production.up.railway.app
-- Brugernavn: se Rapport
-- Password: se Rapport
 
-## GitHub Repository
-- URL: https://github.com/Cassandra1801/Eksamen
+Railway deployment link:
 
-## Database
-- URL: roundhouse.proxy.rlwy.net:45274
-- Database: railway
-- Brugernavn: se Rapport
-- Password: se Rapport
+eksamen-production.up.railway.app
 
-## Forudsætninger
-Følgende skal være installeret for at køre applikationen:
-- Java 17+
+---
+
+# Teknologier
+
+Projektet er udviklet med:
+
+- Java 17
+- Spring Boot
 - Maven
-- MySQL
+- Railway
+- GitHub
 
-## Installation og opsætning
+---
 
-### Database
-1. Opret en MySQL database
-2. Kør DDL-scriptet: `src/main/resources/schema.sql`
-3. Kør DML-scriptet: `src/main/resources/data.sql`
+# Softwarekrav
 
-### Miljøvariabler
-Opret environment variables med følgende:
+Følgende software skal være installeret:
 
-SPRING_DATASOURCE_URL=mysql://root:cvpwajnIMXHnnKEEbgWCEvHyQIJtrBgo@roundhouse.proxy.rlwy.net:45274/railway
-SPRING_DATASOURCE_USERNAME=DIT_BRUGERNAVN
-SPRING_DATASOURCE_PASSWORD=DIT_PASSWORD
+| Software | Version |
+|---|---|
+| Java JDK | 17 eller nyere |
+| Maven | 3.8+ |
+| IntelliJ / VS Code | Valgfrit |
+| Git | Nyeste version |
 
-### Kør applikationen
-mvn spring-boot:run
 
-Applikationen kører på http://localhost:8080
+---
+
+# Installation
+
+## 1. Clone projektet
+
+```bash
+git clone https://github.com/Cassandra1801/Eksamen.git
