@@ -1,16 +1,22 @@
-# Eksamen Projekt
-
-## Beskrivelse
-Dette projekt er udviklet i Java med Spring Boot og benytter databaseforbindelse til lagring af data.  
-Systemet er deployet på Railway.
-
----
+# Bilabonnement.dk - Internt System
 
 ## Deployment
 
-Railway deployment link:
+Systemet er deployet på Railway:
 
-eksamen-production.up.railway.app
+https://eksamen-production.up.railway.app
+
+---
+
+## Login
+
+Brugernavn og password findes i rapporten.
+
+---
+
+## GitHub Repository
+
+https://github.com/Cassandra1801/Eksamen
 
 ---
 
@@ -21,8 +27,8 @@ Projektet er udviklet med:
 - Java 17
 - Spring Boot
 - Maven
+- MySQL
 - Railway
-- GitHub
 
 ---
 
@@ -30,17 +36,14 @@ Projektet er udviklet med:
 
 Følgende software skal være installeret:
 
-| Software | Version |
-|---|---|
-| Java JDK | 17 eller nyere |
-| Maven | 3.8+ |
-| IntelliJ / VS Code | Valgfrit |
-| Git | Nyeste version |
-
+- Java 17 eller nyere
+- Maven
+- MySQL Server
+- Git
 
 ---
 
-# Installation
+# Installation og Opsætning
 
 ## 1. Clone projektet
 
