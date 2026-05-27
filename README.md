@@ -47,5 +47,15 @@ Følgende software skal være installeret:
 
 ## 1. Clone projektet
 
+
+---
+
+### Miljøvariabler
+Opret environment variables med følgende:
+
+SPRING_DATASOURCE_URL=mysql://root:cvpwajnIMXHnnKEEbgWCEvHyQIJtrBgo@roundhouse.proxy.rlwy.net:45274/railway
+SPRING_DATASOURCE_USERNAME=DIT_BRUGERNAVN
+SPRING_DATASOURCE_PASSWORD=DIT_PASSWORD
+
 ```bash
 git clone https://github.com/Cassandra1801/Eksamen.git
