@@ -30,7 +30,7 @@ Følgende skal være installeret for at køre applikationen:
 ### Miljøvariabler
 Opret environment variables med følgende:
 
-SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/bilabonnement
+SPRING_DATASOURCE_URL=mysql://root:cvpwajnIMXHnnKEEbgWCEvHyQIJtrBgo@roundhouse.proxy.rlwy.net:45274/railway
 SPRING_DATASOURCE_USERNAME=DIT_BRUGERNAVN
 SPRING_DATASOURCE_PASSWORD=DIT_PASSWORD
 
